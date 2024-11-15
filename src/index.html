@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistici Vizuale</title>
+
+    <!-- Include Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    
+    <!-- Data -->
+    <script src="./index.js" type="module"></script>
+
+    
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #map {
+            height: 100vh;
+        }
+
+        .county-label {
+            color: black;
+            margin-left: -20px !important;
+            margin-top: -24px !important;
+            font-size: 13px;
+            width: 18px !important;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+</body>
+
+</html>
