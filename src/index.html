@@ -1,14 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAPIFY | Transformă datele în hărți</title>
+    <meta name="description" content="Transformă datele statistice în hărți interactive ale României. Creează vizualizări pe județe cu palete de culori personalizate pentru social media.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.mapify.ro/">
 
-    <!-- Include Leaflet CSS and JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Open Graph -->
+    <meta property="og:title" content="MAPIFY | Transformă datele în hărți">
+    <meta property="og:description" content="Creează hărți statistice interactive ale României pe județe. Export pentru Instagram, TikTok și alte rețele sociale.">
+    <meta property="og:url" content="https://www.mapify.ro/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ro_RO">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MAPIFY | Transformă datele în hărți">
+    <meta name="twitter:description" content="Creează hărți statistice interactive ale României pe județe.">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "MAPIFY",
+      "url": "https://www.mapify.ro/",
+      "description": "Transformă datele statistice în hărți interactive ale României pe județe",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web Browser",
+      "inLanguage": "ro",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RON"
+      }
+    }
+    </script>
+
+    <!-- Resource hints -->
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin>
+    <link rel="dns-prefetch" href="https://api.openai.com">
+
+    <!-- Leaflet (pinned version to avoid 302 redirect) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 
     <!-- Data -->
     <script src="./index.js" type="module"></script>
@@ -1704,6 +1743,43 @@
             opacity: 0;
             pointer-events: none;
             transform: translateY(10px);
+        }
+
+        /* FAB hover tooltip */
+        .fab-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            right: 0;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 12px;
+            line-height: 1.4;
+            padding: 10px 14px;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            width: 220px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(6px);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .fab-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 24px;
+            width: 10px;
+            height: 10px;
+            background: #1a1a1a;
+            transform: rotate(45deg);
+        }
+
+        .fab-btn:hover + .fab-tooltip,
+        .fab-tooltip:hover {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
         }
 
         /* ===== Data Table Panel ===== */

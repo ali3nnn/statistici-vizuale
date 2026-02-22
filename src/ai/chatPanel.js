@@ -96,6 +96,12 @@ function createChatDOM() {
     }
     fabRow.appendChild(fab);
 
+    // Hover tooltip
+    const tooltip = document.createElement('div');
+    tooltip.className = 'fab-tooltip';
+    tooltip.textContent = 'Paste your data in the chat and it will be automatically formatted and added to the maps.';
+    fabRow.appendChild(tooltip);
+
     // Chat panel
     const panel = document.createElement('div');
     panel.id = 'ai-chat-panel';
