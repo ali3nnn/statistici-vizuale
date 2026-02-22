@@ -1,3 +1,5 @@
+import * as XLSX from 'xlsx';
+
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 const COUNTY_NAMES = [
@@ -68,6 +70,8 @@ let onConfigUpdateCallback = null;
 let getStateCallback = null;
 let onLoadingChangeCallback = null;
 let webSearchEnabled = false;
+let pendingFileContent = null;
+let pendingFileName = null;
 
 export function initChatPanel({ onConfigUpdate, getState, onLoadingChange }) {
     onConfigUpdateCallback = onConfigUpdate;
@@ -108,8 +112,17 @@ function createChatDOM() {
                 Ask me anything! I can load data, change colors, update titles, adjust the scale, or tweak any map setting.
             </div>
         </div>
+        <div class="ai-chat-file-preview" id="ai-chat-file-preview">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span id="ai-chat-file-name"></span>
+            <button id="ai-chat-file-remove" title="Remove file">&times;</button>
+        </div>
         <div class="ai-chat-input-area">
+            <input type="file" id="ai-chat-file-input" accept=".csv,.xls,.xlsx,.txt" style="display:none">
             <textarea id="ai-chat-input" placeholder="Add here your data per county" rows="2"></textarea>
+            <button id="ai-chat-file-btn" title="Upload file (CSV, XLS, TXT)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </button>
             <button id="ai-chat-web-toggle" title="Enable web search">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </button>
@@ -185,6 +198,33 @@ function wireEvents() {
         }
     });
 
+    // File upload
+    const fileBtn = document.getElementById('ai-chat-file-btn');
+    const fileInput = document.getElementById('ai-chat-file-input');
+    const filePreview = document.getElementById('ai-chat-file-preview');
+    const fileNameEl = document.getElementById('ai-chat-file-name');
+    const fileRemoveBtn = document.getElementById('ai-chat-file-remove');
+
+    fileBtn.addEventListener('click', () => { fileInput.click(); });
+
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        if (!file) return;
+        if (file.size > 500 * 1024) {
+            appendMessage('error', 'File too large (max 500KB)');
+            fileInput.value = '';
+            return;
+        }
+        handleFileSelect(file);
+    });
+
+    fileRemoveBtn.addEventListener('click', () => {
+        pendingFileContent = null;
+        pendingFileName = null;
+        filePreview.classList.remove('active');
+        fileInput.value = '';
+    });
+
     // Feedback modal
     const feedbackFab = document.getElementById('feedback-fab');
     const feedbackModal = document.getElementById('feedback-modal');
@@ -246,16 +286,32 @@ function wireEvents() {
 async function handleSend() {
     const input = document.getElementById('ai-chat-input');
     const message = input.value.trim();
-    if (!message) return;
+    if (!message && !pendingFileContent) return;
 
     input.value = '';
     input.style.height = 'auto';
-    appendMessage('user', message);
+
+    // Build display message and full message for the AI
+    let displayMsg = message || '';
+    let fullMessage = message || '';
+
+    if (pendingFileContent) {
+        if (displayMsg) displayMsg += `  (+ ${pendingFileName})`;
+        else displayMsg = pendingFileName;
+        fullMessage = 'Here is the uploaded data:\n\n' + pendingFileContent + (message ? '\n\n' + message : '');
+        // Clear file state
+        pendingFileContent = null;
+        pendingFileName = null;
+        document.getElementById('ai-chat-file-preview').classList.remove('active');
+        document.getElementById('ai-chat-file-input').value = '';
+    }
+
+    appendMessage('user', displayMsg);
 
     setLoading(true);
     if (onLoadingChangeCallback) onLoadingChangeCallback(true);
     try {
-        const parsed = await sendToOpenAI(message);
+        const parsed = await sendToOpenAI(fullMessage);
 
         // Check for missing counties when data is provided
         if (parsed.data) {
@@ -277,6 +333,39 @@ async function handleSend() {
     } finally {
         setLoading(false);
         if (onLoadingChangeCallback) onLoadingChangeCallback(false);
+    }
+}
+
+function handleFileSelect(file) {
+    const ext = file.name.split('.').pop().toLowerCase();
+    const preview = document.getElementById('ai-chat-file-preview');
+    const nameEl = document.getElementById('ai-chat-file-name');
+
+    if (ext === 'xls' || ext === 'xlsx') {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const wb = XLSX.read(e.target.result, { type: 'array' });
+                const firstSheet = wb.Sheets[wb.SheetNames[0]];
+                pendingFileContent = XLSX.utils.sheet_to_csv(firstSheet);
+                pendingFileName = file.name;
+                nameEl.textContent = file.name;
+                preview.classList.add('active');
+            } catch (err) {
+                appendMessage('error', 'Failed to parse Excel file');
+            }
+        };
+        reader.readAsArrayBuffer(file);
+    } else {
+        // CSV or TXT — read as plain text
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            pendingFileContent = e.target.result;
+            pendingFileName = file.name;
+            nameEl.textContent = file.name;
+            preview.classList.add('active');
+        };
+        reader.readAsText(file);
     }
 }
 
@@ -318,7 +407,7 @@ async function sendToOpenAI(userMessage) {
                 'Authorization': 'Bearer ' + OPENAI_API_KEY
             },
             body: JSON.stringify({
-                model: 'gpt-4o-mini',
+                model: 'gpt-5.1-mini',
                 input: responsesInput,
                 tools: [{ type: 'web_search_preview' }],
             })
@@ -417,8 +506,10 @@ function appendMessage(role, content) {
 function setLoading(isLoading) {
     const sendBtn = document.getElementById('ai-chat-send');
     const input = document.getElementById('ai-chat-input');
+    const fileBtn = document.getElementById('ai-chat-file-btn');
     sendBtn.disabled = isLoading;
     input.disabled = isLoading;
+    fileBtn.disabled = isLoading;
 
     if (isLoading) {
         const loader = document.createElement('div');

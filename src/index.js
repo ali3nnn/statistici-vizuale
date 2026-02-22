@@ -391,10 +391,11 @@ function generateLegend(legendId) {
     const legendEl = document.getElementById(legendId);
     if (!legendEl) return;
 
+    const isHorizontal = legendEl.classList.contains('horizontal');
     const steps = 20;
     let gradientStops = [];
 
-    // Generate gradient from max (top) to min (bottom)
+    // Generate gradient from max to min
     for (let i = 0; i <= steps; i++) {
         const value = _maxValue - (_maxValue - _minValue) * (i / steps);
         const color = getColorDivergingExp(_minValue, _maxValue, value, _highIsBad);
@@ -402,12 +403,16 @@ function generateLegend(legendId) {
         gradientStops.push(`${color} ${percent}%`);
     }
 
+    const gradientDir = isHorizontal ? 'to right' : 'to bottom';
+    const maxLabel = isHorizontal ? actualMin : actualMax;
+    const minLabel = isHorizontal ? actualMax : actualMin;
+
     legendEl.innerHTML = `
         <div class="legend-body">
-            <div class="legend-gradient" style="background: linear-gradient(to bottom, ${gradientStops.join(', ')})"></div>
+            <div class="legend-gradient" style="background: linear-gradient(${gradientDir}, ${gradientStops.join(', ')})"></div>
             <div class="legend-labels">
-                <span>${actualMax}</span>
-                <span>${actualMin}</span>
+                <span>${maxLabel}</span>
+                <span>${minLabel}</span>
             </div>
         </div>
     `;
@@ -450,6 +455,7 @@ function makeDraggable(el) {
         el.style.left = x + 'px';
         el.style.top = y + 'px';
         el.style.right = 'auto';
+        el.style.bottom = 'auto';
     });
 
     document.addEventListener('mouseup', () => {
@@ -460,8 +466,27 @@ function makeDraggable(el) {
     });
 }
 
-makeDraggable(document.getElementById('legend-4x5'));
-makeDraggable(document.getElementById('legend-9x16'));
+const legend4x5 = document.getElementById('legend-4x5');
+const legend9x16 = document.getElementById('legend-9x16');
+legend4x5.style.inset = '143.342px auto auto 405px';
+legend9x16.style.inset = '161.01px auto auto 291.988px';
+makeDraggable(legend4x5);
+makeDraggable(legend9x16);
+
+// Click to toggle legend orientation (distinguish from drag)
+['legend-4x5', 'legend-9x16'].forEach(id => {
+    const el = document.getElementById(id);
+    let downX, downY;
+    el.addEventListener('mousedown', (e) => { downX = e.clientX; downY = e.clientY; });
+    el.addEventListener('mouseup', (e) => {
+        if (Math.abs(e.clientX - downX) < 4 && Math.abs(e.clientY - downY) < 4) {
+            pushUndo();
+            el.classList.toggle('horizontal');
+            generateLegend(id);
+            markDirty();
+        }
+    });
+});
 
 // ============= Restyle Maps =============
 
@@ -788,6 +813,167 @@ document.querySelectorAll('#norm-btn-group .norm-btn').forEach(btn => {
     });
 });
 
+// ============= Watermark / Branding =============
+
+let watermarkDataUrl = null;
+let watermarkOpacity = 1;
+
+function placeWatermarks() {
+    // Remove existing watermarks
+    document.querySelectorAll('.watermark-wrap').forEach(el => el.remove());
+    if (!watermarkDataUrl) return;
+
+    document.querySelectorAll('.map-wrapper').forEach(wrapper => {
+        const wrap = document.createElement('div');
+        wrap.className = 'watermark-wrap';
+
+        const img = document.createElement('img');
+        img.className = 'watermark-img';
+        img.src = watermarkDataUrl;
+        img.style.opacity = watermarkOpacity;
+        img.draggable = false;
+
+        const handle = document.createElement('div');
+        handle.className = 'watermark-resize';
+
+        wrap.appendChild(img);
+        wrap.appendChild(handle);
+        wrapper.appendChild(wrap);
+        makeDraggable(wrap);
+        makeWatermarkResizable(handle, img);
+    });
+}
+
+function makeWatermarkResizable(handle, img) {
+    let startX, startWidth, undoPushed;
+
+    handle.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!undoPushed) { pushUndo(); undoPushed = true; }
+        startX = e.clientX;
+        startWidth = img.offsetWidth;
+        handle.classList.add('resizing');
+
+        const onMove = (ev) => {
+            const newWidth = Math.max(24, startWidth + ev.clientX - startX);
+            img.style.width = newWidth + 'px';
+        };
+
+        const onUp = () => {
+            handle.classList.remove('resizing');
+            undoPushed = false;
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+            markDirty();
+        };
+
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+    });
+}
+
+function getWatermarkPositions() {
+    const positions = [];
+    document.querySelectorAll('.watermark-wrap').forEach(wrap => {
+        const img = wrap.querySelector('.watermark-img');
+        positions.push({
+            left: wrap.style.left || '',
+            top: wrap.style.top || '',
+            width: img ? img.style.width || '' : ''
+        });
+    });
+    return positions;
+}
+
+function restoreWatermark(watermarkData) {
+    if (!watermarkData || !watermarkData.dataUrl) {
+        clearWatermark();
+        return;
+    }
+    watermarkDataUrl = watermarkData.dataUrl;
+    watermarkOpacity = watermarkData.opacity !== undefined ? watermarkData.opacity : 1;
+    placeWatermarks();
+
+    // Restore positions and sizes
+    if (watermarkData.positions) {
+        const wraps = document.querySelectorAll('.watermark-wrap');
+        watermarkData.positions.forEach((pos, i) => {
+            if (wraps[i]) {
+                if (pos.left) { wraps[i].style.left = pos.left; }
+                if (pos.top) { wraps[i].style.top = pos.top; }
+                wraps[i].style.right = 'auto';
+                const img = wraps[i].querySelector('.watermark-img');
+                if (img && pos.width) { img.style.width = pos.width; }
+            }
+        });
+    }
+
+    // Update UI
+    document.getElementById('watermark-opacity').value = Math.round(watermarkOpacity * 100);
+    document.getElementById('watermark-opacity-value').textContent = Math.round(watermarkOpacity * 100) + '%';
+    document.getElementById('btn-upload-watermark').style.display = 'none';
+    document.getElementById('btn-remove-watermark').style.display = '';
+    document.getElementById('watermark-opacity-group').style.display = '';
+    document.getElementById('watermark-opacity-group').classList.add('watermark-opacity-group');
+}
+
+function clearWatermark() {
+    watermarkDataUrl = null;
+    watermarkOpacity = 1;
+    document.querySelectorAll('.watermark-wrap').forEach(el => el.remove());
+    document.getElementById('watermark-opacity').value = 100;
+    document.getElementById('watermark-opacity-value').textContent = '100%';
+    document.getElementById('btn-upload-watermark').style.display = '';
+    document.getElementById('btn-remove-watermark').style.display = 'none';
+    document.getElementById('watermark-opacity-group').style.display = 'none';
+}
+
+// Upload button triggers file input
+document.getElementById('btn-upload-watermark').addEventListener('click', () => {
+    document.getElementById('watermark-file-input').click();
+});
+
+// File input handler
+document.getElementById('watermark-file-input').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    pushUndo();
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+        watermarkDataUrl = ev.target.result;
+        placeWatermarks();
+        document.getElementById('btn-upload-watermark').style.display = 'none';
+        document.getElementById('btn-remove-watermark').style.display = '';
+        document.getElementById('watermark-opacity-group').style.display = '';
+        document.getElementById('watermark-opacity-group').classList.add('watermark-opacity-group');
+        markDirty();
+    };
+    reader.readAsDataURL(file);
+    // Reset so re-uploading the same file triggers change
+    e.target.value = '';
+});
+
+// Opacity slider
+document.getElementById('watermark-opacity').addEventListener('input', (e) => {
+    watermarkOpacity = parseInt(e.target.value) / 100;
+    document.getElementById('watermark-opacity-value').textContent = e.target.value + '%';
+    document.querySelectorAll('.watermark-img').forEach(img => {
+        img.style.opacity = watermarkOpacity;
+    });
+});
+
+document.getElementById('watermark-opacity').addEventListener('mousedown', () => { pushUndo(); });
+
+document.getElementById('watermark-opacity').addEventListener('change', () => { markDirty(); });
+
+// Remove button
+document.getElementById('btn-remove-watermark').addEventListener('click', () => {
+    pushUndo();
+    clearWatermark();
+    markDirty();
+});
+
 // ============= Dirty State Tracking =============
 
 function markDirty() {
@@ -836,6 +1022,15 @@ function captureSnapshot() {
                 showValue: document.getElementById('toggle-value-9x16').checked,
                 labelSize: document.getElementById('label-size-9x16').value,
             }
+        },
+        watermark: {
+            dataUrl: watermarkDataUrl,
+            opacity: watermarkOpacity,
+            positions: getWatermarkPositions()
+        },
+        legendOrientation: {
+            '4x5': document.getElementById('legend-4x5').classList.contains('horizontal') ? 'horizontal' : 'vertical',
+            '9x16': document.getElementById('legend-9x16').classList.contains('horizontal') ? 'horizontal' : 'vertical'
         }
     };
 }
@@ -922,6 +1117,17 @@ function restoreSnapshot(snap) {
                 label.style.fontSize = d.labelSize + 'px';
             });
 
+        });
+    }
+
+    // Restore watermark
+    restoreWatermark(snap.watermark);
+
+    // Restore legend orientation
+    if (snap.legendOrientation) {
+        ['4x5', '9x16'].forEach(suffix => {
+            const el = document.getElementById(`legend-${suffix}`);
+            el.classList.toggle('horizontal', snap.legendOrientation[suffix] === 'horizontal');
         });
     }
 
@@ -1080,6 +1286,15 @@ function buildVersionData() {
                 showValue: document.getElementById('toggle-value-9x16').checked,
                 labelSize: document.getElementById('label-size-9x16').value,
             }
+        },
+        watermark: {
+            dataUrl: watermarkDataUrl,
+            opacity: watermarkOpacity,
+            positions: getWatermarkPositions()
+        },
+        legendOrientation: {
+            '4x5': document.getElementById('legend-4x5').classList.contains('horizontal') ? 'horizontal' : 'vertical',
+            '9x16': document.getElementById('legend-9x16').classList.contains('horizontal') ? 'horizontal' : 'vertical'
         }
     };
 }
@@ -1190,6 +1405,17 @@ function loadVersion(versionData) {
                 label.style.fontSize = d.labelSize + 'px';
             });
 
+        });
+    }
+
+    // Restore watermark
+    restoreWatermark(versionData.watermark);
+
+    // Restore legend orientation
+    if (versionData.legendOrientation) {
+        ['4x5', '9x16'].forEach(suffix => {
+            const el = document.getElementById(`legend-${suffix}`);
+            el.classList.toggle('horizontal', versionData.legendOrientation[suffix] === 'horizontal');
         });
     }
 
@@ -1313,19 +1539,17 @@ function renderSavedList() {
 document.getElementById('btn-save-config').addEventListener('click', saveConfig);
 
 // Panel toggle
-const ICON_HISTORY = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+const ICON_HISTORY = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>';
 const ICON_CLOSE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
 
 function openSavedPanel() {
     document.getElementById('saved-panel').classList.add('open');
-    document.getElementById('top-right-actions').classList.add('panel-open');
     document.getElementById('saved-toggle-btn').innerHTML = ICON_CLOSE;
     document.getElementById('saved-toggle-btn').title = 'Close';
 }
 
 function closeSavedPanel() {
     document.getElementById('saved-panel').classList.remove('open');
-    document.getElementById('top-right-actions').classList.remove('panel-open');
     document.getElementById('saved-toggle-btn').innerHTML = ICON_HISTORY;
     document.getElementById('saved-toggle-btn').title = 'History';
 }
@@ -1395,6 +1619,37 @@ document.querySelectorAll('[data-sync]').forEach(el => {
     });
 });
 
+// ============= No-data guard =============
+
+function hasData() {
+    return Object.values(_data).some(v => v !== 0);
+}
+
+function showNoDataPopup(anchorBtn) {
+    // Remove any existing popup
+    const existing = document.getElementById('no-data-popup');
+    if (existing) existing.remove();
+
+    const popup = document.createElement('div');
+    popup.id = 'no-data-popup';
+    popup.innerHTML = `
+        <span>No data loaded yet. Use the <strong>AI Assistant</strong> button to add your data.</span>
+        <button id="no-data-popup-close">&times;</button>
+    `;
+    document.body.appendChild(popup);
+
+    // Position above the button
+    const rect = anchorBtn.getBoundingClientRect();
+    popup.style.left = rect.left + rect.width / 2 + 'px';
+    popup.style.top = rect.top - 12 + 'px';
+
+    requestAnimationFrame(() => popup.classList.add('visible'));
+
+    const dismiss = () => { popup.classList.remove('visible'); setTimeout(() => popup.remove(), 200); };
+    document.getElementById('no-data-popup-close').addEventListener('click', dismiss);
+    setTimeout(dismiss, 4000);
+}
+
 // ============= Download Functions =============
 
 async function downloadCapture(captureId, width, height, filename, btnId) {
@@ -1455,11 +1710,13 @@ function getDateStamp() {
     return `${dd}${mm}${yyyy}_${hh}${min}`;
 }
 
-document.getElementById('btn-download-4x5').addEventListener('click', () => {
+document.getElementById('btn-download-4x5').addEventListener('click', (e) => {
+    if (!hasData()) return showNoDataPopup(e.currentTarget);
     downloadCapture('capture-4x5', 1080, 1350, `statistici-post-4x5_${getDateStamp()}.png`, 'btn-download-4x5');
 });
 
-document.getElementById('btn-download-9x16').addEventListener('click', () => {
+document.getElementById('btn-download-9x16').addEventListener('click', (e) => {
+    if (!hasData()) return showNoDataPopup(e.currentTarget);
     downloadCapture('capture-9x16', 1080, 1920, `statistici-reel-9x16_${getDateStamp()}.png`, 'btn-download-9x16');
 });
 
@@ -1495,11 +1752,13 @@ async function copyCapture(captureId, btnId) {
     }
 }
 
-document.getElementById('btn-copy-4x5').addEventListener('click', () => {
+document.getElementById('btn-copy-4x5').addEventListener('click', (e) => {
+    if (!hasData()) return showNoDataPopup(e.currentTarget);
     copyCapture('capture-4x5', 'btn-copy-4x5');
 });
 
-document.getElementById('btn-copy-9x16').addEventListener('click', () => {
+document.getElementById('btn-copy-9x16').addEventListener('click', (e) => {
+    if (!hasData()) return showNoDataPopup(e.currentTarget);
     copyCapture('capture-9x16', 'btn-copy-9x16');
 });
 
@@ -1531,11 +1790,13 @@ async function shareLink(btnId, format) {
     }
 }
 
-document.getElementById('btn-share-4x5').addEventListener('click', () => {
+document.getElementById('btn-share-4x5').addEventListener('click', (e) => {
+    if (!hasData()) return showNoDataPopup(e.currentTarget);
     shareLink('btn-share-4x5', '4x5');
 });
 
-document.getElementById('btn-share-9x16').addEventListener('click', () => {
+document.getElementById('btn-share-9x16').addEventListener('click', (e) => {
+    if (!hasData()) return showNoDataPopup(e.currentTarget);
     shareLink('btn-share-9x16', '9x16');
 });
 

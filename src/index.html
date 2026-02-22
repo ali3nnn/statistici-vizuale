@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistici Vizuale</title>
+    <title>MAPIFY | Transformă datele în hărți</title>
 
     <!-- Include Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -51,11 +51,23 @@
             flex-shrink: 0;
         }
 
-        .tab-section {
+        .tab-section,
+        .sidebar-section {
             background: #f4f4f4;
             border-radius: 6px;
             padding: 0;
             margin-bottom: 6px;
+        }
+
+        .sidebar-section {
+            padding: 10px 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-section .control-group-title {
+            padding-top: 0;
         }
 
         .tab-bar {
@@ -342,6 +354,8 @@
             justify-content: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             transition: background 0.15s;
+            z-index: 2;
+            position: relative;
         }
 
         .btn-history-top:hover {
@@ -373,13 +387,7 @@
             cursor: default;
         }
 
-        /* When history panel is open, hide undo/redo/save */
-        .top-right-actions.panel-open .btn-undo-redo,
-        .top-right-actions.panel-open .btn-save-top {
-            display: none;
-        }
-
-        /* Saved stats slide panel */
+        /* Saved stats slide panel (inside .top-right-actions) */
         .saved-panel {
             position: fixed;
             top: 0;
@@ -388,7 +396,7 @@
             height: 100vh;
             background: #fff;
             border-left: 1px solid #ccc;
-            z-index: 10000;
+            z-index: 1;
             transform: translateX(100%);
             transition: transform 0.25s ease;
             display: flex;
@@ -759,8 +767,6 @@
         /* ===== Legend ===== */
         .legend {
             position: absolute;
-            top: 8px;
-            right: 8px;
             background: rgba(255, 255, 255, 0.93);
             border-radius: 6px;
             padding: 8px 10px;
@@ -796,6 +802,20 @@
             font-size: 10px;
             color: #444;
             font-weight: 500;
+        }
+
+        /* Horizontal legend */
+        .legend.horizontal .legend-body {
+            flex-direction: column;
+        }
+
+        .legend.horizontal .legend-gradient {
+            width: 90px;
+            height: 12px;
+        }
+
+        .legend.horizontal .legend-labels {
+            flex-direction: row;
         }
 
         /* ===== Footer ===== */
@@ -1002,6 +1022,51 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        /* ===== No-data popup ===== */
+        #no-data-popup {
+            position: fixed;
+            z-index: 10010;
+            transform: translate(-50%, -100%);
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 13px;
+            line-height: 1.4;
+            padding: 10px 16px;
+            border-radius: 10px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 280px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        #no-data-popup.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #no-data-popup strong {
+            color: #fff;
+        }
+
+        #no-data-popup-close {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        #no-data-popup-close:hover {
+            color: #fff;
+        }
+
         /* ===== Capture mode ===== */
         .capturing #controls,
         .capturing .preview-actions,
@@ -1053,6 +1118,66 @@
 
         @keyframes mapSpin {
             to { transform: rotate(360deg); }
+        }
+
+        /* ===== Watermark image ===== */
+        .watermark-wrap {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            z-index: 1001;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .watermark-wrap.dragging {
+            cursor: grabbing;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .watermark-img {
+            display: block;
+            width: 120px;
+            pointer-events: none;
+            -webkit-user-drag: none;
+        }
+
+        .watermark-resize {
+            position: absolute;
+            right: -4px;
+            bottom: -4px;
+            width: 12px;
+            height: 12px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1.5px solid #fff;
+            border-radius: 2px;
+            cursor: nwse-resize;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .watermark-wrap:hover .watermark-resize {
+            opacity: 1;
+        }
+
+        .watermark-resize.resizing {
+            opacity: 1;
+        }
+
+        .capturing .watermark-resize {
+            display: none !important;
+        }
+
+        .watermark-opacity-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .watermark-opacity-value {
+            font-size: 11px;
+            color: #888;
+            text-align: center;
         }
 
         /* ===== Sidebar feedback button ===== */
@@ -1439,6 +1564,75 @@
             cursor: not-allowed;
         }
 
+        #ai-chat-file-btn {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid #ddd;
+            border-radius: 10px;
+            background: #fff;
+            color: #999;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+
+        #ai-chat-file-btn:hover {
+            border-color: #999;
+            color: #555;
+            background: #f5f5f5;
+        }
+
+        #ai-chat-file-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .ai-chat-file-preview {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px 0;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .ai-chat-file-preview.active {
+            display: flex;
+        }
+
+        .ai-chat-file-preview span {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .ai-chat-file-preview svg {
+            flex-shrink: 0;
+            color: #888;
+        }
+
+        #ai-chat-file-remove {
+            border: none;
+            background: none;
+            color: #bbb;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 2px;
+            line-height: 1;
+            flex-shrink: 0;
+            transition: color 0.12s;
+        }
+
+        #ai-chat-file-remove:hover {
+            color: #c00;
+        }
+
         #ai-chat-web-toggle {
             display: none !important;
             width: 36px;
@@ -1743,27 +1937,45 @@
             </div>
             </div><!-- /.tab-section -->
 
-            <div class="control-section">
-                <label>Color palette</label>
-                <div class="palette-grid" id="palette-grid"></div>
-                <button class="btn-reverse-palette" id="btn-reverse-palette">Reverse palette</button>
-            </div>
-
-            <div class="control-section">
-                <label>Custom hue</label>
-                <input type="range" id="custom-hue" class="hue-slider" min="0" max="360" step="1" value="0">
-                <div class="hue-preview" id="hue-preview"></div>
-            </div>
-
-            <div class="control-group-title">Normalization</div>
-
-            <div class="control-section">
-                <div class="norm-btn-group" id="norm-btn-group">
-                    <button class="norm-btn active" data-norm="none">None</button>
-                    <button class="norm-btn" data-norm="logarithmic">Log</button>
-                    <button class="norm-btn" data-norm="exponential">Exp</button>
+            <div class="sidebar-section">
+                <div class="control-group-title">Coloring</div>
+                <div class="control-section">
+                    <label>Color palette</label>
+                    <div class="palette-grid" id="palette-grid"></div>
+                    <button class="btn-reverse-palette" id="btn-reverse-palette">Reverse palette</button>
                 </div>
-                <div class="norm-hint" id="norm-hint">Linear scale — values mapped as-is</div>
+                <div class="control-section">
+                    <label>Custom hue</label>
+                    <input type="range" id="custom-hue" class="hue-slider" min="0" max="360" step="1" value="0">
+                    <div class="hue-preview" id="hue-preview"></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="control-group-title">Normalization</div>
+                <div class="control-section">
+                    <div class="norm-btn-group" id="norm-btn-group">
+                        <button class="norm-btn active" data-norm="none">None</button>
+                        <button class="norm-btn" data-norm="logarithmic">Log</button>
+                        <button class="norm-btn" data-norm="exponential">Exp</button>
+                    </div>
+                    <div class="norm-hint" id="norm-hint">Linear scale — values mapped as-is</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="control-group-title">Branding</div>
+                <div class="control-section">
+                    <label>Watermark image</label>
+                    <input type="file" id="watermark-file-input" accept="image/*" style="display:none">
+                    <button class="btn-reverse-palette" id="btn-upload-watermark">Upload image</button>
+                    <button class="btn-reverse-palette" id="btn-remove-watermark" style="display:none; color:#c00; border-color:#e0c0c0;">Remove image</button>
+                    <div id="watermark-opacity-group" style="display:none">
+                        <label>Opacity</label>
+                        <input type="range" id="watermark-opacity" class="zoom-slider" min="0" max="100" step="1" value="100">
+                        <div class="watermark-opacity-value" id="watermark-opacity-value">100%</div>
+                    </div>
+                </div>
             </div>
 
             <div class="sidebar-spacer"></div>
@@ -1849,19 +2061,19 @@
         </div>
     </div>
 
-    <!-- Top-right action buttons -->
+    <!-- Top-right action buttons + history panel -->
     <div class="top-right-actions" id="top-right-actions">
         <button class="btn-undo-redo" id="btn-undo" title="Undo (Ctrl+Z)" disabled><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>
         <button class="btn-undo-redo" id="btn-redo" title="Redo (Ctrl+Y)" disabled><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.13-9.36L23 10"/></svg></button>
         <button class="btn-save-top" id="btn-save-config" title="Save"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save</button>
-        <button class="btn-history-top" id="saved-toggle-btn" title="History"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></button>
-    </div>
-    <div class="saved-panel" id="saved-panel">
-        <div class="saved-panel-header">
-            <span>Saved Statistics</span>
-            <button class="saved-panel-close" id="saved-panel-close">&times;</button>
+        <button class="btn-history-top" id="saved-toggle-btn" title="History"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></button>
+        <div class="saved-panel" id="saved-panel">
+            <div class="saved-panel-header">
+                <span>Saved Statistics</span>
+                <button class="saved-panel-close" id="saved-panel-close">&times;</button>
+            </div>
+            <div class="saved-list" id="saved-list"></div>
         </div>
-        <div class="saved-list" id="saved-list"></div>
     </div>
 </body>
 
