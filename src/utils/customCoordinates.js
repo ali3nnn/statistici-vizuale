@@ -3,7 +3,7 @@ export function customCoordinates(countyName, layer) {
     if (countyName === "Bucuresti") {
         coordinates = {
             ...layer.getBounds().getCenter(),
-            lng: layer.getBounds().getCenter().lng + 0.4
+            lng: layer.getBounds().getCenter().lng + 1
         }
     } else if (countyName === "Cluj") {
         coordinates = {
