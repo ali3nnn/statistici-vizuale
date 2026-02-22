@@ -32,10 +32,21 @@ const USER_ID = getUserId();
 const romaniaGeoJSON = countiesGeoData;
 // const romaniaGeoJSON = GEO_DATA_UAT;
 
-// Initialize with blank map (no data)
+// All 42 Romanian counties
+const COUNTY_NAMES = [
+    "Alba", "Arad", "Arges", "Bacau", "Bihor", "Bistrita-Nasaud",
+    "Botosani", "Braila", "Brasov", "Bucuresti", "Buzau", "Calarasi",
+    "Caras-Severin", "Cluj", "Constanta", "Covasna", "Dambovita", "Dolj",
+    "Galati", "Giurgiu", "Gorj", "Harghita", "Hunedoara", "Ialomita",
+    "Iasi", "Ilfov", "Maramures", "Mehedinti", "Mures", "Neamt", "Olt",
+    "Prahova", "Salaj", "Satu Mare", "Sibiu", "Suceava", "Teleorman",
+    "Timis", "Tulcea", "Valcea", "Vaslui", "Vrancea"
+];
+
+// Initialize with all counties at 0
 let _maxValue = 0;
 let _minValue = 0;
-let _data = {};
+let _data = Object.fromEntries(COUNTY_NAMES.map(name => [name, 0]));
 let _highIsBad = false;
 
 // Compute actual min/max from the data
@@ -124,6 +135,9 @@ function getColorDiverging(minVal, maxVal, currentNumber, highIsBad, countryName
 }
 
 function getColorDivergingExp(minVal, maxVal, currentNumber, highIsBad, countryName) {
+    // No data range — show neutral gray
+    if (minVal === maxVal) return '#e0e0e0';
+
     // Monochromatic mode: single hue, vary saturation and lightness
     const hue = activePalette.hue;
 
@@ -477,6 +491,7 @@ function restyleMaps() {
         labelEl.style.color = contrastTextColor(bgColor);
     });
     refreshLegends();
+    if (window._refreshDataTable) window._refreshDataTable();
 }
 
 // ============= Update Labels (values + contrast) =============
@@ -647,6 +662,11 @@ function setupFormatControls(suffix, mapContainer, mapInstance) {
 
 setupFormatControls('4x5', document.getElementById('capture-4x5'), map4x5);
 setupFormatControls('9x16', document.getElementById('capture-9x16'), map9x16);
+
+// Apply default 8px label size for 9:16
+document.getElementById('capture-9x16').querySelectorAll('.label-inner').forEach(label => {
+    label.style.fontSize = '8px';
+});
 
 // ============= Auto Align Buttons =============
 
@@ -1320,24 +1340,28 @@ document.getElementById('saved-toggle-btn').addEventListener('click', () => {
 });
 document.getElementById('saved-panel-close').addEventListener('click', closeSavedPanel);
 
-// Fetch configs from DB and auto-load last saved config
+// Fetch configs from DB and auto-load last saved config (or shared config)
+async function loadLastSaved() {
+    await migrateLocalStorageIfNeeded();
+    const configs = await fetchConfigs();
+    renderSavedList();
+    if (configs.length === 0) return;
+    const latest = configs[0]; // most recent group (ordered by updated_at DESC)
+    const latestVersion = latest.versions[latest.versions.length - 1];
+    if (latestVersion) {
+        setTimeout(() => {
+            loadVersion(latestVersion);
+            undoStack = [];
+            redoStack = [];
+            updateUndoRedoButtons();
+            clearDirty();
+        }, 300);
+    }
+}
+
 (async function autoLoadLast() {
     try {
-        await migrateLocalStorageIfNeeded();
-        const configs = await fetchConfigs();
-        renderSavedList();
-        if (configs.length === 0) return;
-        const latest = configs[0]; // most recent group (ordered by updated_at DESC)
-        const latestVersion = latest.versions[latest.versions.length - 1];
-        if (latestVersion) {
-            setTimeout(() => {
-                loadVersion(latestVersion);
-                undoStack = [];
-                redoStack = [];
-                updateUndoRedoButtons();
-                clearDirty();
-            }, 300);
-        }
+        await loadLastSaved();
     } catch (err) {
         console.error('Auto-load failed:', err);
         renderSavedList();
@@ -1373,11 +1397,9 @@ document.querySelectorAll('[data-sync]').forEach(el => {
 
 // ============= Download Functions =============
 
-async function downloadCapture(captureId, width, height, filename) {
+async function downloadCapture(captureId, width, height, filename, btnId) {
+    const btn = document.getElementById(btnId);
     document.activeElement.blur();
-    document.body.classList.add('capturing');
-
-    await new Promise(r => setTimeout(r, 150));
 
     const captureArea = document.getElementById(captureId);
 
@@ -1387,6 +1409,9 @@ async function downloadCapture(captureId, width, height, filename) {
             useCORS: true,
             backgroundColor: '#ffffff',
             logging: false,
+            onclone: (clonedDoc) => {
+                clonedDoc.body.classList.add('capturing');
+            },
         });
 
         const targetCanvas = document.createElement('canvas');
@@ -1412,19 +1437,106 @@ async function downloadCapture(captureId, width, height, filename) {
         link.download = filename;
         link.href = targetCanvas.toDataURL('image/png');
         link.click();
+
+        btn.classList.add('downloaded');
+        setTimeout(() => btn.classList.remove('downloaded'), 1500);
     } catch (err) {
         console.error('Download failed:', err);
-    } finally {
-        document.body.classList.remove('capturing');
     }
 }
 
+function getDateStamp() {
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2, '0');
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const yyyy = now.getFullYear();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const min = String(now.getMinutes()).padStart(2, '0');
+    return `${dd}${mm}${yyyy}_${hh}${min}`;
+}
+
 document.getElementById('btn-download-4x5').addEventListener('click', () => {
-    downloadCapture('capture-4x5', 1080, 1350, 'statistici-post-4x5.png');
+    downloadCapture('capture-4x5', 1080, 1350, `statistici-post-4x5_${getDateStamp()}.png`, 'btn-download-4x5');
 });
 
 document.getElementById('btn-download-9x16').addEventListener('click', () => {
-    downloadCapture('capture-9x16', 1080, 1920, 'statistici-reel-9x16.png');
+    downloadCapture('capture-9x16', 1080, 1920, `statistici-reel-9x16_${getDateStamp()}.png`, 'btn-download-9x16');
+});
+
+// ============= Copy to Clipboard =============
+
+async function copyCapture(captureId, btnId) {
+    const btn = document.getElementById(btnId);
+    document.activeElement.blur();
+
+    const captureArea = document.getElementById(captureId);
+
+    try {
+        const sourceCanvas = await html2canvas(captureArea, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: '#ffffff',
+            logging: false,
+            onclone: (clonedDoc) => {
+                clonedDoc.body.classList.add('capturing');
+            },
+        });
+
+        const blob = await new Promise(resolve => sourceCanvas.toBlob(resolve, 'image/png'));
+        await navigator.clipboard.write([
+            new ClipboardItem({ 'image/png': blob })
+        ]);
+
+        // Show copied animation
+        btn.classList.add('copied');
+        setTimeout(() => btn.classList.remove('copied'), 1500);
+    } catch (err) {
+        console.error('Copy failed:', err);
+    }
+}
+
+document.getElementById('btn-copy-4x5').addEventListener('click', () => {
+    copyCapture('capture-4x5', 'btn-copy-4x5');
+});
+
+document.getElementById('btn-copy-9x16').addEventListener('click', () => {
+    copyCapture('capture-9x16', 'btn-copy-9x16');
+});
+
+// ============= Share Link =============
+
+async function shareLink(btnId, format) {
+    const btn = document.getElementById(btnId);
+
+    try {
+        const snapshot = buildVersionData();
+
+        const res = await fetch('/api/shares', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ snapshot })
+        });
+
+        if (!res.ok) throw new Error('Failed to create share');
+
+        const { id } = await res.json();
+        const shareUrl = `${window.location.origin}/share.html?id=${id}&format=${format}`;
+
+        await navigator.clipboard.writeText(shareUrl);
+
+        btn.classList.add('shared');
+        setTimeout(() => btn.classList.remove('shared'), 2000);
+    } catch (err) {
+        console.error('Share failed:', err);
+    }
+}
+
+document.getElementById('btn-share-4x5').addEventListener('click', () => {
+    shareLink('btn-share-4x5', '4x5');
+});
+
+document.getElementById('btn-share-9x16').addEventListener('click', () => {
+    shareLink('btn-share-9x16', '9x16');
 });
 
 // ============= Text Editor Toolbar =============
@@ -1633,3 +1745,197 @@ initChatPanel({
         document.getElementById('loading-overlay-9x16').classList.toggle('active', isLoading);
     },
 });
+
+// ============= Data Table Panel =============
+
+(function initDataTable() {
+    // Create FAB button in shared row
+    let fabRow = document.getElementById('fab-row');
+    if (!fabRow) {
+        fabRow = document.createElement('div');
+        fabRow.id = 'fab-row';
+        fabRow.className = 'fab-row';
+        document.body.appendChild(fabRow);
+    }
+
+    const tableFab = document.createElement('button');
+    tableFab.id = 'data-table-fab';
+    tableFab.className = 'fab-btn';
+    tableFab.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg><span>Data table</span>`;
+    fabRow.insertBefore(tableFab, fabRow.firstChild);
+
+    // Create panel
+    const panel = document.createElement('div');
+    panel.id = 'data-table-panel';
+    panel.innerHTML = `
+        <div class="data-table-header">
+            <div class="data-table-header-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+                <span>County Data</span>
+            </div>
+            <button id="data-table-close" class="data-table-close">&times;</button>
+        </div>
+        <div class="data-table-body">
+            <table>
+                <thead><tr><th>County</th><th>Value</th></tr></thead>
+                <tbody id="data-table-tbody"></tbody>
+            </table>
+        </div>
+    `;
+    document.body.appendChild(panel);
+
+    // Populate table rows
+    const tbody = document.getElementById('data-table-tbody');
+    const allInputs = [];
+
+    COUNTY_NAMES.forEach((name, idx) => {
+        const tr = document.createElement('tr');
+        const abbr = getCountyAbbreviation(name);
+        tr.innerHTML = `
+            <td><span class="county-swatch" data-county="${name}"></span>${abbr} — ${name}</td>
+            <td><input class="county-input" data-county="${name}" data-idx="${idx}" value="${_data[name] || 0}"></td>
+        `;
+        tbody.appendChild(tr);
+        allInputs.push(tr.querySelector('.county-input'));
+    });
+
+    // Apply a single value change and refresh the map
+    function applyValue(input) {
+        const county = input.dataset.county;
+        const raw = input.value.replace(',', '.').trim();
+        const val = parseFloat(raw);
+        if (isNaN(val)) return;
+        _data[county] = val;
+    }
+
+    function refreshMap() {
+        const vals = Object.values(_data).filter(v => typeof v === 'number');
+        if (vals.length > 0) {
+            actualMin = Math.min(...vals);
+            actualMax = Math.max(...vals);
+        }
+        updateLabels();
+        restyleMaps();
+        updateTableSwatches();
+        markDirty();
+    }
+
+    // Live editing — update on every keystroke
+    tbody.addEventListener('input', (e) => {
+        if (!e.target.classList.contains('county-input')) return;
+        applyValue(e.target);
+        refreshMap();
+    });
+
+    // Push undo when user starts editing
+    let _undoPushedForFocus = false;
+    tbody.addEventListener('focusin', (e) => {
+        if (e.target.classList.contains('county-input')) {
+            if (!_undoPushedForFocus) {
+                pushUndo();
+                _undoPushedForFocus = true;
+            }
+            e.target.select();
+        }
+    });
+
+    tbody.addEventListener('focusout', () => {
+        // Reset undo flag when focus leaves the table entirely
+        setTimeout(() => {
+            if (!tbody.contains(document.activeElement)) {
+                _undoPushedForFocus = false;
+            }
+        }, 0);
+    });
+
+    // Keyboard navigation: Tab/Enter move to next row, Shift+Tab to previous
+    tbody.addEventListener('keydown', (e) => {
+        if (!e.target.classList.contains('county-input')) return;
+        const idx = parseInt(e.target.dataset.idx);
+
+        if (e.key === 'Enter' || (e.key === 'Tab' && !e.shiftKey)) {
+            e.preventDefault();
+            const next = allInputs[idx + 1];
+            if (next) { next.focus(); next.select(); }
+        } else if (e.key === 'Tab' && e.shiftKey) {
+            e.preventDefault();
+            const prev = allInputs[idx - 1];
+            if (prev) { prev.focus(); prev.select(); }
+        }
+    });
+
+    // Paste support — paste a column of values from Excel/Sheets
+    tbody.addEventListener('paste', (e) => {
+        if (!e.target.classList.contains('county-input')) return;
+        e.preventDefault();
+
+        const text = (e.clipboardData || window.clipboardData).getData('text');
+        // Split by newlines; each line may have tab-separated columns — take the last column (the value)
+        const lines = text.split(/\r?\n/).filter(l => l.trim() !== '');
+
+        if (lines.length <= 1) {
+            // Single value paste — just set it
+            const raw = lines[0]?.replace(',', '.').trim();
+            const val = parseFloat(raw);
+            if (!isNaN(val)) {
+                e.target.value = val;
+                applyValue(e.target);
+                refreshMap();
+            }
+            return;
+        }
+
+        pushUndo();
+
+        const startIdx = parseInt(e.target.dataset.idx);
+
+        lines.forEach((line, i) => {
+            const targetIdx = startIdx + i;
+            if (targetIdx >= allInputs.length) return;
+
+            // Take the last column if tab-separated (handles "County\tValue" or just "Value")
+            const cols = line.split('\t');
+            const rawVal = cols[cols.length - 1].replace(',', '.').trim();
+            const val = parseFloat(rawVal);
+            if (isNaN(val)) return;
+
+            allInputs[targetIdx].value = val;
+            applyValue(allInputs[targetIdx]);
+        });
+
+        refreshMap();
+
+        // Focus the last filled input
+        const lastIdx = Math.min(startIdx + lines.length - 1, allInputs.length - 1);
+        allInputs[lastIdx].focus();
+    });
+
+    // Open/close
+    tableFab.addEventListener('click', () => {
+        refreshTableValues();
+        panel.classList.add('open');
+        fabRow.classList.add('hidden');
+    });
+
+    document.getElementById('data-table-close').addEventListener('click', () => {
+        panel.classList.remove('open');
+        fabRow.classList.remove('hidden');
+    });
+
+    function refreshTableValues() {
+        allInputs.forEach(input => {
+            input.value = _data[input.dataset.county] || 0;
+        });
+        updateTableSwatches();
+    }
+
+    function updateTableSwatches() {
+        tbody.querySelectorAll('.county-swatch').forEach(swatch => {
+            const county = swatch.dataset.county;
+            swatch.style.background = getColorDivergingExp(_minValue, _maxValue, _data[county], _highIsBad);
+        });
+    }
+
+    // Expose refresh so other code (applyConfig, loadVersion) can update the table
+    window._refreshDataTable = refreshTableValues;
+})();

@@ -1,4 +1,4 @@
 {
-  "buildCommand": "npx parcel build src/index.html --dist-dir dist",
+  "buildCommand": "npx parcel build src/index.html src/share.html --dist-dir dist",
   "outputDirectory": "dist"
 }

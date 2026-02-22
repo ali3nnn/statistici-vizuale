@@ -4,9 +4,9 @@
   "description": "",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel src/index.html",
-    "dev": "nodemon --watch src -e js,html,css --exec 'parcel src/index.html'",
-    "build": "parcel build src/index.html"
+    "start": "parcel src/index.html src/share.html",
+    "dev": "nodemon --watch src -e js,html,css --exec 'parcel src/index.html src/share.html'",
+    "build": "parcel build src/index.html src/share.html"
   },
   "author": "",
   "license": "ISC",

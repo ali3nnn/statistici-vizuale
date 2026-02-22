@@ -45,7 +45,15 @@ Available fields:
 Rules:
 1. ALWAYS include a "message" field with a short, friendly summary of what you did.
 2. Only include fields that the user wants to change. If they just ask to change the color, only include "palette" and "message".
-3. When loading new data, include "data" with all 42 counties, plus "minValue", "maxValue", "highIsBad", "title", "subtitle", "source", and set "replaceAllData": true.
+3. When loading new data, you MUST fully configure the entire map. Include ALL of these fields:
+   - "data" with all 42 counties
+   - "replaceAllData": true
+   - "minValue" and "maxValue" (the color scale range, usually matching the data range)
+   - "highIsBad" (true if high values are negative/bad, e.g. unemployment, poverty, crime; false if high values are good, e.g. GDP, income, life expectancy)
+   - "title" (a clear, descriptive map title in Romanian)
+   - "subtitle" (a short context line in Romanian, e.g. the year, unit of measurement, or comparison period)
+   - "source" (the data source, e.g. "INS", "Eurostat", "BNR", or what the user provided)
+   - "palette" — choose the most appropriate color: "blue" for neutral/general data, "green" for positive metrics (income, growth, GDP), "red" for negative metrics (deaths, crime, unemployment), "orange" for population/demographic data, "purple" for cultural/education data. If unsure, use "blue".
 4. When updating specific county values, include only those counties in "data" and omit "replaceAllData" or set it to false.
 5. All values in "data" must be numbers. No strings, no null.
 6. Match county names flexibly: "Cluj-Napoca" -> "Cluj", "Bucuresti/Bucharest" -> "Bucuresti", etc.
@@ -55,9 +63,11 @@ Rules:
 10. Respond ONLY with the JSON object. No markdown, no explanation, no code fences.`;
 
 let conversationHistory = [];
+let conversationDbId = null;
 let onConfigUpdateCallback = null;
 let getStateCallback = null;
 let onLoadingChangeCallback = null;
+let webSearchEnabled = false;
 
 export function initChatPanel({ onConfigUpdate, getState, onLoadingChange }) {
     onConfigUpdateCallback = onConfigUpdate;
@@ -68,11 +78,19 @@ export function initChatPanel({ onConfigUpdate, getState, onLoadingChange }) {
 }
 
 function createChatDOM() {
-    // FAB button
+    // AI FAB button — appended to shared .fab-row
     const fab = document.createElement('button');
     fab.id = 'ai-chat-fab';
-    fab.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>AI Assistant</span>`;
-    document.body.appendChild(fab);
+    fab.className = 'fab-btn';
+    fab.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Add data with AI</span>`;
+    let fabRow = document.getElementById('fab-row');
+    if (!fabRow) {
+        fabRow = document.createElement('div');
+        fabRow.id = 'fab-row';
+        fabRow.className = 'fab-row';
+        document.body.appendChild(fabRow);
+    }
+    fabRow.appendChild(fab);
 
     // Chat panel
     const panel = document.createElement('div');
@@ -81,7 +99,7 @@ function createChatDOM() {
         <div class="ai-chat-header">
             <div class="ai-chat-header-left">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                <span>AI Assistant</span>
+                <span>Add data with AI</span>
             </div>
             <button id="ai-chat-close" class="ai-chat-close">&times;</button>
         </div>
@@ -91,13 +109,45 @@ function createChatDOM() {
             </div>
         </div>
         <div class="ai-chat-input-area">
-            <textarea id="ai-chat-input" placeholder="e.g. &quot;Load GDP data for Romania&quot; or &quot;Change palette to blue&quot;" rows="2"></textarea>
+            <textarea id="ai-chat-input" placeholder="Add here your data per county" rows="2"></textarea>
+            <button id="ai-chat-web-toggle" title="Enable web search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </button>
             <button id="ai-chat-send">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
         </div>
     `;
     document.body.appendChild(panel);
+
+    // Feedback modal
+    const feedbackModal = document.createElement('div');
+    feedbackModal.id = 'feedback-modal';
+    feedbackModal.innerHTML = `
+        <div class="feedback-modal-backdrop" id="feedback-backdrop"></div>
+        <div class="feedback-modal-card">
+            <div class="feedback-modal-header">
+                <span>Send Feedback</span>
+                <button id="feedback-close" class="ai-chat-close">&times;</button>
+            </div>
+            <div class="feedback-modal-body">
+                <label class="feedback-label">How would you rate your experience?</label>
+                <div class="feedback-rating" id="feedback-rating">
+                    <button class="feedback-star" data-rating="1">1</button>
+                    <button class="feedback-star" data-rating="2">2</button>
+                    <button class="feedback-star" data-rating="3">3</button>
+                    <button class="feedback-star" data-rating="4">4</button>
+                    <button class="feedback-star" data-rating="5">5</button>
+                </div>
+                <label class="feedback-label">Your feedback</label>
+                <textarea id="feedback-message" placeholder="Tell us what you think, report a bug, or suggest a feature..." rows="4"></textarea>
+            </div>
+            <div class="feedback-modal-footer">
+                <button id="feedback-submit" class="feedback-submit-btn">Submit</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(feedbackModal);
 }
 
 function wireEvents() {
@@ -107,15 +157,23 @@ function wireEvents() {
     const input = document.getElementById('ai-chat-input');
     const sendBtn = document.getElementById('ai-chat-send');
 
+    const fabRow = document.getElementById('fab-row');
+
     fab.addEventListener('click', () => {
         panel.classList.add('open');
-        fab.classList.add('hidden');
+        fabRow.classList.add('hidden');
         input.focus();
     });
 
     closeBtn.addEventListener('click', () => {
         panel.classList.remove('open');
-        fab.classList.remove('hidden');
+        fabRow.classList.remove('hidden');
+    });
+
+    const webToggle = document.getElementById('ai-chat-web-toggle');
+    webToggle.addEventListener('click', () => {
+        webSearchEnabled = !webSearchEnabled;
+        webToggle.classList.toggle('active', webSearchEnabled);
     });
 
     sendBtn.addEventListener('click', () => handleSend());
@@ -124,6 +182,63 @@ function wireEvents() {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             handleSend();
+        }
+    });
+
+    // Feedback modal
+    const feedbackFab = document.getElementById('feedback-fab');
+    const feedbackModal = document.getElementById('feedback-modal');
+    const feedbackClose = document.getElementById('feedback-close');
+    const feedbackBackdrop = document.getElementById('feedback-backdrop');
+    const feedbackSubmit = document.getElementById('feedback-submit');
+    let selectedRating = null;
+
+    feedbackFab.addEventListener('click', () => {
+        feedbackModal.classList.add('open');
+    });
+
+    const closeFeedback = () => {
+        feedbackModal.classList.remove('open');
+    };
+    feedbackClose.addEventListener('click', closeFeedback);
+    feedbackBackdrop.addEventListener('click', closeFeedback);
+
+    document.querySelectorAll('.feedback-star').forEach(btn => {
+        btn.addEventListener('click', () => {
+            selectedRating = parseInt(btn.dataset.rating);
+            document.querySelectorAll('.feedback-star').forEach(b => {
+                b.classList.toggle('active', parseInt(b.dataset.rating) <= selectedRating);
+            });
+        });
+    });
+
+    feedbackSubmit.addEventListener('click', async () => {
+        const message = document.getElementById('feedback-message').value.trim();
+        if (!message) return;
+
+        feedbackSubmit.disabled = true;
+        feedbackSubmit.textContent = 'Sending...';
+
+        try {
+            const userId = localStorage.getItem('map-user-id');
+            await fetch('/api/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: userId, message, rating: selectedRating })
+            });
+            // Reset and close
+            document.getElementById('feedback-message').value = '';
+            selectedRating = null;
+            document.querySelectorAll('.feedback-star').forEach(b => b.classList.remove('active'));
+            feedbackSubmit.textContent = 'Sent!';
+            setTimeout(() => {
+                closeFeedback();
+                feedbackSubmit.textContent = 'Submit';
+                feedbackSubmit.disabled = false;
+            }, 1000);
+        } catch (err) {
+            feedbackSubmit.textContent = 'Error — retry';
+            feedbackSubmit.disabled = false;
         }
     });
 }
@@ -141,6 +256,17 @@ async function handleSend() {
     if (onLoadingChangeCallback) onLoadingChangeCallback(true);
     try {
         const parsed = await sendToOpenAI(message);
+
+        // Check for missing counties when data is provided
+        if (parsed.data) {
+            const missing = COUNTY_NAMES.filter(name => !(name in parsed.data));
+            if (missing.length > 0) {
+                missing.forEach(name => { parsed.data[name] = 0; });
+                const missingNote = `\n\nMissing counties (set to 0): ${missing.join(', ')}`;
+                parsed.message = (parsed.message || '') + missingNote;
+            }
+        }
+
         const displayMsg = parsed.message || formatResponse(parsed);
         appendMessage('assistant', displayMsg);
         if (onConfigUpdateCallback) {
@@ -176,32 +302,95 @@ async function sendToOpenAI(userMessage) {
         ...conversationHistory
     ];
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + OPENAI_API_KEY
-        },
-        body: JSON.stringify({
-            model: 'gpt-4o-mini',
-            messages: messages,
-            temperature: 0.1,
-            max_tokens: 4000,
-            response_format: { type: 'json_object' }
-        })
-    });
+    let content;
 
-    if (!response.ok) {
-        const errBody = await response.text();
-        throw new Error('API error ' + response.status);
+    if (webSearchEnabled) {
+        // Responses API uses "developer" role instead of "system"
+        const responsesInput = [
+            { role: 'developer', content: SYSTEM_PROMPT + contextNote },
+            ...conversationHistory
+        ];
+
+        const response = await fetch('https://api.openai.com/v1/responses', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + OPENAI_API_KEY
+            },
+            body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                input: responsesInput,
+                tools: [{ type: 'web_search_preview' }],
+            })
+        });
+
+        if (!response.ok) {
+            const errBody = await response.text();
+            console.error('Responses API error:', errBody);
+            throw new Error('API error ' + response.status);
+        }
+
+        const result = await response.json();
+        const messageOutput = result.output.find(item => item.type === 'message');
+        const rawText = messageOutput.content.find(c => c.type === 'output_text').text;
+
+        // Extract JSON from the response (model may wrap it in markdown fences)
+        const jsonMatch = rawText.match(/\{[\s\S]*\}/);
+        content = jsonMatch ? jsonMatch[0] : rawText;
+    } else {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + OPENAI_API_KEY
+            },
+            body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                messages: messages,
+                temperature: 0.1,
+                max_tokens: 4000,
+                response_format: { type: 'json_object' }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('API error ' + response.status);
+        }
+
+        const result = await response.json();
+        content = result.choices[0].message.content;
     }
-
-    const result = await response.json();
-    const content = result.choices[0].message.content;
 
     conversationHistory.push({ role: 'assistant', content: content });
 
+    // Sync full transcript to database (fire-and-forget)
+    syncTranscript();
+
     return JSON.parse(content);
+}
+
+function syncTranscript() {
+    const userId = localStorage.getItem('map-user-id');
+    const transcript = conversationHistory.map(m => ({ role: m.role, content: m.content }));
+
+    if (!conversationDbId) {
+        // First exchange — create a new row
+        fetch('/api/queries', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user_id: userId, transcript })
+        })
+            .then(r => r.json())
+            .then(data => { conversationDbId = data.id; })
+            .catch(() => {});
+    } else {
+        // Subsequent exchanges — update existing row
+        fetch('/api/queries', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: conversationDbId, transcript })
+        }).catch(() => {});
+    }
 }
 
 function formatResponse(parsed) {

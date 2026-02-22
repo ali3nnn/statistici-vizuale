@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistici Vizuale</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script src="./share.js" type="module"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #e8e8e8;
+        }
+
+        .leaflet-control-attribution {
+            display: none !important;
+        }
+
+        /* Loading overlay */
+        #loading {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        #loading.hidden {
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #ddd;
+            border-top-color: #1a1a1a;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        .loading-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error state */
+        #error {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: #e8e8e8;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: #666;
+        }
+
+        #error.visible {
+            display: flex;
+        }
+
+        /* Capture area — fills viewport, centered */
+        #viewer {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #viewer.visible {
+            display: flex;
+        }
+
+        .capture-area {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .capture-area.ratio-4x5 {
+            /* Maintain 4:5 aspect ratio, fit within viewport */
+            width: min(100vw, calc(100vh * 4 / 5));
+            height: min(100vh, calc(100vw * 5 / 4));
+        }
+
+        .capture-area.ratio-9x16 {
+            /* Maintain 9:16 aspect ratio, fit within viewport */
+            width: min(100vw, calc(100vh * 9 / 16));
+            height: min(100vh, calc(100vw * 16 / 9));
+        }
+
+        /* Header */
+        .header-bar {
+            padding: 14px 18px 4px;
+            text-align: center;
+            background: transparent;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.3;
+            padding: 3px 8px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            font-weight: 400;
+            color: #555;
+            padding: 2px 8px;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        /* Map */
+        .map-wrapper {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+        }
+
+        .county-label {
+            overflow: visible !important;
+        }
+
+        .county-label .label-inner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 13px;
+            color: black;
+            line-height: 1.2;
+        }
+
+        .county-label .label-code,
+        .county-label .label-value {
+            display: block;
+        }
+
+        /* Legend */
+        .legend {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.93);
+            border-radius: 6px;
+            padding: 8px 10px;
+            z-index: 1000;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12);
+            min-width: 50px;
+        }
+
+        .legend-body {
+            display: flex;
+            gap: 5px;
+            align-items: stretch;
+        }
+
+        .legend-gradient {
+            width: 12px;
+            height: 90px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+
+        .legend-labels {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer-bar {
+            padding: 4px 18px 10px;
+            text-align: center;
+            background: transparent;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            margin-top: auto;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: #888;
+            padding: 2px 8px;
+            line-height: 1.4;
+        }
+
+        /* Action buttons — fixed bottom-right */
+        .share-actions {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-download {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #1a1a1a;
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+        }
+
+        .btn-download:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+
+        .btn-copy {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: white;
+            color: #555;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.15s, border-color 0.15s, transform 0.1s;
+            position: relative;
+        }
+
+        .btn-copy:hover {
+            background: #f0f0f0;
+            border-color: #999;
+            transform: translateY(-1px);
+        }
+
+        .btn-copy.copied {
+            background: #1a1a1a;
+            border-color: #1a1a1a;
+            color: white;
+        }
+
+        .copy-toast {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #1a1a1a;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn-copy.copied .copy-toast {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Hide actions during capture */
+        .capturing .share-actions {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading -->
+    <div id="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Error -->
+    <div id="error">Share not found.</div>
+
+    <!-- Viewer -->
+    <div id="viewer">
+        <div id="capture" class="capture-area">
+            <div class="header-bar">
+                <div class="title" id="title">Map Title</div>
+                <div class="subtitle" id="subtitle">Subtitle</div>
+            </div>
+            <div class="map-wrapper">
+                <div id="map" class="map"></div>
+                <div class="legend" id="legend"></div>
+            </div>
+            <div class="footer-bar">
+                <div class="footer-note" id="footer">Source</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="share-actions" id="share-actions" style="display:none">
+        <button class="btn-download" id="btn-download">Download</button>
+        <button class="btn-copy" id="btn-copy" title="Copy to clipboard">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="copy-toast">Copied!</span>
+        </button>
+    </div>
+</body>
+
+</html>
