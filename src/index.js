@@ -1813,6 +1813,8 @@ initChatPanel({
         if (vals.length > 0) {
             actualMin = Math.min(...vals);
             actualMax = Math.max(...vals);
+            _minValue = actualMin;
+            _maxValue = actualMax;
         }
         updateLabels();
         restyleMaps();
