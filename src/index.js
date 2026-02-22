@@ -10,15 +10,6 @@ import {
 // console.log(abv)
 
 import {
-    data,
-    minValue,
-    maxValue,
-    highIsBad
-    // } from './coreStats/angajati_la_stat.js';
-    // } from './coreStats/alegeri_2024_municipii.js';
-} from './coreStats/imobiliare_2024_2025.js';
-
-import {
     countiesGeoData
 } from './maps/judete.romania.js'
 
@@ -41,11 +32,11 @@ const USER_ID = getUserId();
 const romaniaGeoJSON = countiesGeoData;
 // const romaniaGeoJSON = GEO_DATA_UAT;
 
-// Local copies with fallback for undefined (mutable for AI data updates)
-let _maxValue = (typeof maxValue !== "undefined") ? maxValue : 0;
-let _minValue = (typeof minValue !== "undefined") ? minValue : 0;
-let _data = (typeof data !== "undefined") ? data : {};
-let _highIsBad = (typeof highIsBad !== "undefined") ? highIsBad : false;
+// Initialize with blank map (no data)
+let _maxValue = 0;
+let _minValue = 0;
+let _data = {};
+let _highIsBad = false;
 
 // Compute actual min/max from the data
 let dataValues = Object.values(_data).filter(v => typeof v === 'number');
@@ -508,23 +499,70 @@ function updateLabels() {
     });
 }
 
-// ============= Apply Data (from AI or external source) =============
+// ============= Apply Config (from AI — handles data, palette, normalization, text, etc.) =============
 
-function applyData(parsed) {
+function applyConfig(parsed) {
     pushUndo();
-    if (parsed.data) _data = parsed.data;
+
+    // Data updates
+    if (parsed.data) {
+        if (parsed.replaceAllData) {
+            _data = parsed.data;
+        } else {
+            // Merge: only update specified counties
+            Object.assign(_data, parsed.data);
+        }
+    }
     if (parsed.minValue !== undefined) _minValue = parsed.minValue;
     if (parsed.maxValue !== undefined) _maxValue = parsed.maxValue;
     if (parsed.highIsBad !== undefined) _highIsBad = parsed.highIsBad;
 
+    // Palette updates
+    if (parsed.palette !== undefined) {
+        const paletteMap = { red: 0, blue: 1, green: 2, orange: 3, purple: 4 };
+        const idx = paletteMap[parsed.palette];
+        if (idx !== undefined) {
+            activePalette = palettes[idx];
+            document.querySelectorAll('.palette-option').forEach(o => {
+                o.classList.toggle('active', parseInt(o.dataset.paletteIdx) === idx);
+            });
+        } else {
+            // Custom hue (number)
+            const hue = parseInt(parsed.palette);
+            if (!isNaN(hue)) {
+                activePalette = { hue, id: 'custom', name: 'Custom' };
+                document.querySelectorAll('.palette-option').forEach(o => o.classList.remove('active'));
+                document.getElementById('custom-hue').value = hue;
+                updateHuePreview(hue);
+            }
+        }
+    }
+
+    if (parsed.paletteReversed !== undefined) {
+        paletteReversed = parsed.paletteReversed;
+        document.getElementById('btn-reverse-palette').classList.toggle('active', paletteReversed);
+    }
+
+    // Normalization
+    if (parsed.normalization) {
+        normalizationMode = parsed.normalization;
+        document.querySelectorAll('#norm-btn-group .norm-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.norm === normalizationMode);
+        });
+        updateNormHint();
+    }
+
     // Recompute actual min/max
     const vals = Object.values(_data).filter(v => typeof v === 'number');
-    actualMin = Math.min(...vals);
-    actualMax = Math.max(...vals);
+    if (vals.length > 0) {
+        actualMin = Math.min(...vals);
+        actualMax = Math.max(...vals);
+    }
 
     updateLabels();
     restyleMaps();
 
+    // Text updates
     if (parsed.title) {
         document.querySelectorAll('[data-sync="title"]').forEach(el => {
             el.textContent = parsed.title;
@@ -605,21 +643,6 @@ function setupFormatControls(suffix, mapContainer, mapInstance) {
         markDirty();
     });
 
-    // Label color picker
-    const colorInput = document.getElementById(`label-color-${suffix}`);
-    const colorHex = document.getElementById(`label-color-hex-${suffix}`);
-
-    if (colorInput) {
-        colorInput.addEventListener('mousedown', () => { pushUndo(); });
-        colorInput.addEventListener('input', (e) => {
-            const color = e.target.value;
-            colorHex.textContent = color;
-            mapContainer.querySelectorAll('.label-inner').forEach(label => {
-                label.style.color = color;
-            });
-            markDirty();
-        });
-    }
 }
 
 setupFormatControls('4x5', document.getElementById('capture-4x5'), map4x5);
@@ -787,13 +810,11 @@ function captureSnapshot() {
                 showCode: document.getElementById('toggle-code-4x5').checked,
                 showValue: document.getElementById('toggle-value-4x5').checked,
                 labelSize: document.getElementById('label-size-4x5').value,
-                labelColor: (document.getElementById('label-color-4x5') || {}).value || '#000000',
             },
             '9x16': {
                 showCode: document.getElementById('toggle-code-9x16').checked,
                 showValue: document.getElementById('toggle-value-9x16').checked,
                 labelSize: document.getElementById('label-size-9x16').value,
-                labelColor: (document.getElementById('label-color-9x16') || {}).value || '#000000',
             }
         }
     };
@@ -881,15 +902,6 @@ function restoreSnapshot(snap) {
                 label.style.fontSize = d.labelSize + 'px';
             });
 
-            // Label color
-            const colorInput = document.getElementById(`label-color-${suffix}`);
-            if (colorInput) {
-                colorInput.value = d.labelColor;
-                document.getElementById(`label-color-hex-${suffix}`).textContent = d.labelColor;
-            }
-            container.querySelectorAll('.label-inner').forEach(label => {
-                label.style.color = d.labelColor;
-            });
         });
     }
 
@@ -1042,13 +1054,11 @@ function buildVersionData() {
                 showCode: document.getElementById('toggle-code-4x5').checked,
                 showValue: document.getElementById('toggle-value-4x5').checked,
                 labelSize: document.getElementById('label-size-4x5').value,
-                labelColor: (document.getElementById('label-color-4x5') || {}).value || '#000000',
             },
             '9x16': {
                 showCode: document.getElementById('toggle-code-9x16').checked,
                 showValue: document.getElementById('toggle-value-9x16').checked,
                 labelSize: document.getElementById('label-size-9x16').value,
-                labelColor: (document.getElementById('label-color-9x16') || {}).value || '#000000',
             }
         }
     };
@@ -1160,14 +1170,6 @@ function loadVersion(versionData) {
                 label.style.fontSize = d.labelSize + 'px';
             });
 
-            const colorInput = document.getElementById(`label-color-${suffix}`);
-            if (colorInput) {
-                colorInput.value = d.labelColor;
-                document.getElementById(`label-color-hex-${suffix}`).textContent = d.labelColor;
-            }
-            container.querySelectorAll('.label-inner').forEach(label => {
-                label.style.color = d.labelColor;
-            });
         });
     }
 
@@ -1613,5 +1615,21 @@ map9x16.on('moveend', onMapMoveEnd);
 import { initChatPanel } from './ai/chatPanel.js';
 
 initChatPanel({
-    onDataParsed: applyData
+    onConfigUpdate: applyConfig,
+    getState: () => ({
+        title: document.querySelector('[data-sync="title"]')?.textContent || '',
+        subtitle: document.querySelector('[data-sync="subtitle"]')?.textContent || '',
+        source: document.querySelector('[data-sync="footer"]')?.textContent || '',
+        palette: activePalette.name || activePalette.id || 'red',
+        paletteReversed,
+        normalization: normalizationMode,
+        minValue: _minValue,
+        maxValue: _maxValue,
+        highIsBad: _highIsBad,
+        data: _data,
+    }),
+    onLoadingChange: (isLoading) => {
+        document.getElementById('loading-overlay-4x5').classList.toggle('active', isLoading);
+        document.getElementById('loading-overlay-9x16').classList.toggle('active', isLoading);
+    },
 });
