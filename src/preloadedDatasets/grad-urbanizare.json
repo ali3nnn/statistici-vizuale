@@ -49,9 +49,9 @@
     "maxValue": 100,
     "highIsBad": false,
     "activePalette": {
-      "name": "Orange",
-      "hue": 30,
-      "id": "orange"
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
     },
     "paletteReversed": false,
     "normalizationMode": "none",

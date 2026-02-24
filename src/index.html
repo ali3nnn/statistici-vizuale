@@ -401,26 +401,6 @@
             background: #f0f0f0;
         }
 
-        .btn-datasets-top {
-            width: 36px;
-            height: 36px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background: white;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: background 0.15s;
-            z-index: 2;
-            position: relative;
-        }
-
-        .btn-datasets-top:hover {
-            background: #f0f0f0;
-        }
 
         /* Undo / Redo buttons */
         .btn-undo-redo {
@@ -456,7 +436,7 @@
             height: 100vh;
             background: #fff;
             border-left: 1px solid #ccc;
-            z-index: 1;
+            z-index: 10;
             transform: translateX(100%);
             transition: transform 0.25s ease;
             display: flex;
@@ -505,7 +485,7 @@
             height: 100vh;
             background: #fff;
             border-left: 1px solid #ccc;
-            z-index: 1;
+            z-index: 10;
             transform: translateX(100%);
             transition: transform 0.25s ease;
             display: flex;
@@ -798,7 +778,14 @@
             justify-content: center;
             z-index: 5;
             box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-            transition: background 0.15s, color 0.15s;
+            transition: background 0.15s, color 0.15s, opacity 0.15s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preview-column:hover .preview-close-btn {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .preview-close-btn:hover {
@@ -808,8 +795,12 @@
         }
 
         .preview-close-btn:disabled {
-            opacity: 0.3;
-            cursor: default;
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        .preview-column:hover .preview-close-btn:disabled {
+            opacity: 0.3 !important;
             pointer-events: none;
         }
 
@@ -843,16 +834,13 @@
         }
 
         .format-popover {
-            position: absolute;
-            top: 56px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: fixed;
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.12);
             padding: 6px;
-            z-index: 10;
+            z-index: 100;
             display: none;
             min-width: 160px;
         }
@@ -997,6 +985,8 @@
         /* ===== Legend ===== */
         .legend {
             position: absolute;
+            right: 10px;
+            top: 35%;
             background: rgba(255, 255, 255, 0.93);
             border-radius: 6px;
             padding: 8px 10px;
@@ -2340,14 +2330,6 @@
         <button class="btn-undo-redo" id="btn-undo" title="Undo (Ctrl+Z)" disabled><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>
         <button class="btn-undo-redo" id="btn-redo" title="Redo (Ctrl+Y)" disabled><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.13-9.36L23 10"/></svg></button>
         <button class="btn-save-top" id="btn-save-config" title="Save"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save</button>
-        <button class="btn-datasets-top" id="datasets-toggle-btn" title="Datasets"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></button>
-        <div class="datasets-panel" id="datasets-panel">
-            <div class="saved-panel-header">
-                <span>Datasets</span>
-                <button class="saved-panel-close" id="datasets-panel-close">&times;</button>
-            </div>
-            <div class="saved-list" id="datasets-list"></div>
-        </div>
         <button class="btn-history-top" id="saved-toggle-btn" title="History"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></button>
         <div class="saved-panel" id="saved-panel">
             <div class="saved-panel-header">

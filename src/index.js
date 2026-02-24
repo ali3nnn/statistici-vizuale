@@ -1604,46 +1604,87 @@ document.getElementById('saved-toggle-btn').addEventListener('click', () => {
 });
 document.getElementById('saved-panel-close').addEventListener('click', closeSavedPanel);
 
-// Datasets panel toggle
-const ICON_DATABASE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>';
+// Datasets FAB + panel (bottom-right)
+(function initDatasetsPanel() {
+    let fabRow = document.getElementById('fab-row');
+    if (!fabRow) {
+        fabRow = document.createElement('div');
+        fabRow.id = 'fab-row';
+        fabRow.className = 'fab-row';
+        document.body.appendChild(fabRow);
+    }
 
-function openDatasetsPanel() {
-    document.getElementById('datasets-panel').classList.add('open');
-    document.getElementById('datasets-toggle-btn').innerHTML = ICON_CLOSE;
-    document.getElementById('datasets-toggle-btn').title = 'Close';
-}
+    const datasetsFab = document.createElement('button');
+    datasetsFab.id = 'datasets-toggle-btn';
+    datasetsFab.className = 'fab-btn';
+    datasetsFab.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg><span>Add preloaded data</span>`;
+    // Insert after data-table-fab (second position)
+    const aiFab = document.getElementById('ai-chat-fab');
+    if (aiFab) {
+        fabRow.insertBefore(datasetsFab, aiFab);
+    } else {
+        fabRow.appendChild(datasetsFab);
+    }
 
-function closeDatasetsPanel() {
-    document.getElementById('datasets-panel').classList.remove('open');
-    document.getElementById('datasets-toggle-btn').innerHTML = ICON_DATABASE;
-    document.getElementById('datasets-toggle-btn').title = 'Datasets';
-}
+    const panel = document.createElement('div');
+    panel.id = 'datasets-panel';
+    panel.className = 'datasets-panel';
+    panel.innerHTML = `
+        <div class="saved-panel-header">
+            <span>Datasets</span>
+            <button class="saved-panel-close" id="datasets-panel-close">&times;</button>
+        </div>
+        <div class="saved-list" id="datasets-list"></div>
+    `;
+    document.body.appendChild(panel);
 
-document.getElementById('datasets-toggle-btn').addEventListener('click', () => {
-    const isOpen = document.getElementById('datasets-panel').classList.contains('open');
-    if (isOpen) closeDatasetsPanel(); else openDatasetsPanel();
-});
-document.getElementById('datasets-panel-close').addEventListener('click', closeDatasetsPanel);
+    function openDatasetsPanel() {
+        panel.classList.add('open');
+    }
 
-// Populate datasets list
-const datasetsList = document.getElementById('datasets-list');
-preloadedDatasets.forEach(ds => {
-    const item = document.createElement('div');
-    item.className = 'datasets-item';
-    item.innerHTML = `<div><div class="datasets-item-name">${ds.name}</div><div class="datasets-item-source">${ds.config.source}</div></div>`;
-    item.addEventListener('click', () => {
-        loadVersion(ds.config);
-        closeDatasetsPanel();
+    function closeDatasetsPanel() {
+        panel.classList.remove('open');
+    }
+
+    datasetsFab.addEventListener('click', () => {
+        const isOpen = panel.classList.contains('open');
+        if (isOpen) closeDatasetsPanel(); else openDatasetsPanel();
     });
-    datasetsList.appendChild(item);
-});
+    document.getElementById('datasets-panel-close').addEventListener('click', closeDatasetsPanel);
+
+    // Populate datasets list
+    const datasetsList = document.getElementById('datasets-list');
+    preloadedDatasets.forEach(ds => {
+        const item = document.createElement('div');
+        item.className = 'datasets-item';
+        item.innerHTML = `<div><div class="datasets-item-name">${ds.name}</div><div class="datasets-item-source">${ds.config.source}</div></div>`;
+        item.addEventListener('click', () => {
+            loadVersion(ds.config);
+            closeDatasetsPanel();
+        });
+        datasetsList.appendChild(item);
+    });
+})();
 
 // Fetch configs from DB and auto-load last saved config (or shared config)
 async function loadLastSaved() {
     await migrateLocalStorageIfNeeded();
     const configs = await fetchConfigs();
     renderSavedList();
-    if (configs.length === 0) return;
+    if (configs.length === 0) {
+        // No saved data — load default dataset
+        const defaultDs = preloadedDatasets.find(ds => ds.name.toLowerCase().includes('urbanizare'));
+        if (defaultDs) {
+            setTimeout(() => {
+                loadVersion(defaultDs.config);
+                undoStack = [];
+                redoStack = [];
+                updateUndoRedoButtons();
+                clearDirty();
+            }, 300);
+        }
+        return;
+    }
     const latest = configs[0]; // most recent group (ordered by updated_at DESC)
     const latestVersion = latest.versions[latest.versions.length - 1];
     if (latestVersion) {
@@ -2069,9 +2110,19 @@ document.querySelectorAll('.preview-close-btn').forEach(btn => {
 });
 
 // Wire up add-format button
-document.getElementById('btn-add-format').addEventListener('click', () => {
+document.getElementById('btn-add-format').addEventListener('click', (e) => {
     const popover = document.getElementById('format-popover');
-    popover.classList.toggle('open');
+    const isOpen = popover.classList.toggle('open');
+    if (isOpen) {
+        popover.style.left = e.clientX + 'px';
+        popover.style.top = e.clientY + 'px';
+        // Clamp so it doesn't overflow the viewport
+        requestAnimationFrame(() => {
+            const rect = popover.getBoundingClientRect();
+            if (rect.right > window.innerWidth) popover.style.left = (window.innerWidth - rect.width - 8) + 'px';
+            if (rect.bottom > window.innerHeight) popover.style.top = (window.innerHeight - rect.height - 8) + 'px';
+        });
+    }
 });
 
 // Close popover on outside click

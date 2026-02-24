@@ -71,6 +71,7 @@ let onLoadingChangeCallback = null;
 let webSearchEnabled = false;
 let pendingFileContent = null;
 let pendingFileName = null;
+let aiLimitReached = false;
 
 export function initChatPanel({ onConfigUpdate, getState, onLoadingChange }) {
     onConfigUpdateCallback = onConfigUpdate;
@@ -78,6 +79,7 @@ export function initChatPanel({ onConfigUpdate, getState, onLoadingChange }) {
     onLoadingChangeCallback = onLoadingChange;
     createChatDOM();
     wireEvents();
+    checkDailyLimit();
 }
 
 function createChatDOM() {
@@ -313,9 +315,39 @@ async function handleSend() {
 
     appendMessage('user', displayMsg);
 
+    // Check daily AI limit before calling the API
+    if (aiLimitReached) {
+        appendMessage('error', 'Ai atins limita zilnică de mesaje AI. Revino mâine!');
+        return;
+    }
+
     setLoading(true);
     if (onLoadingChangeCallback) onLoadingChangeCallback(true);
     try {
+        // Increment turn count
+        const userId = localStorage.getItem('map-user-id');
+        const limitRes = await fetch('/api/chat-limit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user_id: userId })
+        });
+
+        if (limitRes.status === 429) {
+            aiLimitReached = true;
+            disableChatInput();
+            throw new Error('Ai atins limita zilnică de mesaje AI. Revino mâine!');
+        }
+
+        if (!limitRes.ok) {
+            throw new Error('Could not verify AI usage limit');
+        }
+
+        const limitData = await limitRes.json();
+        if (limitData.remaining === 0) {
+            aiLimitReached = true;
+            disableChatInput();
+        }
+
         const parsed = await sendToOpenAI(fullMessage);
 
         // Check for missing counties when data is provided
@@ -490,6 +522,30 @@ function appendMessage(role, content) {
     msg.textContent = content;
     log.appendChild(msg);
     log.scrollTop = log.scrollHeight;
+}
+
+function disableChatInput() {
+    const input = document.getElementById('ai-chat-input');
+    const sendBtn = document.getElementById('ai-chat-send');
+    const fileBtn = document.getElementById('ai-chat-file-btn');
+    input.disabled = true;
+    input.placeholder = 'Limita zilnică atinsă. Revino mâine!';
+    sendBtn.disabled = true;
+    fileBtn.disabled = true;
+}
+
+async function checkDailyLimit() {
+    try {
+        const userId = localStorage.getItem('map-user-id');
+        if (!userId) return;
+        const res = await fetch(`/api/chat-limit?user_id=${encodeURIComponent(userId)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.remaining <= 0) {
+            aiLimitReached = true;
+            disableChatInput();
+        }
+    } catch (_) {}
 }
 
 function setLoading(isLoading) {

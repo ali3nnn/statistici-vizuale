@@ -47,7 +47,7 @@
     },
     "minValue": 0,
     "maxValue": 71.4,
-    "highIsBad": true,
+    "highIsBad": false,
     "activePalette": {
       "name": "Green",
       "hue": 130,
