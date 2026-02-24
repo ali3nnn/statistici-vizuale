@@ -1,0 +1,92 @@
+{
+  "name": "Gradul de ruralitate (%)",
+  "config": {
+    "data": {
+      "Alba": 45.9,
+      "Arad": 42.6,
+      "Arges": 58.6,
+      "Bacau": 55.8,
+      "Bihor": 48.3,
+      "Bistrita-Nasaud": 65.1,
+      "Botosani": 65.5,
+      "Brasov": 26.9,
+      "Braila": 34.7,
+      "Bucuresti": 0,
+      "Buzau": 59.5,
+      "Calarasi": 60.4,
+      "Caras-Severin": 47.3,
+      "Cluj": 35.5,
+      "Constanta": 32,
+      "Covasna": 51.5,
+      "Dambovita": 67.2,
+      "Dolj": 46.9,
+      "Galati": 40.3,
+      "Giurgiu": 71.4,
+      "Gorj": 58,
+      "Harghita": 56.2,
+      "Hunedoara": 26.7,
+      "Ialomita": 60.2,
+      "Iasi": 50.5,
+      "Ilfov": 63.9,
+      "Maramures": 48.2,
+      "Mehedinti": 53.2,
+      "Mures": 48.6,
+      "Neamt": 62.6,
+      "Olt": 59.4,
+      "Prahova": 50.4,
+      "Salaj": 61.8,
+      "Satu Mare": 54.7,
+      "Sibiu": 34.2,
+      "Suceava": 64.5,
+      "Teleorman": 66.1,
+      "Timis": 36.2,
+      "Tulcea": 50.9,
+      "Valcea": 56.4,
+      "Vaslui": 65.1,
+      "Vrancea": 62
+    },
+    "minValue": 0,
+    "maxValue": 71.4,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Green",
+      "hue": 130,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "exponential",
+    "text": {
+      "title": {
+        "innerHTML": "Gradul de ruralitate (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației rurale pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  }
+}

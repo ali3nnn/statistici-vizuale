@@ -1,0 +1,92 @@
+{
+  "name": "Gradul de urbanizare (%)",
+  "config": {
+    "data": {
+      "Alba": 54.1,
+      "Arad": 57.4,
+      "Arges": 41.4,
+      "Bacau": 44.2,
+      "Bihor": 51.7,
+      "Bistrita-Nasaud": 34.9,
+      "Botosani": 34.5,
+      "Brasov": 73.1,
+      "Braila": 65.3,
+      "Bucuresti": 100,
+      "Buzau": 40.5,
+      "Calarasi": 39.6,
+      "Caras-Severin": 52.7,
+      "Cluj": 64.5,
+      "Constanta": 68,
+      "Covasna": 48.5,
+      "Dambovita": 32.8,
+      "Dolj": 53.1,
+      "Galati": 59.7,
+      "Giurgiu": 28.6,
+      "Gorj": 42,
+      "Harghita": 43.8,
+      "Hunedoara": 73.3,
+      "Ialomita": 39.8,
+      "Iasi": 49.5,
+      "Ilfov": 36.1,
+      "Maramures": 51.8,
+      "Mehedinti": 46.8,
+      "Mures": 51.4,
+      "Neamt": 37.4,
+      "Olt": 40.6,
+      "Prahova": 49.6,
+      "Salaj": 38.2,
+      "Satu Mare": 45.3,
+      "Sibiu": 65.8,
+      "Suceava": 35.5,
+      "Teleorman": 33.9,
+      "Timis": 63.8,
+      "Tulcea": 49.1,
+      "Valcea": 43.6,
+      "Vaslui": 34.9,
+      "Vrancea": 38
+    },
+    "minValue": 28.6,
+    "maxValue": 100,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 30,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Gradul de urbanizare (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației urbane pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  }
+}

@@ -6,6 +6,8 @@ import {
     getCountyAbbreviation
 } from './utils/countyNameShortener.js'
 
+import { preloadedDatasets } from './preloadedDatasets/index.js'
+
 // const abv = getCountyAbbreviation("Cluj")
 // console.log(abv)
 
@@ -43,10 +45,10 @@ const COUNTY_NAMES = [
     "Timis", "Tulcea", "Valcea", "Vaslui", "Vrancea"
 ];
 
-// Initialize with all counties at 0
+// Initialize with all counties as null (no data)
 let _maxValue = 0;
 let _minValue = 0;
-let _data = Object.fromEntries(COUNTY_NAMES.map(name => [name, 0]));
+let _data = Object.fromEntries(COUNTY_NAMES.map(name => [name, null]));
 let _highIsBad = false;
 
 // Compute actual min/max from the data
@@ -134,8 +136,17 @@ function getColorDiverging(minVal, maxVal, currentNumber, highIsBad, countryName
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
+function formatValue(v) {
+    if (v === null || v === undefined) return '';
+    const abs = Math.abs(v);
+    if (abs >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'm';
+    if (abs >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    return String(v);
+}
+
 function getColorDivergingExp(minVal, maxVal, currentNumber, highIsBad, countryName) {
-    // No data range — show neutral gray
+    // No data — show neutral gray
+    if (currentNumber === null || currentNumber === undefined) return '#e0e0e0';
     if (minVal === maxVal) return '#e0e0e0';
 
     // Monochromatic mode: single hue, vary saturation and lightness
@@ -266,7 +277,7 @@ function createMap(containerId) {
                 className: 'county-label',
                 iconSize: [0, 0],
                 iconAnchor: [0, 0],
-                html: `<div class="label-inner" data-county="${feature.properties.name}" style="color:${textColor}"><span class="label-code">${getCountyAbbreviation(feature.properties.name)}</span><span class="label-value">${_data[feature.properties.name]}</span></div>`
+                html: `<div class="label-inner" data-county="${feature.properties.name}" style="color:${textColor}"><span class="label-code">${getCountyAbbreviation(feature.properties.name)}</span><span class="label-value">${formatValue(_data[feature.properties.name])}</span></div>`
             });
 
             let coordinates = polygonCentroid(feature.geometry.coordinates);
@@ -411,8 +422,8 @@ function generateLegend(legendId) {
         <div class="legend-body">
             <div class="legend-gradient" style="background: linear-gradient(${gradientDir}, ${gradientStops.join(', ')})"></div>
             <div class="legend-labels">
-                <span>${maxLabel}</span>
-                <span>${minLabel}</span>
+                <span>${formatValue(maxLabel)}</span>
+                <span>${formatValue(minLabel)}</span>
             </div>
         </div>
     `;
@@ -532,7 +543,7 @@ function updateLabels() {
         if (!countyName) return;
 
         const val = _data[countyName];
-        valueEl.textContent = (val !== undefined && val !== null) ? val : '';
+        valueEl.textContent = formatValue(val);
 
         const bgColor = getColorDivergingExp(_minValue, _maxValue, _data[countyName], _highIsBad, countyName);
         labelEl.style.color = contrastTextColor(bgColor);
@@ -592,11 +603,13 @@ function applyConfig(parsed) {
         updateNormHint();
     }
 
-    // Recompute actual min/max
+    // Recompute actual min/max and auto-set scale when AI didn't specify
     const vals = Object.values(_data).filter(v => typeof v === 'number');
     if (vals.length > 0) {
         actualMin = Math.min(...vals);
         actualMax = Math.max(...vals);
+        if (parsed.minValue === undefined) _minValue = actualMin;
+        if (parsed.maxValue === undefined) _maxValue = actualMax;
     }
 
     updateLabels();
@@ -1564,6 +1577,40 @@ document.getElementById('saved-toggle-btn').addEventListener('click', () => {
 });
 document.getElementById('saved-panel-close').addEventListener('click', closeSavedPanel);
 
+// Datasets panel toggle
+const ICON_DATABASE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>';
+
+function openDatasetsPanel() {
+    document.getElementById('datasets-panel').classList.add('open');
+    document.getElementById('datasets-toggle-btn').innerHTML = ICON_CLOSE;
+    document.getElementById('datasets-toggle-btn').title = 'Close';
+}
+
+function closeDatasetsPanel() {
+    document.getElementById('datasets-panel').classList.remove('open');
+    document.getElementById('datasets-toggle-btn').innerHTML = ICON_DATABASE;
+    document.getElementById('datasets-toggle-btn').title = 'Datasets';
+}
+
+document.getElementById('datasets-toggle-btn').addEventListener('click', () => {
+    const isOpen = document.getElementById('datasets-panel').classList.contains('open');
+    if (isOpen) closeDatasetsPanel(); else openDatasetsPanel();
+});
+document.getElementById('datasets-panel-close').addEventListener('click', closeDatasetsPanel);
+
+// Populate datasets list
+const datasetsList = document.getElementById('datasets-list');
+preloadedDatasets.forEach(ds => {
+    const item = document.createElement('div');
+    item.className = 'datasets-item';
+    item.innerHTML = `<div><div class="datasets-item-name">${ds.name}</div><div class="datasets-item-source">${ds.config.source}</div></div>`;
+    item.addEventListener('click', () => {
+        loadVersion(ds.config);
+        closeDatasetsPanel();
+    });
+    datasetsList.appendChild(item);
+});
+
 // Fetch configs from DB and auto-load last saved config (or shared config)
 async function loadLastSaved() {
     await migrateLocalStorageIfNeeded();
@@ -2054,7 +2101,7 @@ initChatPanel({
         const abbr = getCountyAbbreviation(name);
         tr.innerHTML = `
             <td><span class="county-swatch" data-county="${name}"></span>${abbr} — ${name}</td>
-            <td><input class="county-input" data-county="${name}" data-idx="${idx}" value="${_data[name] || 0}"></td>
+            <td><input class="county-input" data-county="${name}" data-idx="${idx}" value="${_data[name] ?? ''}"></td>
         `;
         tbody.appendChild(tr);
         allInputs.push(tr.querySelector('.county-input'));

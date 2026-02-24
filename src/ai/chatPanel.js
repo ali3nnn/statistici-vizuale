@@ -1,6 +1,5 @@
 import * as XLSX from 'xlsx';
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 const COUNTY_NAMES = [
     "Alba", "Arad", "Arges", "Bacau", "Bihor", "Bistrita-Nasaud",
@@ -406,17 +405,10 @@ async function sendToOpenAI(userMessage) {
             ...conversationHistory
         ];
 
-        const response = await fetch('https://api.openai.com/v1/responses', {
+        const response = await fetch('/api/chat', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + OPENAI_API_KEY
-            },
-            body: JSON.stringify({
-                model: 'gpt-5.1-mini',
-                input: responsesInput,
-                tools: [{ type: 'web_search_preview' }],
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: 'responses', input: responsesInput })
         });
 
         if (!response.ok) {
@@ -433,19 +425,10 @@ async function sendToOpenAI(userMessage) {
         const jsonMatch = rawText.match(/\{[\s\S]*\}/);
         content = jsonMatch ? jsonMatch[0] : rawText;
     } else {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const response = await fetch('/api/chat', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + OPENAI_API_KEY
-            },
-            body: JSON.stringify({
-                model: 'gpt-4o-mini',
-                messages: messages,
-                temperature: 0.1,
-                max_tokens: 4000,
-                response_format: { type: 'json_object' }
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: 'completions', messages: messages })
         });
 
         if (!response.ok) {

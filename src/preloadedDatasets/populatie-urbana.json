@@ -1,0 +1,92 @@
+{
+  "name": "Populația urbană",
+  "config": {
+    "data": {
+      "Alba": 175089,
+      "Arad": 234684,
+      "Arges": 228255,
+      "Bacau": 250368,
+      "Bihor": 282908,
+      "Bistrita-Nasaud": 96874,
+      "Botosani": 129637,
+      "Brasov": 399712,
+      "Braila": 185196,
+      "Bucuresti": 1794590,
+      "Buzau": 163744,
+      "Calarasi": 107284,
+      "Caras-Severin": 136908,
+      "Cluj": 445498,
+      "Constanta": 452108,
+      "Covasna": 95280,
+      "Dambovita": 153261,
+      "Dolj": 310756,
+      "Galati": 297591,
+      "Giurgiu": 67987,
+      "Gorj": 130424,
+      "Harghita": 121056,
+      "Hunedoara": 272538,
+      "Ialomita": 97326,
+      "Iasi": 382564,
+      "Ilfov": 170485,
+      "Maramures": 222976,
+      "Mehedinti": 108574,
+      "Mures": 256207,
+      "Neamt": 162685,
+      "Olt": 148052,
+      "Prahova": 340627,
+      "Salaj": 80140,
+      "Satu Mare": 149485,
+      "Sibiu": 261478,
+      "Suceava": 225018,
+      "Teleorman": 105423,
+      "Timis": 413612,
+      "Tulcea": 94847,
+      "Valcea": 147825,
+      "Vaslui": 126283,
+      "Vrancea": 120996
+    },
+    "minValue": 67987,
+    "maxValue": 1794590,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 280,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația urbană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Locuitori în mediul urban pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  }
+}
