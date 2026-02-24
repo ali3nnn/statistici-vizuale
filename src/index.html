@@ -766,6 +766,127 @@
             height: 640px;
         }
 
+        .capture-area.ratio-1x1 {
+            width: 480px;
+            height: 480px;
+        }
+
+        .capture-area.ratio-16x9 {
+            width: 640px;
+            height: 360px;
+        }
+
+        .preview-column {
+            position: relative;
+        }
+
+        .preview-close-btn {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            background: #fff;
+            color: #999;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .preview-close-btn:hover {
+            background: #f44336;
+            color: #fff;
+            border-color: #f44336;
+        }
+
+        .preview-close-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .add-format-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        .btn-add-format {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 2px dashed #ccc;
+            background: transparent;
+            color: #999;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.15s, color 0.15s, background 0.15s;
+        }
+
+        .btn-add-format:hover {
+            border-color: #999;
+            color: #666;
+            background: #f9f9f9;
+        }
+
+        .format-popover {
+            position: absolute;
+            top: 56px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            padding: 6px;
+            z-index: 10;
+            display: none;
+            min-width: 160px;
+        }
+
+        .format-popover.open {
+            display: block;
+        }
+
+        .format-option {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            border: none;
+            background: none;
+            text-align: left;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .format-option:hover {
+            background: #f0f0f0;
+        }
+
+        .format-option .format-option-label {
+            font-weight: 600;
+        }
+
+        .format-option .format-option-desc {
+            font-size: 11px;
+            color: #999;
+        }
+
         /* ===== Header ===== */
         .header-bar {
             padding: 14px 18px 4px;
@@ -2131,7 +2252,8 @@
 
         <!-- Previews -->
         <div id="previews">
-            <div class="preview-column">
+            <div class="preview-column" id="preview-col-4x5">
+                <button class="preview-close-btn" data-format="4x5" title="Remove">&times;</button>
                 <span class="preview-label">4:5 Post</span>
                 <div id="capture-4x5" class="capture-area ratio-4x5">
                     <div class="header-bar">
@@ -2158,7 +2280,8 @@
                 </div>
             </div>
 
-            <div class="preview-column">
+            <div class="preview-column" id="preview-col-9x16">
+                <button class="preview-close-btn" data-format="9x16" title="Remove">&times;</button>
                 <span class="preview-label">9:16 Story</span>
                 <div id="capture-9x16" class="capture-area ratio-9x16">
                     <div class="header-bar">
@@ -2183,6 +2306,11 @@
                     <button class="btn-action" id="btn-copy-9x16" title="Copy to clipboard"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="action-toast">Copied!</span></button>
                     <button class="btn-action" id="btn-share-9x16" title="Share link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="action-toast">Link copied!</span></button>
                 </div>
+            </div>
+
+            <div class="add-format-col" id="add-format-col">
+                <button class="btn-add-format" id="btn-add-format" title="Add format">+</button>
+                <div class="format-popover" id="format-popover"></div>
             </div>
         </div>
     </div>

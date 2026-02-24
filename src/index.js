@@ -237,6 +237,17 @@ function polygonCentroid(coords) {
 
 // ============= Map Factory =============
 
+const FORMAT_REGISTRY = {
+    '4x5':  { label: '4:5 Post',        ratio: 'ratio-4x5',  displayW: 480, displayH: 600, exportW: 1080, exportH: 1350, defaultLabelSize: 13 },
+    '9x16': { label: '9:16 Story',       ratio: 'ratio-9x16', displayW: 360, displayH: 640, exportW: 1080, exportH: 1920, defaultLabelSize: 8 },
+    '1x1':  { label: '1:1 Square',       ratio: 'ratio-1x1',  displayW: 480, displayH: 480, exportW: 1080, exportH: 1080, defaultLabelSize: 13 },
+    '16x9': { label: '16:9 Landscape',   ratio: 'ratio-16x9', displayW: 640, displayH: 360, exportW: 1920, exportH: 1080, defaultLabelSize: 11 },
+};
+
+const activeFormats = [];  // ['4x5', '9x16', ...]
+const formatMaps = {};     // { '4x5': mapInstance, ... }
+const formatGeoLayers = {}; // { '4x5': geoLayer, ... }
+
 const maps = [];
 const geoJSONLayers = [];
 
@@ -312,25 +323,29 @@ function createMap(containerId) {
     maps.push(mapInstance);
     geoJSONLayers.push(geoLayer);
 
-    return mapInstance;
+    return { mapInstance, geoLayer };
 }
 
-// Create both maps
-var map4x5 = createMap('map-4x5');
-var map9x16 = createMap('map-9x16');
+// Create both initial maps
+var { mapInstance: map4x5, geoLayer: geoLayer4x5 } = createMap('map-4x5');
+var { mapInstance: map9x16, geoLayer: geoLayer9x16 } = createMap('map-9x16');
+
+formatMaps['4x5'] = map4x5;
+formatMaps['9x16'] = map9x16;
+formatGeoLayers['4x5'] = geoLayer4x5;
+formatGeoLayers['9x16'] = geoLayer9x16;
+activeFormats.push('4x5', '9x16');
 
 // Re-fit bounds after containers are laid out
 setTimeout(() => {
-    map4x5.invalidateSize();
-    map4x5.fitBounds(geoJSONLayers[0].getBounds(), { padding: [10, 10] });
-    map9x16.invalidateSize();
-    map9x16.fitBounds(geoJSONLayers[1].getBounds(), { padding: [10, 10] });
-
-    // Update zoom sliders to match the fitted zoom
-    document.getElementById('zoom-slider-4x5').value = map4x5.getZoom();
-    document.getElementById('zoom-value-4x5').textContent = map4x5.getZoom().toFixed(1);
-    document.getElementById('zoom-slider-9x16').value = map9x16.getZoom();
-    document.getElementById('zoom-value-9x16').textContent = map9x16.getZoom().toFixed(1);
+    for (const fid of activeFormats) {
+        const m = formatMaps[fid];
+        const gl = formatGeoLayers[fid];
+        m.invalidateSize();
+        m.fitBounds(gl.getBounds(), { padding: [10, 10] });
+        document.getElementById(`zoom-slider-${fid}`).value = m.getZoom();
+        document.getElementById(`zoom-value-${fid}`).textContent = m.getZoom().toFixed(1);
+    }
 }, 200);
 
 // ============= Center Snap (sticky lock during drag) =============
@@ -393,8 +408,8 @@ function setupCenterSnap(mapInstance, geoLayer) {
     });
 }
 
-setupCenterSnap(map4x5, geoJSONLayers[0]);
-setupCenterSnap(map9x16, geoJSONLayers[1]);
+setupCenterSnap(formatMaps['4x5'], formatGeoLayers['4x5']);
+setupCenterSnap(formatMaps['9x16'], formatGeoLayers['9x16']);
 
 // ============= Legend =============
 
@@ -430,8 +445,9 @@ function generateLegend(legendId) {
 }
 
 function refreshLegends() {
-    generateLegend('legend-4x5');
-    generateLegend('legend-9x16');
+    for (const fid of activeFormats) {
+        generateLegend(`legend-${fid}`);
+    }
 }
 
 refreshLegends();
@@ -477,27 +493,24 @@ function makeDraggable(el) {
     });
 }
 
-const legend4x5 = document.getElementById('legend-4x5');
-const legend9x16 = document.getElementById('legend-9x16');
-legend4x5.style.inset = '143.342px auto auto 405px';
-legend9x16.style.inset = '161.01px auto auto 291.988px';
-makeDraggable(legend4x5);
-makeDraggable(legend9x16);
-
-// Click to toggle legend orientation (distinguish from drag)
-['legend-4x5', 'legend-9x16'].forEach(id => {
-    const el = document.getElementById(id);
+function setupLegend(formatId) {
+    const el = document.getElementById(`legend-${formatId}`);
+    if (!el) return;
+    makeDraggable(el);
     let downX, downY;
     el.addEventListener('mousedown', (e) => { downX = e.clientX; downY = e.clientY; });
     el.addEventListener('mouseup', (e) => {
         if (Math.abs(e.clientX - downX) < 4 && Math.abs(e.clientY - downY) < 4) {
             pushUndo();
             el.classList.toggle('horizontal');
-            generateLegend(id);
+            generateLegend(`legend-${formatId}`);
             markDirty();
         }
     });
-});
+}
+
+setupLegend('4x5');
+setupLegend('9x16');
 
 // ============= Restyle Maps =============
 
@@ -698,8 +711,8 @@ function setupFormatControls(suffix, mapContainer, mapInstance) {
 
 }
 
-setupFormatControls('4x5', document.getElementById('capture-4x5'), map4x5);
-setupFormatControls('9x16', document.getElementById('capture-9x16'), map9x16);
+setupFormatControls('4x5', document.getElementById('capture-4x5'), formatMaps['4x5']);
+setupFormatControls('9x16', document.getElementById('capture-9x16'), formatMaps['9x16']);
 
 // Apply default 8px label size for 9:16
 document.getElementById('capture-9x16').querySelectorAll('.label-inner').forEach(label => {
@@ -720,15 +733,15 @@ function autoAlign(mapInstance, geoLayer, suffix) {
     document.getElementById(`zoom-value-${suffix}`).textContent = z.toFixed(1);
 }
 
-const autoAlign4x5Btn = document.getElementById('auto-align-4x5');
-if (autoAlign4x5Btn) autoAlign4x5Btn.addEventListener('click', () => {
-    autoAlign(map4x5, geoJSONLayers[0], '4x5');
-});
+function setupAutoAlign(formatId) {
+    const btn = document.getElementById(`auto-align-${formatId}`);
+    if (btn) btn.addEventListener('click', () => {
+        autoAlign(formatMaps[formatId], formatGeoLayers[formatId], formatId);
+    });
+}
 
-const autoAlign9x16Btn = document.getElementById('auto-align-9x16');
-if (autoAlign9x16Btn) autoAlign9x16Btn.addEventListener('click', () => {
-    autoAlign(map9x16, geoJSONLayers[1], '9x16');
-});
+setupAutoAlign('4x5');
+setupAutoAlign('9x16');
 
 // ============= Palette Picker =============
 
@@ -1007,6 +1020,21 @@ function captureSnapshot() {
     const titleEl = document.querySelector('[data-sync="title"]');
     const subtitleEl = document.querySelector('[data-sync="subtitle"]');
     const footerEl = document.querySelector('[data-sync="footer"]');
+
+    const mapState = {};
+    const display = {};
+    const legendOrient = {};
+    for (const fid of activeFormats) {
+        const m = formatMaps[fid];
+        mapState[fid] = { center: { lat: m.getCenter().lat, lng: m.getCenter().lng }, zoom: m.getZoom() };
+        display[fid] = {
+            showCode: document.getElementById(`toggle-code-${fid}`).checked,
+            showValue: document.getElementById(`toggle-value-${fid}`).checked,
+            labelSize: document.getElementById(`label-size-${fid}`).value,
+        };
+        legendOrient[fid] = document.getElementById(`legend-${fid}`).classList.contains('horizontal') ? 'horizontal' : 'vertical';
+    }
+
     return {
         data: { ..._data },
         minValue: _minValue,
@@ -1015,36 +1043,20 @@ function captureSnapshot() {
         activePalette: { ...activePalette },
         paletteReversed,
         normalizationMode,
+        activeFormats: [...activeFormats],
         text: {
             title: { innerHTML: titleEl.innerHTML, textAlign: titleEl.style.textAlign || '', top: titleEl.style.top || '' },
             subtitle: { innerHTML: subtitleEl.innerHTML, textAlign: subtitleEl.style.textAlign || '', top: subtitleEl.style.top || '' },
             footer: { innerHTML: footerEl.innerHTML, textAlign: footerEl.style.textAlign || '', top: footerEl.style.top || '' },
         },
-        mapState: {
-            map4x5: { center: { lat: map4x5.getCenter().lat, lng: map4x5.getCenter().lng }, zoom: map4x5.getZoom() },
-            map9x16: { center: { lat: map9x16.getCenter().lat, lng: map9x16.getCenter().lng }, zoom: map9x16.getZoom() }
-        },
-        display: {
-            '4x5': {
-                showCode: document.getElementById('toggle-code-4x5').checked,
-                showValue: document.getElementById('toggle-value-4x5').checked,
-                labelSize: document.getElementById('label-size-4x5').value,
-            },
-            '9x16': {
-                showCode: document.getElementById('toggle-code-9x16').checked,
-                showValue: document.getElementById('toggle-value-9x16').checked,
-                labelSize: document.getElementById('label-size-9x16').value,
-            }
-        },
+        mapState,
+        display,
         watermark: {
             dataUrl: watermarkDataUrl,
             opacity: watermarkOpacity,
             positions: getWatermarkPositions()
         },
-        legendOrientation: {
-            '4x5': document.getElementById('legend-4x5').classList.contains('horizontal') ? 'horizontal' : 'vertical',
-            '9x16': document.getElementById('legend-9x16').classList.contains('horizontal') ? 'horizontal' : 'vertical'
-        }
+        legendOrientation: legendOrient
     };
 }
 
@@ -1087,29 +1099,38 @@ function restoreSnapshot(snap) {
         });
     });
 
+    // Reconcile active formats
+    const targetFormats = snap.activeFormats || ['4x5', '9x16'];
+    // Add formats that should be present but aren't (add first to avoid last-format guard)
+    targetFormats.forEach(fid => {
+        if (!activeFormats.includes(fid)) addFormat(fid);
+    });
+    // Remove formats that shouldn't be present
+    [...activeFormats].forEach(fid => {
+        if (!targetFormats.includes(fid)) removeFormat(fid);
+    });
+
     // Restore map state
     if (snap.mapState) {
         _restoringSnapshot = true;
-        const s4 = snap.mapState.map4x5;
-        map4x5.setView([s4.center.lat, s4.center.lng], s4.zoom, { animate: false });
-        document.getElementById('zoom-slider-4x5').value = s4.zoom;
-        document.getElementById('zoom-value-4x5').textContent = s4.zoom.toFixed(1);
-
-        const s9 = snap.mapState.map9x16;
-        map9x16.setView([s9.center.lat, s9.center.lng], s9.zoom, { animate: false });
-        document.getElementById('zoom-slider-9x16').value = s9.zoom;
-        document.getElementById('zoom-value-9x16').textContent = s9.zoom.toFixed(1);
+        for (const fid of activeFormats) {
+            const s = snap.mapState[fid] || snap.mapState['map' + fid];
+            if (!s) continue;
+            const m = formatMaps[fid];
+            m.setView([s.center.lat, s.center.lng], s.zoom, { animate: false });
+            document.getElementById(`zoom-slider-${fid}`).value = s.zoom;
+            document.getElementById(`zoom-value-${fid}`).textContent = s.zoom.toFixed(1);
+        }
         _restoringSnapshot = false;
     }
 
     // Restore display settings per format
     if (snap.display) {
-        ['4x5', '9x16'].forEach(suffix => {
+        activeFormats.forEach(suffix => {
             const d = snap.display[suffix];
             if (!d) return;
             const container = document.getElementById(`capture-${suffix}`);
 
-            // Toggles
             const codeToggle = document.getElementById(`toggle-code-${suffix}`);
             codeToggle.checked = d.showCode;
             container.querySelectorAll('.label-code').forEach(el => {
@@ -1122,14 +1143,12 @@ function restoreSnapshot(snap) {
                 el.style.display = d.showValue ? '' : 'none';
             });
 
-            // Label size
             const sizeSlider = document.getElementById(`label-size-${suffix}`);
             sizeSlider.value = d.labelSize;
             document.getElementById(`label-size-value-${suffix}`).textContent = d.labelSize + 'px';
             container.querySelectorAll('.label-inner').forEach(label => {
                 label.style.fontSize = d.labelSize + 'px';
             });
-
         });
     }
 
@@ -1138,9 +1157,9 @@ function restoreSnapshot(snap) {
 
     // Restore legend orientation
     if (snap.legendOrientation) {
-        ['4x5', '9x16'].forEach(suffix => {
+        activeFormats.forEach(suffix => {
             const el = document.getElementById(`legend-${suffix}`);
-            el.classList.toggle('horizontal', snap.legendOrientation[suffix] === 'horizontal');
+            if (el) el.classList.toggle('horizontal', snap.legendOrientation[suffix] === 'horizontal');
         });
     }
 
@@ -1270,6 +1289,21 @@ function buildVersionData() {
     const titleEl = document.querySelector('[data-sync="title"]');
     const subtitleEl = document.querySelector('[data-sync="subtitle"]');
     const footerEl = document.querySelector('[data-sync="footer"]');
+
+    const mapState = {};
+    const display = {};
+    const legendOrient = {};
+    for (const fid of activeFormats) {
+        const m = formatMaps[fid];
+        mapState[fid] = { center: m.getCenter(), zoom: m.getZoom() };
+        display[fid] = {
+            showCode: document.getElementById(`toggle-code-${fid}`).checked,
+            showValue: document.getElementById(`toggle-value-${fid}`).checked,
+            labelSize: document.getElementById(`label-size-${fid}`).value,
+        };
+        legendOrient[fid] = document.getElementById(`legend-${fid}`).classList.contains('horizontal') ? 'horizontal' : 'vertical';
+    }
+
     return {
         savedAt: new Date().toISOString(),
         data: { ..._data },
@@ -1279,36 +1313,20 @@ function buildVersionData() {
         activePalette: { ...activePalette },
         paletteReversed,
         normalizationMode,
+        activeFormats: [...activeFormats],
         text: {
             title: { innerHTML: titleEl.innerHTML, textAlign: titleEl.style.textAlign || '', top: titleEl.style.top || '' },
             subtitle: { innerHTML: subtitleEl.innerHTML, textAlign: subtitleEl.style.textAlign || '', top: subtitleEl.style.top || '' },
             footer: { innerHTML: footerEl.innerHTML, textAlign: footerEl.style.textAlign || '', top: footerEl.style.top || '' },
         },
-        mapState: {
-            map4x5: { center: map4x5.getCenter(), zoom: map4x5.getZoom() },
-            map9x16: { center: map9x16.getCenter(), zoom: map9x16.getZoom() }
-        },
-        display: {
-            '4x5': {
-                showCode: document.getElementById('toggle-code-4x5').checked,
-                showValue: document.getElementById('toggle-value-4x5').checked,
-                labelSize: document.getElementById('label-size-4x5').value,
-            },
-            '9x16': {
-                showCode: document.getElementById('toggle-code-9x16').checked,
-                showValue: document.getElementById('toggle-value-9x16').checked,
-                labelSize: document.getElementById('label-size-9x16').value,
-            }
-        },
+        mapState,
+        display,
         watermark: {
             dataUrl: watermarkDataUrl,
             opacity: watermarkOpacity,
             positions: getWatermarkPositions()
         },
-        legendOrientation: {
-            '4x5': document.getElementById('legend-4x5').classList.contains('horizontal') ? 'horizontal' : 'vertical',
-            '9x16': document.getElementById('legend-9x16').classList.contains('horizontal') ? 'horizontal' : 'vertical'
-        }
+        legendOrientation: legendOrient
     };
 }
 
@@ -1378,23 +1396,33 @@ function loadVersion(versionData) {
         });
     }
 
+    // Reconcile active formats
+    const targetFormats = versionData.activeFormats || ['4x5', '9x16'];
+    // Add formats that should be present but aren't (add first to avoid last-format guard)
+    targetFormats.forEach(fid => {
+        if (!activeFormats.includes(fid)) addFormat(fid);
+    });
+    // Remove formats that shouldn't be present
+    [...activeFormats].forEach(fid => {
+        if (!targetFormats.includes(fid)) removeFormat(fid);
+    });
+
     if (versionData.mapState) {
         _restoringSnapshot = true;
-        const s4 = versionData.mapState.map4x5;
-        map4x5.setView([s4.center.lat, s4.center.lng], s4.zoom, { animate: false });
-        document.getElementById('zoom-slider-4x5').value = s4.zoom;
-        document.getElementById('zoom-value-4x5').textContent = s4.zoom.toFixed(1);
-
-        const s9 = versionData.mapState.map9x16;
-        map9x16.setView([s9.center.lat, s9.center.lng], s9.zoom, { animate: false });
-        document.getElementById('zoom-slider-9x16').value = s9.zoom;
-        document.getElementById('zoom-value-9x16').textContent = s9.zoom.toFixed(1);
+        for (const fid of activeFormats) {
+            const s = versionData.mapState[fid] || versionData.mapState['map' + fid];
+            if (!s) continue;
+            const m = formatMaps[fid];
+            m.setView([s.center.lat, s.center.lng], s.zoom, { animate: false });
+            document.getElementById(`zoom-slider-${fid}`).value = s.zoom;
+            document.getElementById(`zoom-value-${fid}`).textContent = s.zoom.toFixed(1);
+        }
         _restoringSnapshot = false;
     }
 
     // Restore display settings
     if (versionData.display) {
-        ['4x5', '9x16'].forEach(suffix => {
+        activeFormats.forEach(suffix => {
             const d = versionData.display[suffix];
             if (!d) return;
             const container = document.getElementById(`capture-${suffix}`);
@@ -1417,7 +1445,6 @@ function loadVersion(versionData) {
             container.querySelectorAll('.label-inner').forEach(label => {
                 label.style.fontSize = d.labelSize + 'px';
             });
-
         });
     }
 
@@ -1426,9 +1453,9 @@ function loadVersion(versionData) {
 
     // Restore legend orientation
     if (versionData.legendOrientation) {
-        ['4x5', '9x16'].forEach(suffix => {
+        activeFormats.forEach(suffix => {
             const el = document.getElementById(`legend-${suffix}`);
-            el.classList.toggle('horizontal', versionData.legendOrientation[suffix] === 'horizontal');
+            if (el) el.classList.toggle('horizontal', versionData.legendOrientation[suffix] === 'horizontal');
         });
     }
 
@@ -1757,15 +1784,26 @@ function getDateStamp() {
     return `${dd}${mm}${yyyy}_${hh}${min}`;
 }
 
-document.getElementById('btn-download-4x5').addEventListener('click', (e) => {
-    if (!hasData()) return showNoDataPopup(e.currentTarget);
-    downloadCapture('capture-4x5', 1080, 1350, `statistici-post-4x5_${getDateStamp()}.png`, 'btn-download-4x5');
-});
+function setupExportButtons(formatId) {
+    const fmt = FORMAT_REGISTRY[formatId];
+    document.getElementById(`btn-download-${formatId}`).addEventListener('click', (e) => {
+        if (!hasData()) return showNoDataPopup(e.currentTarget);
+        downloadCapture(`capture-${formatId}`, fmt.exportW, fmt.exportH, `statistici-${formatId}_${getDateStamp()}.png`, `btn-download-${formatId}`);
+    });
 
-document.getElementById('btn-download-9x16').addEventListener('click', (e) => {
-    if (!hasData()) return showNoDataPopup(e.currentTarget);
-    downloadCapture('capture-9x16', 1080, 1920, `statistici-reel-9x16_${getDateStamp()}.png`, 'btn-download-9x16');
-});
+    document.getElementById(`btn-copy-${formatId}`).addEventListener('click', (e) => {
+        if (!hasData()) return showNoDataPopup(e.currentTarget);
+        copyCapture(`capture-${formatId}`, `btn-copy-${formatId}`);
+    });
+
+    document.getElementById(`btn-share-${formatId}`).addEventListener('click', (e) => {
+        if (!hasData()) return showNoDataPopup(e.currentTarget);
+        shareLink(`btn-share-${formatId}`, formatId);
+    });
+}
+
+setupExportButtons('4x5');
+setupExportButtons('9x16');
 
 // ============= Copy to Clipboard =============
 
@@ -1799,15 +1837,6 @@ async function copyCapture(captureId, btnId) {
     }
 }
 
-document.getElementById('btn-copy-4x5').addEventListener('click', (e) => {
-    if (!hasData()) return showNoDataPopup(e.currentTarget);
-    copyCapture('capture-4x5', 'btn-copy-4x5');
-});
-
-document.getElementById('btn-copy-9x16').addEventListener('click', (e) => {
-    if (!hasData()) return showNoDataPopup(e.currentTarget);
-    copyCapture('capture-9x16', 'btn-copy-9x16');
-});
 
 // ============= Share Link =============
 
@@ -1837,15 +1866,224 @@ async function shareLink(btnId, format) {
     }
 }
 
-document.getElementById('btn-share-4x5').addEventListener('click', (e) => {
-    if (!hasData()) return showNoDataPopup(e.currentTarget);
-    shareLink('btn-share-4x5', '4x5');
+
+// ============= Dynamic Format Add / Remove =============
+
+const SVG_DOWNLOAD = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+const SVG_COPY = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+const SVG_SHARE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+
+function addFormat(formatId) {
+    if (activeFormats.includes(formatId)) return;
+    const fmt = FORMAT_REGISTRY[formatId];
+    if (!fmt) return;
+
+    // Get current text from existing previews
+    const existingTitle = document.querySelector('[data-sync="title"]')?.innerHTML || 'Map Title';
+    const existingSubtitle = document.querySelector('[data-sync="subtitle"]')?.innerHTML || 'Click to edit subtitle';
+    const existingFooter = document.querySelector('[data-sync="footer"]')?.innerHTML || 'Source: click to edit';
+
+    // Build preview column HTML
+    const col = document.createElement('div');
+    col.className = 'preview-column';
+    col.id = `preview-col-${formatId}`;
+    col.innerHTML = `
+        <button class="preview-close-btn" data-format="${formatId}" title="Remove">&times;</button>
+        <span class="preview-label">${fmt.label}</span>
+        <div id="capture-${formatId}" class="capture-area ${fmt.ratio}">
+            <div class="header-bar">
+                <div class="title" contenteditable="true" data-sync="title">${existingTitle}</div>
+                <div class="subtitle" contenteditable="true" data-sync="subtitle">${existingSubtitle}</div>
+            </div>
+            <div class="map-wrapper">
+                <div id="map-${formatId}" class="map"></div>
+                <div class="legend" id="legend-${formatId}"></div>
+                <div class="map-loading-overlay" id="loading-overlay-${formatId}">
+                    <div class="map-loading-spinner"></div>
+                    <div class="map-loading-text">Loading...</div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <div class="footer-note" contenteditable="true" data-sync="footer">${existingFooter}</div>
+            </div>
+        </div>
+        <div class="preview-actions">
+            <button class="btn-action" id="btn-download-${formatId}" title="Download">${SVG_DOWNLOAD}<span class="action-toast">Downloaded!</span></button>
+            <button class="btn-action" id="btn-copy-${formatId}" title="Copy to clipboard">${SVG_COPY}<span class="action-toast">Copied!</span></button>
+            <button class="btn-action" id="btn-share-${formatId}" title="Share link">${SVG_SHARE}<span class="action-toast">Link copied!</span></button>
+        </div>
+    `;
+
+    // Insert before the add-format column
+    const addCol = document.getElementById('add-format-col');
+    addCol.parentElement.insertBefore(col, addCol);
+
+    // Create Leaflet map
+    const { mapInstance, geoLayer } = createMap(`map-${formatId}`);
+    formatMaps[formatId] = mapInstance;
+    formatGeoLayers[formatId] = geoLayer;
+    activeFormats.push(formatId);
+
+    // Apply default label size
+    const captureEl = document.getElementById(`capture-${formatId}`);
+    captureEl.querySelectorAll('.label-inner').forEach(label => {
+        label.style.fontSize = fmt.defaultLabelSize + 'px';
+    });
+
+    // Build control tab
+    const tabBar = document.querySelector('.tab-bar');
+    const tabBtn = document.createElement('button');
+    tabBtn.className = 'tab-btn';
+    tabBtn.dataset.tab = `tab-${formatId}`;
+    tabBtn.textContent = fmt.label;
+    tabBar.appendChild(tabBtn);
+
+    const tabPanel = document.createElement('div');
+    tabPanel.className = 'tab-panel';
+    tabPanel.id = `tab-${formatId}`;
+    tabPanel.innerHTML = `
+        <div class="control-section">
+            <label>Display</label>
+            <div class="toggle-row"><span>County code</span><label class="toggle"><input type="checkbox" id="toggle-code-${formatId}" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-row"><span>Value</span><label class="toggle"><input type="checkbox" id="toggle-value-${formatId}" checked><span class="toggle-slider"></span></label></div>
+        </div>
+        <div class="control-section">
+            <label>Zoom</label>
+            <input type="range" id="zoom-slider-${formatId}" class="zoom-slider" min="5" max="10" step="0.1" value="7">
+            <div class="zoom-value" id="zoom-value-${formatId}">7.0</div>
+        </div>
+        <div class="control-section">
+            <label>Label size</label>
+            <input type="range" id="label-size-${formatId}" class="zoom-slider" min="8" max="24" step="1" value="${fmt.defaultLabelSize}">
+            <div class="zoom-value" id="label-size-value-${formatId}">${fmt.defaultLabelSize}px</div>
+        </div>
+    `;
+    // Insert after last tab-panel in the tab-section
+    const tabSection = tabBar.parentElement;
+    tabSection.appendChild(tabPanel);
+
+    // Re-bind tab click handlers
+    tabBtn.addEventListener('click', () => {
+        tabSection.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        tabSection.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        tabBtn.classList.add('active');
+        tabPanel.classList.add('active');
+    });
+
+    // Setup all per-format wiring
+    setTimeout(() => {
+        mapInstance.invalidateSize();
+        mapInstance.fitBounds(geoLayer.getBounds(), { padding: [10, 10] });
+        document.getElementById(`zoom-slider-${formatId}`).value = mapInstance.getZoom();
+        document.getElementById(`zoom-value-${formatId}`).textContent = mapInstance.getZoom().toFixed(1);
+    }, 100);
+
+    setupFormatControls(formatId, captureEl, mapInstance);
+    setupCenterSnap(mapInstance, geoLayer);
+    setupLegend(formatId);
+    generateLegend(`legend-${formatId}`);
+    setupExportButtons(formatId);
+    setupAutoAlign(formatId);
+    setupMapMoveHandlers(formatId);
+
+    // Wire close button
+    col.querySelector('.preview-close-btn').addEventListener('click', () => removeFormat(formatId));
+
+    // Place watermark on new map if one is active
+    if (watermarkDataUrl) placeWatermarks();
+
+    updateCloseButtons();
+    updateFormatPopover();
+    restyleMaps();
+}
+
+function removeFormat(formatId) {
+    if (!activeFormats.includes(formatId)) return;
+    if (activeFormats.length <= 1) return; // must keep at least one
+
+    // Destroy Leaflet map
+    const mapInst = formatMaps[formatId];
+    const geoLayer = formatGeoLayers[formatId];
+
+    // Remove from global arrays
+    const mapIdx = maps.indexOf(mapInst);
+    if (mapIdx !== -1) maps.splice(mapIdx, 1);
+    const glIdx = geoJSONLayers.indexOf(geoLayer);
+    if (glIdx !== -1) geoJSONLayers.splice(glIdx, 1);
+
+    mapInst.remove();
+    delete formatMaps[formatId];
+    delete formatGeoLayers[formatId];
+    activeFormats.splice(activeFormats.indexOf(formatId), 1);
+
+    // Remove DOM
+    const col = document.getElementById(`preview-col-${formatId}`);
+    if (col) col.remove();
+
+    // Remove control tab
+    const tabBtn = document.querySelector(`.tab-btn[data-tab="tab-${formatId}"]`);
+    const tabPanel = document.getElementById(`tab-${formatId}`);
+    if (tabBtn) tabBtn.remove();
+    if (tabPanel) tabPanel.remove();
+
+    // Activate first remaining tab
+    const firstTab = document.querySelector('.tab-btn');
+    if (firstTab && !document.querySelector('.tab-btn.active')) {
+        firstTab.classList.add('active');
+        document.getElementById(firstTab.dataset.tab)?.classList.add('active');
+    }
+
+    updateCloseButtons();
+    updateFormatPopover();
+}
+
+function updateCloseButtons() {
+    document.querySelectorAll('.preview-close-btn').forEach(btn => {
+        btn.disabled = activeFormats.length <= 1;
+    });
+}
+
+function updateFormatPopover() {
+    const popover = document.getElementById('format-popover');
+    popover.innerHTML = '';
+    for (const [id, fmt] of Object.entries(FORMAT_REGISTRY)) {
+        if (activeFormats.includes(id)) continue;
+        const btn = document.createElement('button');
+        btn.className = 'format-option';
+        btn.innerHTML = `<div class="format-option-label">${fmt.label}</div><div class="format-option-desc">${fmt.exportW}×${fmt.exportH}px</div>`;
+        btn.addEventListener('click', () => {
+            addFormat(id);
+            popover.classList.remove('open');
+        });
+        popover.appendChild(btn);
+    }
+
+    // Hide add button if all formats used
+    const addCol = document.getElementById('add-format-col');
+    addCol.style.display = activeFormats.length >= Object.keys(FORMAT_REGISTRY).length ? 'none' : '';
+}
+
+// Wire up existing close buttons
+document.querySelectorAll('.preview-close-btn').forEach(btn => {
+    btn.addEventListener('click', () => removeFormat(btn.dataset.format));
 });
 
-document.getElementById('btn-share-9x16').addEventListener('click', (e) => {
-    if (!hasData()) return showNoDataPopup(e.currentTarget);
-    shareLink('btn-share-9x16', '9x16');
+// Wire up add-format button
+document.getElementById('btn-add-format').addEventListener('click', () => {
+    const popover = document.getElementById('format-popover');
+    popover.classList.toggle('open');
 });
+
+// Close popover on outside click
+document.addEventListener('click', (e) => {
+    const popover = document.getElementById('format-popover');
+    if (!e.target.closest('#add-format-col')) {
+        popover.classList.remove('open');
+    }
+});
+
+updateCloseButtons();
+updateFormatPopover();
 
 // ============= Text Editor Toolbar =============
 
@@ -2025,10 +2263,13 @@ function onMapMoveEnd() {
     }, 500);
 }
 
-map4x5.on('movestart', onMapMoveStart);
-map4x5.on('moveend', onMapMoveEnd);
-map9x16.on('movestart', onMapMoveStart);
-map9x16.on('moveend', onMapMoveEnd);
+function setupMapMoveHandlers(formatId) {
+    formatMaps[formatId].on('movestart', onMapMoveStart);
+    formatMaps[formatId].on('moveend', onMapMoveEnd);
+}
+
+setupMapMoveHandlers('4x5');
+setupMapMoveHandlers('9x16');
 
 // ============= AI Chat Panel =============
 
@@ -2049,8 +2290,10 @@ initChatPanel({
         data: _data,
     }),
     onLoadingChange: (isLoading) => {
-        document.getElementById('loading-overlay-4x5').classList.toggle('active', isLoading);
-        document.getElementById('loading-overlay-9x16').classList.toggle('active', isLoading);
+        for (const fid of activeFormats) {
+            const el = document.getElementById(`loading-overlay-${fid}`);
+            if (el) el.classList.toggle('active', isLoading);
+        }
     },
 });
 
