@@ -2379,7 +2379,7 @@ initChatPanel({
         </div>
         <div class="data-table-body">
             <table>
-                <thead><tr><th>County</th><th>Value</th></tr></thead>
+                <thead><tr><th data-sort="county">County <span class="sort-arrow">\u25B2</span></th><th data-sort="value">Value <span class="sort-arrow">\u25B2</span></th></tr></thead>
                 <tbody id="data-table-tbody"></tbody>
             </table>
         </div>
@@ -2399,6 +2399,69 @@ initChatPanel({
         `;
         tbody.appendChild(tr);
         allInputs.push(tr.querySelector('.county-input'));
+    });
+
+    // Sorting state: null = original order, 'asc', 'desc'
+    let sortColumn = null;   // 'county' or 'value'
+    let sortDirection = null; // 'asc' or 'desc'
+
+    function sortTable(column) {
+        const ths = panel.querySelectorAll('thead th');
+        // Cycle: none → asc → desc → none
+        if (sortColumn === column) {
+            if (sortDirection === 'asc') sortDirection = 'desc';
+            else if (sortDirection === 'desc') { sortColumn = null; sortDirection = null; }
+        } else {
+            sortColumn = column;
+            sortDirection = 'asc';
+        }
+
+        // Update header classes and arrows
+        ths.forEach(th => {
+            const arrow = th.querySelector('.sort-arrow');
+            if (th.dataset.sort === sortColumn) {
+                th.classList.add('sorted');
+                arrow.textContent = sortDirection === 'desc' ? '\u25BC' : '\u25B2';
+            } else {
+                th.classList.remove('sorted');
+                arrow.textContent = '\u25B2';
+            }
+        });
+
+        // Collect rows and sort
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        if (!sortColumn) {
+            // Restore original order by data-idx
+            rows.sort((a, b) => {
+                const ai = parseInt(a.querySelector('.county-input').dataset.idx);
+                const bi = parseInt(b.querySelector('.county-input').dataset.idx);
+                return ai - bi;
+            });
+        } else if (sortColumn === 'county') {
+            rows.sort((a, b) => {
+                const an = a.querySelector('.county-input').dataset.county;
+                const bn = b.querySelector('.county-input').dataset.county;
+                return sortDirection === 'asc' ? an.localeCompare(bn, 'ro') : bn.localeCompare(an, 'ro');
+            });
+        } else if (sortColumn === 'value') {
+            rows.sort((a, b) => {
+                const av = parseFloat(a.querySelector('.county-input').value) || 0;
+                const bv = parseFloat(b.querySelector('.county-input').value) || 0;
+                return sortDirection === 'asc' ? av - bv : bv - av;
+            });
+        }
+
+        // Re-append rows in new order
+        rows.forEach(r => tbody.appendChild(r));
+
+        // Rebuild allInputs to match visual order for keyboard navigation
+        allInputs.length = 0;
+        tbody.querySelectorAll('.county-input').forEach(inp => allInputs.push(inp));
+    }
+
+    // Attach click handlers to headers
+    panel.querySelectorAll('thead th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => sortTable(th.dataset.sort));
     });
 
     // Apply a single value change and refresh the map
@@ -2455,15 +2518,15 @@ initChatPanel({
     // Keyboard navigation: Tab/Enter move to next row, Shift+Tab to previous
     tbody.addEventListener('keydown', (e) => {
         if (!e.target.classList.contains('county-input')) return;
-        const idx = parseInt(e.target.dataset.idx);
+        const visualIdx = allInputs.indexOf(e.target);
 
         if (e.key === 'Enter' || (e.key === 'Tab' && !e.shiftKey)) {
             e.preventDefault();
-            const next = allInputs[idx + 1];
+            const next = allInputs[visualIdx + 1];
             if (next) { next.focus(); next.select(); }
         } else if (e.key === 'Tab' && e.shiftKey) {
             e.preventDefault();
-            const prev = allInputs[idx - 1];
+            const prev = allInputs[visualIdx - 1];
             if (prev) { prev.focus(); prev.select(); }
         }
     });
@@ -2491,7 +2554,7 @@ initChatPanel({
 
         pushUndo();
 
-        const startIdx = parseInt(e.target.dataset.idx);
+        const startIdx = allInputs.indexOf(e.target);
 
         lines.forEach((line, i) => {
             const targetIdx = startIdx + i;

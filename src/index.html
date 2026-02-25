@@ -2052,6 +2052,26 @@
             letter-spacing: 0.4px;
             border-bottom: 1px solid #eee;
             z-index: 1;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.15s;
+        }
+
+        .data-table-body th:hover {
+            color: #333;
+        }
+
+        .data-table-body th .sort-arrow {
+            display: inline-block;
+            margin-left: 4px;
+            font-size: 10px;
+            opacity: 0.3;
+            transition: opacity 0.15s;
+        }
+
+        .data-table-body th.sorted .sort-arrow {
+            opacity: 1;
+            color: #2563eb;
         }
 
         .data-table-body th:last-child {
