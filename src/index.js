@@ -68,7 +68,7 @@ const palettes = [
 
 let activePalette = palettes[0];
 let paletteReversed = false;
-let normalizationMode = 'none'; // 'none' | 'logarithmic' | 'exponential'
+let normalizationMode = 3; // 0–6: 0=strong log … 3=linear … 6=strong exp
 
 // ============= Color Functions =============
 
@@ -152,20 +152,10 @@ function getColorDivergingExp(minVal, maxVal, currentNumber, highIsBad, countryN
     // Monochromatic mode: single hue, vary saturation and lightness
     const hue = activePalette.hue;
 
-    let normalized;
-    if (normalizationMode === 'logarithmic') {
-        const logMin = Math.log(1 + minVal);
-        const logMax = Math.log(1 + maxVal);
-        const logVal = Math.log(1 + currentNumber);
-        normalized = (logVal - logMin) / (logMax - logMin);
-    } else if (normalizationMode === 'exponential') {
-        normalized = (currentNumber - minVal) / (maxVal - minVal);
-        normalized = Math.max(0, Math.min(1, normalized));
-        normalized = Math.pow(normalized, 2);
-    } else {
-        normalized = (currentNumber - minVal) / (maxVal - minVal);
-    }
+    let normalized = (currentNumber - minVal) / (maxVal - minVal);
     normalized = Math.max(0, Math.min(1, normalized));
+    const normExp = NORM_EXPONENTS[normalizationMode] ?? 1.0;
+    if (normExp !== 1.0) normalized = Math.pow(normalized, normExp);
 
     if (highIsBad) normalized = 1 - normalized;
     if (paletteReversed) normalized = 1 - normalized;
@@ -430,8 +420,8 @@ function generateLegend(legendId) {
     }
 
     const gradientDir = isHorizontal ? 'to right' : 'to bottom';
-    const maxLabel = isHorizontal ? actualMin : actualMax;
-    const minLabel = isHorizontal ? actualMax : actualMin;
+    const maxLabel = actualMax;
+    const minLabel = actualMin;
 
     legendEl.innerHTML = `
         <div class="legend-body">
@@ -609,10 +599,8 @@ function applyConfig(parsed) {
 
     // Normalization
     if (parsed.normalization) {
-        normalizationMode = parsed.normalization;
-        document.querySelectorAll('#norm-btn-group .norm-btn').forEach(b => {
-            b.classList.toggle('active', b.dataset.norm === normalizationMode);
-        });
+        normalizationMode = parseNormMode(parsed.normalization);
+        setNormSlider(normalizationMode);
         updateNormHint();
     }
 
@@ -815,28 +803,50 @@ hueSlider.addEventListener('input', (e) => {
 // Push undo on hue slider commit (not every input tick)
 hueSlider.addEventListener('mousedown', () => { pushUndo(); });
 
-// ============= Normalization Buttons =============
+// ============= Normalization Slider =============
 
-const NORM_HINTS = {
-    none: 'Linear scale \u2014 values mapped as-is',
-    logarithmic: 'Compresses large values \u2014 highlights smaller differences',
-    exponential: 'Amplifies large values \u2014 highlights bigger differences'
-};
+const NORM_EXPONENTS = [0.1, 0.25, 0.5, 1.0, 2.0, 3.0, 5.0];
+
+const NORM_HINTS = [
+    'Strong log \u2014 extreme compression of large values',
+    'Log \u2014 compresses large values',
+    'Mild log \u2014 slight compression',
+    'Linear \u2014 values mapped as-is',
+    'Mild exp \u2014 slight amplification',
+    'Exp \u2014 amplifies large values',
+    'Strong exp \u2014 extreme amplification of large values',
+];
+
+function parseNormMode(val) {
+    if (typeof val === 'number' && val >= 0 && val <= 6) return val;
+    if (val === 'logarithmic') return 2;
+    if (val === 'exponential') return 4;
+    return 3; // 'none' or unknown
+}
 
 function updateNormHint() {
     document.getElementById('norm-hint').textContent = NORM_HINTS[normalizationMode] || '';
 }
 
-document.querySelectorAll('#norm-btn-group .norm-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        pushUndo();
-        normalizationMode = btn.dataset.norm;
-        document.querySelectorAll('#norm-btn-group .norm-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        updateNormHint();
-        restyleMaps();
-        markDirty();
+function updateNormLabels(idx) {
+    const zone = idx < 3 ? 0 : idx === 3 ? 1 : 2;
+    document.querySelectorAll('.norm-slider-labels span').forEach((span, i) => {
+        span.classList.toggle('active', i === zone);
     });
+}
+
+function setNormSlider(idx) {
+    document.getElementById('norm-slider').value = idx;
+    updateNormLabels(idx);
+}
+
+document.getElementById('norm-slider').addEventListener('input', () => {
+    pushUndo();
+    normalizationMode = parseInt(document.getElementById('norm-slider').value);
+    updateNormLabels(normalizationMode);
+    updateNormHint();
+    restyleMaps();
+    markDirty();
 });
 
 // ============= Watermark / Branding =============
@@ -1072,7 +1082,7 @@ function restoreSnapshot(snap) {
 
     activePalette = { ...snap.activePalette };
     paletteReversed = snap.paletteReversed;
-    normalizationMode = snap.normalizationMode;
+    normalizationMode = parseNormMode(snap.normalizationMode);
 
     // Update palette UI
     document.querySelectorAll('.palette-option').forEach(o => {
@@ -1083,9 +1093,7 @@ function restoreSnapshot(snap) {
         updateHuePreview(activePalette.hue);
     }
     document.getElementById('btn-reverse-palette').classList.toggle('active', paletteReversed);
-    document.querySelectorAll('#norm-btn-group .norm-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.norm === normalizationMode);
-    });
+    setNormSlider(normalizationMode);
     updateNormHint();
 
     // Restore text
@@ -1366,7 +1374,7 @@ function loadVersion(versionData) {
 
     activePalette = versionData.activePalette;
     paletteReversed = versionData.paletteReversed;
-    normalizationMode = versionData.normalizationMode || 'none';
+    normalizationMode = parseNormMode(versionData.normalizationMode);
 
     // Update palette UI
     document.querySelectorAll('.palette-option').forEach(o => {
@@ -1379,9 +1387,7 @@ function loadVersion(versionData) {
 
     document.getElementById('btn-reverse-palette').classList.toggle('active', paletteReversed);
 
-    document.querySelectorAll('#norm-btn-group .norm-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.norm === normalizationMode);
-    });
+    setNormSlider(normalizationMode);
     updateNormHint();
 
     if (versionData.text) {
@@ -1947,6 +1953,7 @@ function addFormat(formatId) {
             <div class="footer-bar">
                 <div class="footer-note" contenteditable="true" data-sync="footer">${existingFooter}</div>
             </div>
+            <span class="capture-branding">Creat cu mapify.ro</span>
         </div>
         <div class="preview-actions">
             <button class="btn-action" id="btn-download-${formatId}" title="Download">${SVG_DOWNLOAD}<span class="action-toast">Downloaded!</span></button>

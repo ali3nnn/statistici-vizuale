@@ -297,26 +297,54 @@
             margin-top: 4px;
         }
 
-        /* Normalization button group */
-        .norm-btn-group {
-            display: flex;
-            gap: 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            overflow: hidden;
+        /* Normalization slider */
+        .norm-slider-container {
+            width: 100%;
+            padding: 4px 0 2px;
         }
 
-        .norm-btn {
-            flex: 1;
-            padding: 5px 0;
-            border: none;
-            border-right: 1px solid #ccc;
-            background: white;
-            font-size: 11px;
-            font-weight: 500;
-            color: #555;
+        .norm-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 3px;
+            background: #ddd;
+            border-radius: 2px;
+            outline: none;
             cursor: pointer;
-            transition: background 0.15s, color 0.15s;
+        }
+
+        .norm-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .norm-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            cursor: pointer;
+            border: none;
+        }
+
+        .norm-slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-size: 11px;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .norm-slider-labels span.active {
+            color: #1a1a1a;
+            font-weight: 700;
         }
 
         .norm-hint {
@@ -324,19 +352,6 @@
             color: #888;
             text-align: center;
             margin-top: 4px;
-        }
-
-        .norm-btn:last-child {
-            border-right: none;
-        }
-
-        .norm-btn:hover {
-            background: #f0f0f0;
-        }
-
-        .norm-btn.active {
-            background: #1a1a1a;
-            color: white;
         }
 
         /* Top-right action buttons */
@@ -1064,6 +1079,18 @@
         .footer-note:hover,
         .footer-note:focus {
             border-color: #bbb;
+        }
+
+        .capture-branding {
+            position: absolute;
+            top: 83%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 9px;
+            color: rgba(0,0,0,0.35);
+            z-index: 1001;
+            pointer-events: none;
+            letter-spacing: 0.2px;
         }
 
         /* Vertical drag grip indicator */
@@ -2231,10 +2258,13 @@
             <div class="sidebar-section">
                 <div class="control-group-title">Normalization</div>
                 <div class="control-section">
-                    <div class="norm-btn-group" id="norm-btn-group">
-                        <button class="norm-btn active" data-norm="none">None</button>
-                        <button class="norm-btn" data-norm="logarithmic">Log</button>
-                        <button class="norm-btn" data-norm="exponential">Exp</button>
+                    <div class="norm-slider-container">
+                        <input type="range" id="norm-slider" class="norm-slider" min="0" max="6" step="1" value="3">
+                        <div class="norm-slider-labels">
+                            <span>Log</span>
+                            <span class="active">None</span>
+                            <span>Exp</span>
+                        </div>
                     </div>
                     <div class="norm-hint" id="norm-hint">Linear scale — values mapped as-is</div>
                 </div>
@@ -2282,6 +2312,7 @@
                     <div class="footer-bar">
                         <div class="footer-note" contenteditable="true" data-sync="footer">Source: click to edit</div>
                     </div>
+                    <span class="capture-branding">Creat cu mapify.ro</span>
                 </div>
                 <div class="preview-actions">
                     <button class="btn-action" id="btn-download-4x5" title="Download"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span class="action-toast">Downloaded!</span></button>
@@ -2310,6 +2341,7 @@
                     <div class="footer-bar">
                         <div class="footer-note" contenteditable="true" data-sync="footer">Source: click to edit</div>
                     </div>
+                    <span class="capture-branding">Creat cu mapify.ro</span>
                 </div>
                 <div class="preview-actions">
                     <button class="btn-action" id="btn-download-9x16" title="Download"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span class="action-toast">Downloaded!</span></button>
