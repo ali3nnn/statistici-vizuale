@@ -1830,7 +1830,7 @@ async function downloadCapture(captureId, width, height, filename, btnId) {
         const sourceCanvas = await html2canvas(captureArea, {
             scale: 2,
             useCORS: true,
-            backgroundColor: canvasDark ? '#111111' : '#ffffff',
+            backgroundColor: canvasDark ? '#1a1a22' : '#ffffff',
             logging: false,
             onclone: (clonedDoc) => {
                 clonedDoc.body.classList.add('capturing');
@@ -1911,7 +1911,7 @@ async function copyCapture(captureId, btnId) {
         const sourceCanvas = await html2canvas(captureArea, {
             scale: 2,
             useCORS: true,
-            backgroundColor: canvasDark ? '#111111' : '#ffffff',
+            backgroundColor: canvasDark ? '#1a1a22' : '#ffffff',
             logging: false,
             onclone: (clonedDoc) => {
                 clonedDoc.body.classList.add('capturing');
