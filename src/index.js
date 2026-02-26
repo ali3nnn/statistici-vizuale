@@ -154,7 +154,7 @@ function getColorDivergingExp(minVal, maxVal, currentNumber, highIsBad, countryN
 
     let normalized = (currentNumber - minVal) / (maxVal - minVal);
     normalized = Math.max(0, Math.min(1, normalized));
-    const normExp = NORM_EXPONENTS[normalizationMode] ?? 1.0;
+    const normExp = positionToExponent(normalizationMode);
     if (normExp !== 1.0) normalized = Math.pow(normalized, normExp);
 
     if (highIsBad) normalized = 1 - normalized;
@@ -805,17 +805,16 @@ hueSlider.addEventListener('mousedown', () => { pushUndo(); });
 
 // ============= Normalization Slider =============
 
-const NORM_EXPONENTS = [0.1, 0.25, 0.5, 1.0, 2.0, 3.0, 5.0];
+// Key exponents at integer positions 0–6; interpolated in log-space for smooth feel
+const _NORM_KEY_EXP = [0.1, 0.25, 0.5, 1.0, 2.0, 3.0, 5.0];
 
-const NORM_HINTS = [
-    'Strong log \u2014 extreme compression of large values',
-    'Log \u2014 compresses large values',
-    'Mild log \u2014 slight compression',
-    'Linear \u2014 values mapped as-is',
-    'Mild exp \u2014 slight amplification',
-    'Exp \u2014 amplifies large values',
-    'Strong exp \u2014 extreme amplification of large values',
-];
+function positionToExponent(pos) {
+    const clamped = Math.max(0, Math.min(6, pos));
+    const i = Math.min(Math.floor(clamped), 5);
+    const f = clamped - i;
+    // Log-space interpolation so the curve feels perceptually uniform
+    return Math.exp(Math.log(_NORM_KEY_EXP[i]) * (1 - f) + Math.log(_NORM_KEY_EXP[i + 1]) * f);
+}
 
 function parseNormMode(val) {
     if (typeof val === 'number' && val >= 0 && val <= 6) return val;
@@ -824,12 +823,22 @@ function parseNormMode(val) {
     return 3; // 'none' or unknown
 }
 
-function updateNormHint() {
-    document.getElementById('norm-hint').textContent = NORM_HINTS[normalizationMode] || '';
+function getNormHint(pos) {
+    if (pos <= 0.5) return 'Strong log \u2014 extreme compression of large values';
+    if (pos <= 1.5) return 'Log \u2014 compresses large values';
+    if (pos <= 2.5) return 'Mild log \u2014 slight compression';
+    if (pos <= 3.5) return 'Linear \u2014 values mapped as-is';
+    if (pos <= 4.5) return 'Mild exp \u2014 slight amplification';
+    if (pos <= 5.5) return 'Exp \u2014 amplifies large values';
+    return 'Strong exp \u2014 extreme amplification of large values';
 }
 
-function updateNormLabels(idx) {
-    const zone = idx < 3 ? 0 : idx === 3 ? 1 : 2;
+function updateNormHint() {
+    document.getElementById('norm-hint').textContent = getNormHint(normalizationMode);
+}
+
+function updateNormLabels(pos) {
+    const zone = pos < 2.5 ? 0 : pos <= 3.5 ? 1 : 2;
     document.querySelectorAll('.norm-slider-labels span').forEach((span, i) => {
         span.classList.toggle('active', i === zone);
     });
@@ -842,7 +851,7 @@ function setNormSlider(idx) {
 
 document.getElementById('norm-slider').addEventListener('input', () => {
     pushUndo();
-    normalizationMode = parseInt(document.getElementById('norm-slider').value);
+    normalizationMode = parseFloat(document.getElementById('norm-slider').value);
     updateNormLabels(normalizationMode);
     updateNormHint();
     restyleMaps();
