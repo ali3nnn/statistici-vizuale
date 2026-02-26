@@ -69,6 +69,7 @@ const palettes = [
 let activePalette = palettes[0];
 let paletteReversed = false;
 let normalizationMode = 3; // 0–6: 0=strong log … 3=linear … 6=strong exp
+let canvasDark = false;
 
 // ============= Color Functions =============
 
@@ -504,7 +505,35 @@ setupLegend('9x16');
 
 // ============= Restyle Maps =============
 
+function applyCanvasDark() {
+    document.querySelectorAll('.capture-area').forEach(el => {
+        el.classList.toggle('dark', canvasDark);
+    });
+    document.getElementById('toggle-dark-canvas-4x5').checked = canvasDark;
+    document.getElementById('toggle-dark-canvas-9x16').checked = canvasDark;
+    restyleMaps();
+}
+
+document.getElementById('toggle-dark-canvas-4x5').addEventListener('change', e => {
+    canvasDark = e.target.checked;
+    applyCanvasDark();
+    markDirty();
+});
+document.getElementById('toggle-dark-canvas-9x16').addEventListener('change', e => {
+    canvasDark = e.target.checked;
+    applyCanvasDark();
+    markDirty();
+});
+
+if (process.env.NODE_ENV === 'development') {
+    document.querySelectorAll('.toggle-row:has(#toggle-dark-canvas-4x5), .toggle-row:has(#toggle-dark-canvas-9x16)').forEach(row => {
+        row.style.display = '';
+        row.querySelector('input[type="checkbox"]').disabled = false;
+    });
+}
+
 function restyleMaps() {
+    const outlineColor = canvasDark ? '#333' : 'white';
     geoJSONLayers.forEach(layer => {
         layer.setStyle(function (feature) {
             var color = getColorDivergingExp(_minValue, _maxValue, _data[feature.properties.name], _highIsBad, feature.properties.name);
@@ -512,7 +541,7 @@ function restyleMaps() {
                 fillColor: color,
                 weight: 1,
                 opacity: 1,
-                color: 'white',
+                color: outlineColor,
                 fillOpacity: 1
             };
         });
@@ -1062,6 +1091,7 @@ function captureSnapshot() {
         activePalette: { ...activePalette },
         paletteReversed,
         normalizationMode,
+        canvasDark,
         activeFormats: [...activeFormats],
         text: {
             title: { innerHTML: titleEl.innerHTML, textAlign: titleEl.style.textAlign || '', top: titleEl.style.top || '' },
@@ -1092,6 +1122,8 @@ function restoreSnapshot(snap) {
     activePalette = { ...snap.activePalette };
     paletteReversed = snap.paletteReversed;
     normalizationMode = parseNormMode(snap.normalizationMode);
+    canvasDark = snap.canvasDark ?? false;
+    applyCanvasDark();
 
     // Update palette UI
     document.querySelectorAll('.palette-option').forEach(o => {
@@ -1330,6 +1362,7 @@ function buildVersionData() {
         activePalette: { ...activePalette },
         paletteReversed,
         normalizationMode,
+        canvasDark,
         activeFormats: [...activeFormats],
         text: {
             title: { innerHTML: titleEl.innerHTML, textAlign: titleEl.style.textAlign || '', top: titleEl.style.top || '' },
@@ -1384,6 +1417,8 @@ function loadVersion(versionData) {
     activePalette = versionData.activePalette;
     paletteReversed = versionData.paletteReversed;
     normalizationMode = parseNormMode(versionData.normalizationMode);
+    canvasDark = versionData.canvasDark ?? false;
+    applyCanvasDark();
 
     // Update palette UI
     document.querySelectorAll('.palette-option').forEach(o => {
@@ -1681,23 +1716,25 @@ document.getElementById('saved-panel-close').addEventListener('click', closeSave
     });
 })();
 
+function loadRandomPreloaded() {
+    const ds = preloadedDatasets[Math.floor(Math.random() * preloadedDatasets.length)];
+    if (!ds) return;
+    setTimeout(() => {
+        loadVersion(ds.config);
+        undoStack = [];
+        redoStack = [];
+        updateUndoRedoButtons();
+        clearDirty();
+    }, 300);
+}
+
 // Fetch configs from DB and auto-load last saved config (or shared config)
 async function loadLastSaved() {
     await migrateLocalStorageIfNeeded();
     const configs = await fetchConfigs();
     renderSavedList();
     if (configs.length === 0) {
-        // No saved data — load default dataset
-        const defaultDs = preloadedDatasets.find(ds => ds.name.toLowerCase().includes('urbanizare'));
-        if (defaultDs) {
-            setTimeout(() => {
-                loadVersion(defaultDs.config);
-                undoStack = [];
-                redoStack = [];
-                updateUndoRedoButtons();
-                clearDirty();
-            }, 300);
-        }
+        loadRandomPreloaded();
         return;
     }
     const latest = configs[0]; // most recent group (ordered by updated_at DESC)
@@ -1719,6 +1756,7 @@ async function loadLastSaved() {
     } catch (err) {
         console.error('Auto-load failed:', err);
         renderSavedList();
+        loadRandomPreloaded();
     }
 })();
 
@@ -1792,7 +1830,7 @@ async function downloadCapture(captureId, width, height, filename, btnId) {
         const sourceCanvas = await html2canvas(captureArea, {
             scale: 2,
             useCORS: true,
-            backgroundColor: '#ffffff',
+            backgroundColor: canvasDark ? '#111111' : '#ffffff',
             logging: false,
             onclone: (clonedDoc) => {
                 clonedDoc.body.classList.add('capturing');
@@ -1873,7 +1911,7 @@ async function copyCapture(captureId, btnId) {
         const sourceCanvas = await html2canvas(captureArea, {
             scale: 2,
             useCORS: true,
-            backgroundColor: '#ffffff',
+            backgroundColor: canvasDark ? '#111111' : '#ffffff',
             logging: false,
             onclone: (clonedDoc) => {
                 clonedDoc.body.classList.add('capturing');

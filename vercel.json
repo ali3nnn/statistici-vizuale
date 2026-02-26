@@ -1,6 +1,9 @@
 {
-  "devCommand": "npx parcel src/index.html src/share.html --port $PORT",
-  "buildCommand": "npx parcel build src/index.html src/share.html --dist-dir dist && cp static/robots.txt static/sitemap.xml dist/",
+  "devCommand": "npx parcel src/index.html src/app/index.html src/share.html --port $PORT",
+  "buildCommand": "npx parcel build src/index.html src/app/index.html src/share.html --dist-dir dist && cp static/robots.txt static/sitemap.xml dist/",
+  "rewrites": [
+    { "source": "/app", "destination": "/app/index.html" }
+  ],
   "outputDirectory": "dist",
   "headers": [
     {
