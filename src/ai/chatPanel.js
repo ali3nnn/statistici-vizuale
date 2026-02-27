@@ -273,11 +273,10 @@ async function handleSend() {
     if (onLoadingChangeCallback) onLoadingChangeCallback(true);
     try {
         // Increment turn count
-        const userId = localStorage.getItem('map-user-id');
         const limitRes = await fetch('/api/chat-limit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user_id: userId })
+            body: JSON.stringify({})
         });
 
         if (limitRes.status === 429) {
@@ -452,9 +451,7 @@ function disableChatInput() {
 
 async function checkDailyLimit() {
     try {
-        const userId = localStorage.getItem('map-user-id');
-        if (!userId) return;
-        const res = await fetch(`/api/chat-limit?user_id=${encodeURIComponent(userId)}`);
+        const res = await fetch('/api/chat-limit');
         if (!res.ok) return;
         const data = await res.json();
         if (data.remaining <= 0) {

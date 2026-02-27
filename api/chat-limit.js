@@ -2,16 +2,20 @@ const sql = require('./db');
 
 const MAX_TURNS_PER_DAY = parseInt(process.env.AI_MAX_TURNS_PER_DAY, 10) || 2;
 
+function extractIp(req) {
+    const forwarded = req.headers['x-forwarded-for'];
+    if (forwarded) return forwarded.split(',')[0].trim();
+    return req.socket?.remoteAddress ?? 'unknown';
+}
+
 module.exports = async function handler(req, res) {
     if (req.method === 'GET') {
-        const userId = req.query.user_id;
-        if (!userId) return res.status(400).json({ error: 'user_id required' });
-
+        const ip    = extractIp(req);
         const today = new Date().toISOString().slice(0, 10);
 
         const [row] = await sql`
             SELECT turn_count FROM ai_turns
-            WHERE user_id = ${userId} AND turn_date = ${today}
+            WHERE ip = ${ip} AND turn_date = ${today}
         `;
 
         const used = row ? row.turn_count : 0;
@@ -23,16 +27,13 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-        const { user_id } = req.body;
-        if (!user_id) return res.status(400).json({ error: 'user_id required' });
-
+        const ip    = extractIp(req);
         const today = new Date().toISOString().slice(0, 10);
 
-        // Upsert: increment or insert
         const [row] = await sql`
-            INSERT INTO ai_turns (user_id, turn_date, turn_count)
-            VALUES (${user_id}, ${today}, 1)
-            ON CONFLICT (user_id, turn_date)
+            INSERT INTO ai_turns (ip, turn_date, turn_count)
+            VALUES (${ip}, ${today}, 1)
+            ON CONFLICT (ip, turn_date)
             DO UPDATE SET turn_count = ai_turns.turn_count + 1
             RETURNING turn_count
         `;
