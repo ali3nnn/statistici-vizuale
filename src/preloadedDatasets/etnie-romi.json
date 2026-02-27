@@ -1,0 +1,93 @@
+{
+  "name": "Populația romă",
+  "config": {
+    "data": {
+      "Bihor": 36837,
+      "Bistrita-Nasaud": 11127,
+      "Cluj": 17802,
+      "Maramures": 11881,
+      "Satu Mare": 16340,
+      "Salaj": 16706,
+      "Alba": 13041,
+      "Brasov": 23472,
+      "Covasna": 9507,
+      "Harghita": 4928,
+      "Mures": 44880,
+      "Sibiu": 12808,
+      "Bacau": 14578,
+      "Botosani": 4606,
+      "Iasi": 9964,
+      "Neamt": 5761,
+      "Suceava": 13568,
+      "Vaslui": 5267,
+      "Braila": 7435,
+      "Buzau": 17747,
+      "Constanta": 6593,
+      "Galati": 15366,
+      "Tulcea": 3963,
+      "Vrancea": 13723,
+      "Arges": 17056,
+      "Calarasi": 17546,
+      "Dambovita": 18981,
+      "Giurgiu": 11964,
+      "Ialomita": 16063,
+      "Prahova": 14024,
+      "Teleorman": 9457,
+      "Ilfov": 9186,
+      "Bucuresti": 10740,
+      "Dolj": 29918,
+      "Gorj": 5883,
+      "Mehedinti": 12768,
+      "Olt": 9812,
+      "Valcea": 8234,
+      "Arad": 16747,
+      "Caras-Severin": 5311,
+      "Hunedoara": 5449,
+      "Timis": 12438
+    },
+    "minValue": 3963,
+    "maxValue": 44880,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația romă",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de romi pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

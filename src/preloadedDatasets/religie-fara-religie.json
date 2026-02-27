@@ -1,0 +1,93 @@
+{
+  "name": "Fără religie declarată",
+  "config": {
+    "data": {
+      "Bihor": 2770,
+      "Bistrita-Nasaud": 675,
+      "Cluj": 7612,
+      "Maramures": 1428,
+      "Satu Mare": 1566,
+      "Salaj": 687,
+      "Alba": 922,
+      "Brasov": 3349,
+      "Covasna": 978,
+      "Harghita": 1899,
+      "Mures": 4488,
+      "Sibiu": 1720,
+      "Bacau": 588,
+      "Botosani": 367,
+      "Iasi": 2772,
+      "Neamt": 466,
+      "Suceava": 928,
+      "Vaslui": 253,
+      "Braila": 311,
+      "Buzau": 418,
+      "Constanta": 1703,
+      "Galati": 815,
+      "Tulcea": 238,
+      "Vrancea": 227,
+      "Arges": 789,
+      "Calarasi": 240,
+      "Dambovita": 490,
+      "Giurgiu": 241,
+      "Ialomita": 227,
+      "Prahova": 1481,
+      "Teleorman": 225,
+      "Ilfov": 3228,
+      "Bucuresti": 17491,
+      "Dolj": 963,
+      "Gorj": 206,
+      "Mehedinti": 186,
+      "Olt": 190,
+      "Valcea": 365,
+      "Arad": 1869,
+      "Caras-Severin": 574,
+      "Hunedoara": 1377,
+      "Timis": 4108
+    },
+    "minValue": 186,
+    "maxValue": 17491,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Fără religie declarată",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de persoane fără religie declarată pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

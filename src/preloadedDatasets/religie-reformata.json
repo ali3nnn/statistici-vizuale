@@ -1,0 +1,93 @@
+{
+  "name": "Populația reformată",
+  "config": {
+    "data": {
+      "Bihor": 79723,
+      "Bistrita-Nasaud": 9430,
+      "Cluj": 57248,
+      "Maramures": 12913,
+      "Satu Mare": 50761,
+      "Salaj": 34367,
+      "Alba": 9306,
+      "Brasov": 8494,
+      "Covasna": 60625,
+      "Harghita": 32472,
+      "Mures": 114345,
+      "Sibiu": 3639,
+      "Bacau": 85,
+      "Botosani": 23,
+      "Iasi": 74,
+      "Neamt": 33,
+      "Suceava": 58,
+      "Vaslui": 19,
+      "Braila": 27,
+      "Buzau": 18,
+      "Constanta": 114,
+      "Galati": 67,
+      "Tulcea": 8,
+      "Vrancea": 12,
+      "Arges": 59,
+      "Calarasi": 11,
+      "Dambovita": 41,
+      "Giurgiu": 22,
+      "Ialomita": 10,
+      "Prahova": 152,
+      "Teleorman": 14,
+      "Ilfov": 206,
+      "Bucuresti": 919,
+      "Dolj": 88,
+      "Gorj": 42,
+      "Mehedinti": 25,
+      "Olt": 14,
+      "Valcea": 43,
+      "Arad": 7531,
+      "Caras-Severin": 569,
+      "Hunedoara": 5046,
+      "Timis": 6780
+    },
+    "minValue": 8,
+    "maxValue": 114345,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 30,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația reformată",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de reformați pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

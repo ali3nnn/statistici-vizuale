@@ -1,0 +1,93 @@
+{
+  "name": "Populația maghiară",
+  "config": {
+    "data": {
+      "Bihor": 112387,
+      "Bistrita-Nasaud": 11049,
+      "Cluj": 78455,
+      "Maramures": 23153,
+      "Satu Mare": 93491,
+      "Salaj": 40554,
+      "Alba": 11494,
+      "Brasov": 28221,
+      "Covasna": 133444,
+      "Harghita": 232157,
+      "Mures": 165014,
+      "Sibiu": 6112,
+      "Bacau": 4561,
+      "Botosani": 28,
+      "Iasi": 98,
+      "Neamt": 138,
+      "Suceava": 91,
+      "Vaslui": 28,
+      "Braila": 47,
+      "Buzau": 55,
+      "Constanta": 313,
+      "Galati": 90,
+      "Tulcea": 51,
+      "Vrancea": 51,
+      "Arges": 102,
+      "Calarasi": 29,
+      "Dambovita": 75,
+      "Giurgiu": 35,
+      "Ialomita": 35,
+      "Prahova": 214,
+      "Teleorman": 22,
+      "Ilfov": 397,
+      "Bucuresti": 2168,
+      "Dolj": 87,
+      "Gorj": 114,
+      "Mehedinti": 54,
+      "Olt": 39,
+      "Valcea": 78,
+      "Arad": 25731,
+      "Caras-Severin": 1424,
+      "Hunedoara": 9180,
+      "Timis": 21285
+    },
+    "minValue": 22,
+    "maxValue": 232157,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 30,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația maghiară",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de maghiari pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Populația ortodoxă sârbă",
+  "config": {
+    "data": {
+      "Bihor": 239,
+      "Bistrita-Nasaud": 98,
+      "Cluj": 203,
+      "Maramures": 219,
+      "Satu Mare": 133,
+      "Salaj": 89,
+      "Alba": 116,
+      "Brasov": 338,
+      "Covasna": 80,
+      "Harghita": 49,
+      "Mures": 153,
+      "Sibiu": 171,
+      "Bacau": 313,
+      "Botosani": 176,
+      "Iasi": 350,
+      "Neamt": 168,
+      "Suceava": 219,
+      "Vaslui": 132,
+      "Braila": 118,
+      "Buzau": 178,
+      "Constanta": 208,
+      "Galati": 192,
+      "Tulcea": 66,
+      "Vrancea": 179,
+      "Arges": 195,
+      "Calarasi": 149,
+      "Dambovita": 218,
+      "Giurgiu": 119,
+      "Ialomita": 107,
+      "Prahova": 269,
+      "Teleorman": 132,
+      "Ilfov": 242,
+      "Bucuresti": 372,
+      "Dolj": 269,
+      "Gorj": 112,
+      "Mehedinti": 779,
+      "Olt": 213,
+      "Valcea": 169,
+      "Arad": 577,
+      "Caras-Severin": 3384,
+      "Hunedoara": 122,
+      "Timis": 5544
+    },
+    "minValue": 49,
+    "maxValue": 5544,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 215,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația ortodoxă sârbă",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de ortodocși sârbi pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

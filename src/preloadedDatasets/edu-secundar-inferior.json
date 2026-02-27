@@ -1,0 +1,93 @@
+{
+  "name": "Absolvenți de gimnaziu — maximum 8 clase (%)",
+  "config": {
+    "data": {
+      "Alba": 16.8,
+      "Arad": 19.2,
+      "Arges": 15.1,
+      "Bacau": 21.3,
+      "Bihor": 16.4,
+      "Bistrita-Nasaud": 21.2,
+      "Botosani": 22.4,
+      "Brasov": 14.8,
+      "Braila": 22.5,
+      "Buzau": 20.8,
+      "Caras-Severin": 22.6,
+      "Calarasi": 22.8,
+      "Cluj": 13.7,
+      "Constanta": 17.5,
+      "Covasna": 20.3,
+      "Dambovita": 19.2,
+      "Dolj": 17.4,
+      "Galati": 21.4,
+      "Giurgiu": 25.7,
+      "Gorj": 15.6,
+      "Harghita": 18,
+      "Hunedoara": 17.6,
+      "Ialomita": 20.9,
+      "Iasi": 17.9,
+      "Ilfov": 14.2,
+      "Maramures": 20.9,
+      "Mehedinti": 21.2,
+      "Mures": 18.3,
+      "Neamt": 20.1,
+      "Olt": 18.6,
+      "Prahova": 16.6,
+      "Satu Mare": 22.6,
+      "Salaj": 18.5,
+      "Sibiu": 16.8,
+      "Suceava": 22,
+      "Teleorman": 20.2,
+      "Timis": 16.6,
+      "Tulcea": 22.9,
+      "Vaslui": 23.1,
+      "Valcea": 16.2,
+      "Vrancea": 23,
+      "Bucuresti": 10.6
+    },
+    "minValue": 10.6,
+    "maxValue": 25.7,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 20,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Absolvenți de gimnaziu — maximum 8 clase (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea populației cu cel mult 8 clase finalizate — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

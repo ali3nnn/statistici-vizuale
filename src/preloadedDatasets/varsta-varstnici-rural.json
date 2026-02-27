@@ -1,0 +1,93 @@
+{
+  "name": "Vârstnici 65+ ani (%) (rural)",
+  "config": {
+    "data": {
+      "Bihor": 17.8,
+      "Bistrita-Nasaud": 17.6,
+      "Cluj": 19,
+      "Maramures": 18.3,
+      "Satu Mare": 15,
+      "Salaj": 22.7,
+      "Alba": 21.1,
+      "Brasov": 16.3,
+      "Covasna": 17,
+      "Harghita": 18.1,
+      "Mures": 17.5,
+      "Sibiu": 15.1,
+      "Bacau": 17.6,
+      "Botosani": 18.7,
+      "Iasi": 15.5,
+      "Neamt": 20.1,
+      "Suceava": 16.6,
+      "Vaslui": 19.3,
+      "Braila": 21.9,
+      "Buzau": 23.1,
+      "Constanta": 15.6,
+      "Galati": 18.8,
+      "Tulcea": 21.8,
+      "Vrancea": 20.4,
+      "Arges": 21.8,
+      "Calarasi": 20.3,
+      "Dambovita": 18.7,
+      "Giurgiu": 21.4,
+      "Ialomita": 21.2,
+      "Prahova": 19.9,
+      "Teleorman": 27.8,
+      "Ilfov": 14.1,
+      "Bucuresti": 0,
+      "Dolj": 22.5,
+      "Gorj": 21.1,
+      "Mehedinti": 23.5,
+      "Olt": 24.9,
+      "Valcea": 24.8,
+      "Arad": 18.9,
+      "Caras-Severin": 23.7,
+      "Hunedoara": 25.4,
+      "Timis": 15.8
+    },
+    "minValue": 0,
+    "maxValue": 27.8,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Green",
+      "hue": 130,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Vârstnici 65+ ani (%) (rural)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea vârstnicilor (65 ani și peste) în populația județului mediu rural — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

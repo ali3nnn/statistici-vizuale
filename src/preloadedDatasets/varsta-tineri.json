@@ -1,0 +1,93 @@
+{
+  "name": "Tineri 15–34 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 23,
+      "Bistrita-Nasaud": 23.7,
+      "Cluj": 23.8,
+      "Maramures": 23.3,
+      "Satu Mare": 23,
+      "Salaj": 22,
+      "Alba": 21.3,
+      "Brasov": 21.3,
+      "Covasna": 22.7,
+      "Harghita": 22.6,
+      "Mures": 22.3,
+      "Sibiu": 22.7,
+      "Bacau": 22.5,
+      "Botosani": 24.5,
+      "Iasi": 24.4,
+      "Neamt": 21.1,
+      "Suceava": 23.9,
+      "Vaslui": 22.8,
+      "Braila": 19.6,
+      "Buzau": 20.4,
+      "Constanta": 21.3,
+      "Galati": 21.1,
+      "Tulcea": 20.1,
+      "Vrancea": 21.9,
+      "Arges": 20.7,
+      "Calarasi": 22.1,
+      "Dambovita": 22.6,
+      "Giurgiu": 22.2,
+      "Ialomita": 21,
+      "Prahova": 20.5,
+      "Teleorman": 19.4,
+      "Ilfov": 24.2,
+      "Bucuresti": 21.6,
+      "Dolj": 21.6,
+      "Gorj": 22.1,
+      "Mehedinti": 20.5,
+      "Olt": 21,
+      "Valcea": 20.3,
+      "Arad": 22,
+      "Caras-Severin": 20.2,
+      "Hunedoara": 19.1,
+      "Timis": 23.3
+    },
+    "minValue": 19.1,
+    "maxValue": 24.5,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 145,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Tineri 15–34 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea tinerilor (15–34 ani) în populația județului — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

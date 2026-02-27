@@ -11,58 +11,6 @@ const COUNTY_NAMES = [
     "Timis", "Tulcea", "Valcea", "Vaslui", "Vrancea"
 ];
 
-const SYSTEM_PROMPT = `You are an assistant for a Romanian county-level statistical map application.
-You can help users with ANY of the following:
-
-1. **Load data**: Parse tables, CSV, text descriptions into county-level data.
-2. **Update colors**: Change palette (red, blue, green, orange, purple, or custom hue 0-360).
-3. **Toggle settings**: Reverse palette, change normalization (none, logarithmic, exponential).
-4. **Edit text**: Change title, subtitle, or source/footer text.
-5. **Adjust scale**: Change minValue/maxValue for the color range.
-6. **Partial updates**: Update only specific counties without replacing all data.
-7. **General questions**: Answer questions about the current map state or data.
-
-The EXACT county names (no diacritics):
-${COUNTY_NAMES.join(", ")}
-
-You must ALWAYS respond with a valid JSON object. Include ONLY the fields that need to change.
-
-Available fields:
-{
-  "data": { "Alba": <number>, ... },       // County data (include all 42 if setting new data, or just counties to update)
-  "replaceAllData": <boolean>,              // true = replace all data, false/omitted = merge with existing
-  "minValue": <number>,                     // Color scale minimum
-  "maxValue": <number>,                     // Color scale maximum
-  "highIsBad": <boolean>,                   // true = high values are negative (red), false = positive
-  "title": "<string>",                      // Map title
-  "subtitle": "<string>",                   // Map subtitle
-  "source": "<string>",                     // Data source (shown in footer)
-  "palette": "<string>",                    // "red", "blue", "green", "orange", "purple", or a number 0-360 for custom hue
-  "paletteReversed": <boolean>,             // Reverse the palette direction
-  "normalization": "<string>",              // "none", "logarithmic", "exponential"
-  "message": "<string>"                     // A short human-readable response to show the user
-}
-
-Rules:
-1. ALWAYS include a "message" field with a short, friendly summary of what you did.
-2. Only include fields that the user wants to change. If they just ask to change the color, only include "palette" and "message".
-3. When loading new data, you MUST fully configure the entire map. Include ALL of these fields:
-   - "data" with all 42 counties
-   - "replaceAllData": true
-   - "minValue" and "maxValue" (the color scale range, usually matching the data range)
-   - "highIsBad" (true if high values are negative/bad, e.g. unemployment, poverty, crime; false if high values are good, e.g. GDP, income, life expectancy)
-   - "title" (a clear, descriptive map title in Romanian)
-   - "subtitle" (a short context line in Romanian, e.g. the year, unit of measurement, or comparison period)
-   - "source" (the data source, e.g. "INS", "Eurostat", "BNR", or what the user provided)
-   - "palette" — choose the most appropriate color: "blue" for neutral/general data, "green" for positive metrics (income, growth, GDP), "red" for negative metrics (deaths, crime, unemployment), "orange" for population/demographic data, "purple" for cultural/education data. If unsure, use "blue".
-4. When updating specific county values, include only those counties in "data" and omit "replaceAllData" or set it to false.
-5. All values in "data" must be numbers. No strings, no null.
-6. Match county names flexibly: "Cluj-Napoca" -> "Cluj", "Bucuresti/Bucharest" -> "Bucuresti", etc.
-7. If the user provides percentage data, keep as percentages (45.2 not 0.452).
-8. Round values to at most 1 decimal place.
-9. For palette, use the name ("red", "blue", etc.) or a number for custom hue.
-10. Respond ONLY with the JSON object. No markdown, no explanation, no code fences.`;
-
 let conversationHistory = [];
 let conversationDbId = null;
 let onConfigUpdateCallback = null;
@@ -407,70 +355,38 @@ function handleFileSelect(file) {
 }
 
 async function sendToOpenAI(userMessage) {
-    // Build context about current state
-    let contextNote = '';
-    if (getStateCallback) {
-        const state = getStateCallback();
-        contextNote = `\n\nCurrent map state for context:
-- Title: "${state.title}"
-- Subtitle: "${state.subtitle}"
-- Source: "${state.source}"
-- Palette: ${state.palette} ${state.paletteReversed ? '(reversed)' : ''}
-- Normalization: ${state.normalization}
-- Scale: [${state.minValue}, ${state.maxValue}], highIsBad=${state.highIsBad}
-- Data loaded: ${Object.keys(state.data).length > 0 ? 'Yes (' + Object.keys(state.data).length + ' counties)' : 'No (blank map)'}`;
+    const mapState = getStateCallback ? getStateCallback() : null;
+    const mode = webSearchEnabled ? 'responses' : 'completions';
+
+    const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            mode,
+            userMessage,
+            conversationHistory,
+            mapState
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error('API error ' + response.status);
     }
 
-    conversationHistory.push({ role: 'user', content: userMessage });
-
-    const messages = [
-        { role: 'system', content: SYSTEM_PROMPT + contextNote },
-        ...conversationHistory
-    ];
-
+    const result = await response.json();
     let content;
 
     if (webSearchEnabled) {
-        // Responses API uses "developer" role instead of "system"
-        const responsesInput = [
-            { role: 'developer', content: SYSTEM_PROMPT + contextNote },
-            ...conversationHistory
-        ];
-
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ mode: 'responses', input: responsesInput })
-        });
-
-        if (!response.ok) {
-            const errBody = await response.text();
-            console.error('Responses API error:', errBody);
-            throw new Error('API error ' + response.status);
-        }
-
-        const result = await response.json();
         const messageOutput = result.output.find(item => item.type === 'message');
         const rawText = messageOutput.content.find(c => c.type === 'output_text').text;
-
         // Extract JSON from the response (model may wrap it in markdown fences)
         const jsonMatch = rawText.match(/\{[\s\S]*\}/);
         content = jsonMatch ? jsonMatch[0] : rawText;
     } else {
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ mode: 'completions', messages: messages })
-        });
-
-        if (!response.ok) {
-            throw new Error('API error ' + response.status);
-        }
-
-        const result = await response.json();
         content = result.choices[0].message.content;
     }
 
+    conversationHistory.push({ role: 'user', content: userMessage });
     conversationHistory.push({ role: 'assistant', content: content });
 
     // Sync full transcript to database (fire-and-forget)

@@ -1,0 +1,93 @@
+{
+  "name": "65–69 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 6.4,
+      "Bistrita-Nasaud": 5.8,
+      "Cluj": 6.4,
+      "Maramures": 6.2,
+      "Satu Mare": 6.1,
+      "Salaj": 6.2,
+      "Alba": 7.2,
+      "Brasov": 7.6,
+      "Covasna": 6.5,
+      "Harghita": 6.4,
+      "Mures": 6.5,
+      "Sibiu": 6.9,
+      "Bacau": 6.5,
+      "Botosani": 5.6,
+      "Iasi": 5.8,
+      "Neamt": 6.8,
+      "Suceava": 5.6,
+      "Vaslui": 6,
+      "Braila": 7.7,
+      "Buzau": 7.2,
+      "Constanta": 7.1,
+      "Galati": 7.2,
+      "Tulcea": 7.9,
+      "Vrancea": 6.6,
+      "Arges": 6.7,
+      "Calarasi": 6.3,
+      "Dambovita": 6.4,
+      "Giurgiu": 6.4,
+      "Ialomita": 6.6,
+      "Prahova": 7.1,
+      "Teleorman": 7.4,
+      "Ilfov": 4.8,
+      "Bucuresti": 6.9,
+      "Dolj": 6.7,
+      "Gorj": 6.3,
+      "Mehedinti": 7.1,
+      "Olt": 6.9,
+      "Valcea": 6.9,
+      "Arad": 6.9,
+      "Caras-Severin": 8,
+      "Hunedoara": 7.6,
+      "Timis": 6.6
+    },
+    "minValue": 4.8,
+    "maxValue": 8,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 10,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "65–69 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea populației cu vârsta 65–69 ani — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

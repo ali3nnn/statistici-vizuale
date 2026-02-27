@@ -1,0 +1,93 @@
+{
+  "name": "Feminin 85 ani și peste (%)",
+  "config": {
+    "data": {
+      "Bihor": 2,
+      "Bistrita-Nasaud": 1.9,
+      "Cluj": 2.5,
+      "Maramures": 1.9,
+      "Satu Mare": 1.7,
+      "Salaj": 2.4,
+      "Alba": 2.7,
+      "Brasov": 2.4,
+      "Covasna": 2.1,
+      "Harghita": 2.3,
+      "Mures": 2.6,
+      "Sibiu": 2.2,
+      "Bacau": 2.5,
+      "Botosani": 3.1,
+      "Iasi": 2.4,
+      "Neamt": 3,
+      "Suceava": 2.6,
+      "Vaslui": 2.8,
+      "Braila": 3.4,
+      "Buzau": 3.5,
+      "Constanta": 2.2,
+      "Galati": 2.6,
+      "Tulcea": 2.2,
+      "Vrancea": 3.1,
+      "Arges": 2.6,
+      "Calarasi": 2.9,
+      "Dambovita": 2.7,
+      "Giurgiu": 3.1,
+      "Ialomita": 2.9,
+      "Prahova": 3.1,
+      "Teleorman": 3.8,
+      "Ilfov": 1.7,
+      "Bucuresti": 2.7,
+      "Dolj": 2.7,
+      "Gorj": 2.5,
+      "Mehedinti": 2.7,
+      "Olt": 2.9,
+      "Valcea": 3.3,
+      "Arad": 2.2,
+      "Caras-Severin": 2.4,
+      "Hunedoara": 2.5,
+      "Timis": 2
+    },
+    "minValue": 1.7,
+    "maxValue": 3.8,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 300,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Feminin 85 ani și peste (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea femeilor cu vârsta 85 ani și peste în totalul femeilor — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

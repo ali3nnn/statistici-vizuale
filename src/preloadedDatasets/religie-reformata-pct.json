@@ -1,0 +1,93 @@
+{
+  "name": "Reformați (%)",
+  "config": {
+    "data": {
+      "Bihor": 14.5,
+      "Bistrita-Nasaud": 3.2,
+      "Cluj": 8.4,
+      "Maramures": 2.9,
+      "Satu Mare": 15.4,
+      "Salaj": 16.2,
+      "Alba": 2.9,
+      "Brasov": 1.6,
+      "Covasna": 30.3,
+      "Harghita": 11.1,
+      "Mures": 22.1,
+      "Sibiu": 0.9,
+      "Bacau": 0,
+      "Botosani": 0,
+      "Iasi": 0,
+      "Neamt": 0,
+      "Suceava": 0,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0,
+      "Calarasi": 0,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0,
+      "Prahova": 0,
+      "Teleorman": 0,
+      "Ilfov": 0,
+      "Bucuresti": 0.1,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 1.8,
+      "Caras-Severin": 0.2,
+      "Hunedoara": 1.4,
+      "Timis": 1
+    },
+    "minValue": 0,
+    "maxValue": 30.3,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 30,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Reformați (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației reformate pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

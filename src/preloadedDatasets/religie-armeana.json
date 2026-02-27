@@ -1,0 +1,93 @@
+{
+  "name": "Populația armeană",
+  "config": {
+    "data": {
+      "Bihor": 4,
+      "Bistrita-Nasaud": 3,
+      "Cluj": 54,
+      "Maramures": 5,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 0,
+      "Brasov": 6,
+      "Covasna": 0,
+      "Harghita": 106,
+      "Mures": 10,
+      "Sibiu": 21,
+      "Bacau": 22,
+      "Botosani": 67,
+      "Iasi": 7,
+      "Neamt": 22,
+      "Suceava": 29,
+      "Vaslui": 3,
+      "Braila": 0,
+      "Buzau": 4,
+      "Constanta": 64,
+      "Galati": 9,
+      "Tulcea": 4,
+      "Vrancea": 7,
+      "Arges": 28,
+      "Calarasi": 0,
+      "Dambovita": 13,
+      "Giurgiu": 11,
+      "Ialomita": 3,
+      "Prahova": 3,
+      "Teleorman": 0,
+      "Ilfov": 13,
+      "Bucuresti": 256,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 3,
+      "Arad": 6,
+      "Caras-Severin": 0,
+      "Hunedoara": 0,
+      "Timis": 0
+    },
+    "minValue": 0,
+    "maxValue": 256,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 350,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația armeană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de persoane de religie armeană pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

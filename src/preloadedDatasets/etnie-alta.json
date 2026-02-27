@@ -1,0 +1,93 @@
+{
+  "name": "Altă etnie",
+  "config": {
+    "data": {
+      "Bihor": 464,
+      "Bistrita-Nasaud": 86,
+      "Cluj": 1225,
+      "Maramures": 156,
+      "Satu Mare": 90,
+      "Salaj": 75,
+      "Alba": 124,
+      "Brasov": 770,
+      "Covasna": 99,
+      "Harghita": 148,
+      "Mures": 296,
+      "Sibiu": 296,
+      "Bacau": 335,
+      "Botosani": 82,
+      "Iasi": 593,
+      "Neamt": 116,
+      "Suceava": 168,
+      "Vaslui": 58,
+      "Braila": 154,
+      "Buzau": 121,
+      "Constanta": 1559,
+      "Galati": 151,
+      "Tulcea": 567,
+      "Vrancea": 76,
+      "Arges": 195,
+      "Calarasi": 124,
+      "Dambovita": 280,
+      "Giurgiu": 259,
+      "Ialomita": 230,
+      "Prahova": 313,
+      "Teleorman": 109,
+      "Ilfov": 2169,
+      "Bucuresti": 5703,
+      "Dolj": 281,
+      "Gorj": 45,
+      "Mehedinti": 50,
+      "Olt": 47,
+      "Valcea": 68,
+      "Arad": 534,
+      "Caras-Severin": 82,
+      "Hunedoara": 210,
+      "Timis": 1002
+    },
+    "minValue": 45,
+    "maxValue": 5703,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 90,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Altă etnie",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de persoane aparținând altor etnii pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

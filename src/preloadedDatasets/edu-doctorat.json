@@ -1,0 +1,93 @@
+{
+  "name": "Doctori și postdoctori (%)",
+  "config": {
+    "data": {
+      "Alba": 0.2,
+      "Arad": 0.2,
+      "Arges": 0.2,
+      "Bacau": 0.1,
+      "Bihor": 0.3,
+      "Bistrita-Nasaud": 0.1,
+      "Botosani": 0,
+      "Brasov": 0.4,
+      "Braila": 0.1,
+      "Buzau": 0.1,
+      "Caras-Severin": 0.1,
+      "Calarasi": 0.1,
+      "Cluj": 1.1,
+      "Constanta": 0.3,
+      "Covasna": 0.1,
+      "Dambovita": 0.2,
+      "Dolj": 0.4,
+      "Galati": 0.2,
+      "Giurgiu": 0.1,
+      "Gorj": 0.2,
+      "Harghita": 0.1,
+      "Hunedoara": 0.2,
+      "Ialomita": 0.1,
+      "Iasi": 0.7,
+      "Ilfov": 0.5,
+      "Maramures": 0.2,
+      "Mehedinti": 0.1,
+      "Mures": 0.3,
+      "Neamt": 0.1,
+      "Olt": 0.1,
+      "Prahova": 0.2,
+      "Satu Mare": 0.1,
+      "Salaj": 0.1,
+      "Sibiu": 0.4,
+      "Suceava": 0.1,
+      "Teleorman": 0,
+      "Timis": 0.6,
+      "Tulcea": 0.1,
+      "Vaslui": 0,
+      "Valcea": 0.1,
+      "Vrancea": 0.1,
+      "Bucuresti": 1.2
+    },
+    "minValue": 0,
+    "maxValue": 1.2,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 260,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Doctori și postdoctori (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea populației cu titlu de doctor sau postdoctorat — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

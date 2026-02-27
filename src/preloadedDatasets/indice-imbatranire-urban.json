@@ -1,0 +1,93 @@
+{
+  "name": "Indice de îmbătrânire demografică (urban)",
+  "config": {
+    "data": {
+      "Bihor": 93,
+      "Bistrita-Nasaud": 66.4,
+      "Cluj": 103.2,
+      "Maramures": 82.1,
+      "Satu Mare": 96,
+      "Salaj": 62.6,
+      "Alba": 103.5,
+      "Brasov": 107.9,
+      "Covasna": 100.5,
+      "Harghita": 100,
+      "Mures": 110.5,
+      "Sibiu": 102.5,
+      "Bacau": 91.3,
+      "Botosani": 79.4,
+      "Iasi": 72.7,
+      "Neamt": 109,
+      "Suceava": 76.1,
+      "Vaslui": 66.4,
+      "Braila": 135.6,
+      "Buzau": 106,
+      "Constanta": 103.4,
+      "Galati": 110.5,
+      "Tulcea": 94.8,
+      "Vrancea": 90,
+      "Arges": 95.4,
+      "Calarasi": 85,
+      "Dambovita": 102.5,
+      "Giurgiu": 91.7,
+      "Ialomita": 77.1,
+      "Prahova": 121.8,
+      "Teleorman": 112.3,
+      "Ilfov": 50,
+      "Bucuresti": 99.5,
+      "Dolj": 91.7,
+      "Gorj": 77.2,
+      "Mehedinti": 99,
+      "Olt": 80.4,
+      "Valcea": 94.1,
+      "Arad": 99.5,
+      "Caras-Severin": 112.6,
+      "Hunedoara": 114.9,
+      "Timis": 109.1
+    },
+    "minValue": 50,
+    "maxValue": 135.6,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 30,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Indice de îmbătrânire demografică (urban)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Raport 65+/0–19 ani × 100 — cu cât mai mare, cu atât mai îmbătrânită populația mediu urban — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

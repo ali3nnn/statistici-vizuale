@@ -1,0 +1,93 @@
+{
+  "name": "Populația agnostică",
+  "config": {
+    "data": {
+      "Bihor": 511,
+      "Bistrita-Nasaud": 131,
+      "Cluj": 2888,
+      "Maramures": 249,
+      "Satu Mare": 105,
+      "Salaj": 86,
+      "Alba": 184,
+      "Brasov": 1021,
+      "Covasna": 48,
+      "Harghita": 71,
+      "Mures": 344,
+      "Sibiu": 581,
+      "Bacau": 222,
+      "Botosani": 97,
+      "Iasi": 1248,
+      "Neamt": 189,
+      "Suceava": 292,
+      "Vaslui": 83,
+      "Braila": 114,
+      "Buzau": 138,
+      "Constanta": 650,
+      "Galati": 365,
+      "Tulcea": 72,
+      "Vrancea": 97,
+      "Arges": 287,
+      "Calarasi": 73,
+      "Dambovita": 212,
+      "Giurgiu": 92,
+      "Ialomita": 86,
+      "Prahova": 495,
+      "Teleorman": 68,
+      "Ilfov": 1463,
+      "Bucuresti": 9956,
+      "Dolj": 412,
+      "Gorj": 87,
+      "Mehedinti": 62,
+      "Olt": 83,
+      "Valcea": 128,
+      "Arad": 319,
+      "Caras-Severin": 83,
+      "Hunedoara": 231,
+      "Timis": 1562
+    },
+    "minValue": 48,
+    "maxValue": 9956,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 195,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația agnostică",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de agnostici pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

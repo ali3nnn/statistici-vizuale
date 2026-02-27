@@ -1,0 +1,93 @@
+{
+  "name": "Populația cehă",
+  "config": {
+    "data": {
+      "Bihor": 13,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 14,
+      "Maramures": 0,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 8,
+      "Brasov": 0,
+      "Covasna": 0,
+      "Harghita": 0,
+      "Mures": 3,
+      "Sibiu": 5,
+      "Bacau": 0,
+      "Botosani": 0,
+      "Iasi": 5,
+      "Neamt": 0,
+      "Suceava": 0,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0,
+      "Galati": 3,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 3,
+      "Calarasi": 0,
+      "Dambovita": 3,
+      "Giurgiu": 3,
+      "Ialomita": 0,
+      "Prahova": 6,
+      "Teleorman": 0,
+      "Ilfov": 10,
+      "Bucuresti": 22,
+      "Dolj": 3,
+      "Gorj": 0,
+      "Mehedinti": 303,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 94,
+      "Caras-Severin": 909,
+      "Hunedoara": 5,
+      "Timis": 141
+    },
+    "minValue": 0,
+    "maxValue": 909,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 230,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația cehă",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de cehi pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

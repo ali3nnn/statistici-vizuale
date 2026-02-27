@@ -1,0 +1,93 @@
+{
+  "name": "Fără religie (%)",
+  "config": {
+    "data": {
+      "Bihor": 0.5,
+      "Bistrita-Nasaud": 0.2,
+      "Cluj": 1.1,
+      "Maramures": 0.3,
+      "Satu Mare": 0.5,
+      "Salaj": 0.3,
+      "Alba": 0.3,
+      "Brasov": 0.6,
+      "Covasna": 0.5,
+      "Harghita": 0.7,
+      "Mures": 0.9,
+      "Sibiu": 0.4,
+      "Bacau": 0.1,
+      "Botosani": 0.1,
+      "Iasi": 0.4,
+      "Neamt": 0.1,
+      "Suceava": 0.1,
+      "Vaslui": 0.1,
+      "Braila": 0.1,
+      "Buzau": 0.1,
+      "Constanta": 0.3,
+      "Galati": 0.2,
+      "Tulcea": 0.1,
+      "Vrancea": 0.1,
+      "Arges": 0.1,
+      "Calarasi": 0.1,
+      "Dambovita": 0.1,
+      "Giurgiu": 0.1,
+      "Ialomita": 0.1,
+      "Prahova": 0.2,
+      "Teleorman": 0.1,
+      "Ilfov": 0.6,
+      "Bucuresti": 1,
+      "Dolj": 0.2,
+      "Gorj": 0.1,
+      "Mehedinti": 0.1,
+      "Olt": 0,
+      "Valcea": 0.1,
+      "Arad": 0.5,
+      "Caras-Severin": 0.2,
+      "Hunedoara": 0.4,
+      "Timis": 0.6
+    },
+    "minValue": 0,
+    "maxValue": 1.1,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Fără religie (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul persoanelor fără religie declarată pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

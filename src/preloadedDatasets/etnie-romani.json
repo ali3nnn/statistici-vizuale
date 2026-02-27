@@ -1,0 +1,93 @@
+{
+  "name": "Populația română",
+  "config": {
+    "data": {
+      "Bihor": 347148,
+      "Bistrita-Nasaud": 247935,
+      "Cluj": 488212,
+      "Maramures": 342052,
+      "Satu Mare": 182750,
+      "Salaj": 136552,
+      "Alba": 268753,
+      "Brasov": 416664,
+      "Covasna": 42752,
+      "Harghita": 33634,
+      "Mures": 252400,
+      "Sibiu": 313119,
+      "Bacau": 502150,
+      "Botosani": 349889,
+      "Iasi": 613615,
+      "Neamt": 391640,
+      "Suceava": 549813,
+      "Vaslui": 317508,
+      "Braila": 239436,
+      "Buzau": 346825,
+      "Constanta": 504344,
+      "Galati": 413494,
+      "Tulcea": 153094,
+      "Vrancea": 289516,
+      "Arges": 497410,
+      "Calarasi": 236433,
+      "Dambovita": 417521,
+      "Giurgiu": 223571,
+      "Ialomita": 204890,
+      "Prahova": 605242,
+      "Teleorman": 282613,
+      "Ilfov": 431627,
+      "Bucuresti": 1252190,
+      "Dolj": 494409,
+      "Gorj": 280980,
+      "Mehedinti": 191250,
+      "Olt": 338684,
+      "Valcea": 302696,
+      "Arad": 317713,
+      "Caras-Severin": 195703,
+      "Hunedoara": 300972,
+      "Timis": 484243
+    },
+    "minValue": 33634,
+    "maxValue": 1252190,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația română",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de români pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

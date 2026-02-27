@@ -1,0 +1,93 @@
+{
+  "name": "Populația italiană",
+  "config": {
+    "data": {
+      "Bihor": 180,
+      "Bistrita-Nasaud": 42,
+      "Cluj": 223,
+      "Maramures": 96,
+      "Satu Mare": 45,
+      "Salaj": 46,
+      "Alba": 68,
+      "Brasov": 194,
+      "Covasna": 13,
+      "Harghita": 7,
+      "Mures": 77,
+      "Sibiu": 73,
+      "Bacau": 117,
+      "Botosani": 61,
+      "Iasi": 173,
+      "Neamt": 119,
+      "Suceava": 62,
+      "Vaslui": 39,
+      "Braila": 34,
+      "Buzau": 41,
+      "Constanta": 117,
+      "Galati": 75,
+      "Tulcea": 65,
+      "Vrancea": 64,
+      "Arges": 82,
+      "Calarasi": 22,
+      "Dambovita": 63,
+      "Giurgiu": 21,
+      "Ialomita": 24,
+      "Prahova": 96,
+      "Teleorman": 11,
+      "Ilfov": 148,
+      "Bucuresti": 433,
+      "Dolj": 119,
+      "Gorj": 43,
+      "Mehedinti": 26,
+      "Olt": 47,
+      "Valcea": 40,
+      "Arad": 353,
+      "Caras-Severin": 25,
+      "Hunedoara": 97,
+      "Timis": 358
+    },
+    "minValue": 7,
+    "maxValue": 433,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 150,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația italiană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de italieni pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

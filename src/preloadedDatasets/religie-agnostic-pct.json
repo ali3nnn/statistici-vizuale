@@ -1,0 +1,93 @@
+{
+  "name": "Agnostici (%)",
+  "config": {
+    "data": {
+      "Bihor": 0.1,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 0.4,
+      "Maramures": 0.1,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 0.1,
+      "Brasov": 0.2,
+      "Covasna": 0,
+      "Harghita": 0,
+      "Mures": 0.1,
+      "Sibiu": 0.1,
+      "Bacau": 0,
+      "Botosani": 0,
+      "Iasi": 0.2,
+      "Neamt": 0,
+      "Suceava": 0,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0.1,
+      "Galati": 0.1,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0.1,
+      "Calarasi": 0,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0,
+      "Prahova": 0.1,
+      "Teleorman": 0,
+      "Ilfov": 0.3,
+      "Bucuresti": 0.6,
+      "Dolj": 0.1,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 0.1,
+      "Caras-Severin": 0,
+      "Hunedoara": 0.1,
+      "Timis": 0.2
+    },
+    "minValue": 0,
+    "maxValue": 0.6,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 195,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Agnostici (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației agnostice pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

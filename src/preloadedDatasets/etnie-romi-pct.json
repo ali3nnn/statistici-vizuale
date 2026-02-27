@@ -1,0 +1,93 @@
+{
+  "name": "Romi (%)",
+  "config": {
+    "data": {
+      "Bihor": 6.7,
+      "Bistrita-Nasaud": 3.8,
+      "Cluj": 2.6,
+      "Maramures": 2.6,
+      "Satu Mare": 4.9,
+      "Salaj": 7.9,
+      "Alba": 4,
+      "Brasov": 4.3,
+      "Covasna": 4.8,
+      "Harghita": 1.7,
+      "Mures": 8.7,
+      "Sibiu": 3.3,
+      "Bacau": 2.4,
+      "Botosani": 1.2,
+      "Iasi": 1.3,
+      "Neamt": 1.3,
+      "Suceava": 2.1,
+      "Vaslui": 1.4,
+      "Braila": 2.6,
+      "Buzau": 4.4,
+      "Constanta": 1,
+      "Galati": 3.1,
+      "Tulcea": 2,
+      "Vrancea": 4.1,
+      "Arges": 3,
+      "Calarasi": 6.2,
+      "Dambovita": 4,
+      "Giurgiu": 4.6,
+      "Ialomita": 6.4,
+      "Prahova": 2,
+      "Teleorman": 2.9,
+      "Ilfov": 1.7,
+      "Bucuresti": 0.6,
+      "Dolj": 5,
+      "Gorj": 1.9,
+      "Mehedinti": 5.4,
+      "Olt": 2.6,
+      "Valcea": 2.4,
+      "Arad": 4.1,
+      "Caras-Severin": 2.2,
+      "Hunedoara": 1.5,
+      "Timis": 1.9
+    },
+    "minValue": 0.6,
+    "maxValue": 8.7,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Romi (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației rome pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

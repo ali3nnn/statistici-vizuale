@@ -1,0 +1,93 @@
+{
+  "name": "Bărbați cu studii universitare (% din bărbații cu educație)",
+  "config": {
+    "data": {
+      "Alba": 14.1,
+      "Arad": 15.8,
+      "Arges": 16,
+      "Bacau": 9.8,
+      "Bihor": 16.7,
+      "Bistrita-Nasaud": 10.4,
+      "Botosani": 7.4,
+      "Brasov": 20.7,
+      "Braila": 11.7,
+      "Buzau": 10.4,
+      "Caras-Severin": 13,
+      "Calarasi": 7,
+      "Cluj": 24.2,
+      "Constanta": 18.7,
+      "Covasna": 10,
+      "Dambovita": 11,
+      "Dolj": 16.1,
+      "Galati": 11.8,
+      "Giurgiu": 8.4,
+      "Gorj": 14.6,
+      "Harghita": 10.4,
+      "Hunedoara": 16,
+      "Ialomita": 8.6,
+      "Iasi": 15.9,
+      "Ilfov": 24.7,
+      "Maramures": 12.2,
+      "Mehedinti": 11.5,
+      "Mures": 12.8,
+      "Neamt": 10,
+      "Olt": 10.1,
+      "Prahova": 14.4,
+      "Satu Mare": 11.6,
+      "Salaj": 11.6,
+      "Sibiu": 18.2,
+      "Suceava": 9.5,
+      "Teleorman": 8.3,
+      "Timis": 22.5,
+      "Tulcea": 9.8,
+      "Vaslui": 7,
+      "Valcea": 13.4,
+      "Vrancea": 9.3,
+      "Bucuresti": 35.3
+    },
+    "minValue": 7,
+    "maxValue": 35.3,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 215,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Bărbați cu studii universitare (% din bărbații cu educație)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea bărbaților cu studii universitare din totalul bărbaților cu educație finalizată — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

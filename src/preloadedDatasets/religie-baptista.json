@@ -1,0 +1,93 @@
+{
+  "name": "Populația baptistă",
+  "config": {
+    "data": {
+      "Bihor": 21336,
+      "Bistrita-Nasaud": 1832,
+      "Cluj": 7653,
+      "Maramures": 1989,
+      "Satu Mare": 2327,
+      "Salaj": 7845,
+      "Alba": 3133,
+      "Brasov": 1649,
+      "Covasna": 409,
+      "Harghita": 993,
+      "Mures": 2015,
+      "Sibiu": 2682,
+      "Bacau": 581,
+      "Botosani": 769,
+      "Iasi": 785,
+      "Neamt": 488,
+      "Suceava": 2323,
+      "Vaslui": 128,
+      "Braila": 373,
+      "Buzau": 179,
+      "Constanta": 1038,
+      "Galati": 310,
+      "Tulcea": 174,
+      "Vrancea": 64,
+      "Arges": 322,
+      "Calarasi": 173,
+      "Dambovita": 298,
+      "Giurgiu": 329,
+      "Ialomita": 146,
+      "Prahova": 843,
+      "Teleorman": 481,
+      "Ilfov": 807,
+      "Bucuresti": 2883,
+      "Dolj": 824,
+      "Gorj": 554,
+      "Mehedinti": 1217,
+      "Olt": 302,
+      "Valcea": 166,
+      "Arad": 12499,
+      "Caras-Severin": 7945,
+      "Hunedoara": 4033,
+      "Timis": 8316
+    },
+    "minValue": 64,
+    "maxValue": 21336,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația baptistă",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de baptiști pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

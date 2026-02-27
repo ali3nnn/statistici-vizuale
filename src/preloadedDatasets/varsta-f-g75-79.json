@@ -1,0 +1,93 @@
+{
+  "name": "Feminin 75–79 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 3.8,
+      "Bistrita-Nasaud": 3.5,
+      "Cluj": 4,
+      "Maramures": 4,
+      "Satu Mare": 3.8,
+      "Salaj": 4.3,
+      "Alba": 4.1,
+      "Brasov": 3.5,
+      "Covasna": 4,
+      "Harghita": 4.3,
+      "Mures": 4.3,
+      "Sibiu": 3.4,
+      "Bacau": 3.7,
+      "Botosani": 3.6,
+      "Iasi": 3,
+      "Neamt": 4.2,
+      "Suceava": 3.2,
+      "Vaslui": 3.9,
+      "Braila": 4.5,
+      "Buzau": 4.5,
+      "Constanta": 3.5,
+      "Galati": 4,
+      "Tulcea": 4,
+      "Vrancea": 3.9,
+      "Arges": 4.1,
+      "Calarasi": 4.1,
+      "Dambovita": 3.8,
+      "Giurgiu": 4.2,
+      "Ialomita": 4.3,
+      "Prahova": 4.3,
+      "Teleorman": 5.5,
+      "Ilfov": 2.3,
+      "Bucuresti": 3.5,
+      "Dolj": 4.2,
+      "Gorj": 3.6,
+      "Mehedinti": 4.3,
+      "Olt": 4.6,
+      "Valcea": 4.5,
+      "Arad": 3.7,
+      "Caras-Severin": 4.6,
+      "Hunedoara": 4.7,
+      "Timis": 3.4
+    },
+    "minValue": 2.3,
+    "maxValue": 5.5,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 300,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Feminin 75–79 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea femeilor cu vârsta 75–79 ani în totalul femeilor — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

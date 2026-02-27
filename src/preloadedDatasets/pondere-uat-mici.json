@@ -1,0 +1,93 @@
+{
+  "name": "Ponderea populației in UAT sub 10.000 locuitori (%)",
+  "config": {
+    "data": {
+      "Alba": 50.4,
+      "Arad": 53.1,
+      "Arges": 52.3,
+      "Bacau": 57.2,
+      "Bihor": 57.3,
+      "Bistrita-Nasaud": 62.4,
+      "Botosani": 65.5,
+      "Braila": 45,
+      "Brasov": 31.1,
+      "Bucuresti": 0,
+      "Buzau": 67.1,
+      "Calarasi": 67.9,
+      "Caras-Severin": 62.3,
+      "Cluj": 28.5,
+      "Constanta": 33.6,
+      "Covasna": 66.8,
+      "Dambovita": 77.5,
+      "Dolj": 51.7,
+      "Galati": 45.2,
+      "Giurgiu": 74.3,
+      "Gorj": 68.3,
+      "Harghita": 67.7,
+      "Hunedoara": 32.7,
+      "Ialomita": 62.1,
+      "Iasi": 46.2,
+      "Ilfov": 26.5,
+      "Maramures": 53.6,
+      "Mehedinti": 61.6,
+      "Mures": 58.4,
+      "Neamt": 65.4,
+      "Olt": 65.7,
+      "Prahova": 52.7,
+      "Salaj": 68.8,
+      "Satu Mare": 62.2,
+      "Sibiu": 41.8,
+      "Suceava": 65.1,
+      "Teleorman": 67.6,
+      "Timis": 43.8,
+      "Tulcea": 66.1,
+      "Valcea": 68.2,
+      "Vaslui": 62.5,
+      "Vrancea": 72.2
+    },
+    "minValue": 0,
+    "maxValue": 77.5,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 130,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Ponderea populației rurale (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Locuitorii din UAT-uri cu ≤10.000 loc. (% din total județ) — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

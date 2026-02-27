@@ -1,0 +1,93 @@
+{
+  "name": "Penticostali (%)",
+  "config": {
+    "data": {
+      "Bihor": 7.4,
+      "Bistrita-Nasaud": 8.2,
+      "Cluj": 3.2,
+      "Maramures": 4,
+      "Satu Mare": 3.9,
+      "Salaj": 5.6,
+      "Alba": 2.2,
+      "Brasov": 2.4,
+      "Covasna": 3.6,
+      "Harghita": 0.3,
+      "Mures": 2.1,
+      "Sibiu": 1.2,
+      "Bacau": 1.4,
+      "Botosani": 2.8,
+      "Iasi": 0.7,
+      "Neamt": 0.5,
+      "Suceava": 8.5,
+      "Vaslui": 1.1,
+      "Braila": 0.3,
+      "Buzau": 0.6,
+      "Constanta": 0.4,
+      "Galati": 1.5,
+      "Tulcea": 0.2,
+      "Vrancea": 2.4,
+      "Arges": 0.5,
+      "Calarasi": 0.7,
+      "Dambovita": 1.2,
+      "Giurgiu": 0.2,
+      "Ialomita": 3.3,
+      "Prahova": 0.8,
+      "Teleorman": 0.2,
+      "Ilfov": 0.3,
+      "Bucuresti": 0.2,
+      "Dolj": 0.5,
+      "Gorj": 0.7,
+      "Mehedinti": 1.1,
+      "Olt": 0.1,
+      "Valcea": 0.2,
+      "Arad": 8.2,
+      "Caras-Severin": 3.4,
+      "Hunedoara": 3.9,
+      "Timis": 4.2
+    },
+    "minValue": 0.1,
+    "maxValue": 8.5,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Penticostali (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației penticostale pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

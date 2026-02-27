@@ -1,0 +1,93 @@
+{
+  "name": "Greco-Catolici (%)",
+  "config": {
+    "data": {
+      "Bihor": 1.8,
+      "Bistrita-Nasaud": 1.4,
+      "Cluj": 2.6,
+      "Maramures": 3.9,
+      "Satu Mare": 5.8,
+      "Salaj": 2.2,
+      "Alba": 2.3,
+      "Brasov": 0.4,
+      "Covasna": 0.2,
+      "Harghita": 0.3,
+      "Mures": 1.6,
+      "Sibiu": 1.3,
+      "Bacau": 0.1,
+      "Botosani": 0,
+      "Iasi": 0,
+      "Neamt": 0.1,
+      "Suceava": 0.1,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0,
+      "Calarasi": 0,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0,
+      "Prahova": 0,
+      "Teleorman": 0,
+      "Ilfov": 0.1,
+      "Bucuresti": 0.1,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 0.7,
+      "Caras-Severin": 0.4,
+      "Hunedoara": 0.6,
+      "Timis": 0.8
+    },
+    "minValue": 0,
+    "maxValue": 5.8,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 130,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Greco-Catolici (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației greco-catolice pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

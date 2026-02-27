@@ -323,6 +323,191 @@
         .capturing .share-actions {
             display: none !important;
         }
+
+        /* Facebook button */
+        .btn-fb {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 6px;
+            background: #1877F2;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(24, 119, 242, 0.3);
+            transition: background 0.15s, transform 0.1s;
+        }
+
+        .btn-fb:hover {
+            background: #1665d8;
+            transform: translateY(-1px);
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            width: min(420px, calc(100vw - 32px));
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+
+        .modal-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .modal-textarea {
+            width: 100%;
+            height: 90px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 13px;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .modal-textarea:focus {
+            border-color: #1877F2;
+        }
+
+        .modal-tabs {
+            display: flex;
+            gap: 4px;
+            margin: 14px 0 12px;
+        }
+
+        .modal-tab {
+            flex: 1;
+            padding: 7px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: #555;
+        }
+
+        .modal-tab.active {
+            background: #1877F2;
+            border-color: #1877F2;
+            color: white;
+        }
+
+        .modal-schedule {
+            display: none;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .modal-schedule.visible {
+            display: flex;
+        }
+
+        .modal-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .modal-input:focus {
+            border-color: #1877F2;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+            margin-top: 16px;
+        }
+
+        .btn-modal-cancel {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #555;
+            transition: background 0.15s;
+        }
+
+        .btn-modal-cancel:hover {
+            background: #f5f5f5;
+        }
+
+        .btn-modal-submit {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 6px;
+            background: #1877F2;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .btn-modal-submit:hover {
+            background: #1665d8;
+        }
+
+        .btn-modal-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .modal-status {
+            font-size: 12px;
+            margin-top: 10px;
+            text-align: center;
+            min-height: 16px;
+        }
+
+        .modal-status.error {
+            color: #d32f2f;
+        }
+
+        .modal-status.success {
+            color: #2e7d32;
+        }
     </style>
 </head>
 
@@ -360,6 +545,31 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-toast">Copied!</span>
         </button>
+        <button class="btn-fb" id="btn-fb" title="Post to Facebook" style="display:none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </button>
+    </div>
+
+    <!-- Facebook post modal -->
+    <div class="modal-overlay" id="fb-modal-overlay">
+        <div class="modal">
+            <div class="modal-title">Post to Facebook</div>
+            <label class="modal-label" for="fb-caption">Caption</label>
+            <textarea class="modal-textarea" id="fb-caption" placeholder="Write a caption..."></textarea>
+            <div class="modal-tabs">
+                <button class="modal-tab active" id="tab-now">Post now</button>
+                <button class="modal-tab" id="tab-schedule">Schedule</button>
+            </div>
+            <div class="modal-schedule" id="schedule-fields">
+                <input type="date" class="modal-input" id="fb-date" />
+                <input type="time" class="modal-input" id="fb-time" />
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal-cancel" id="btn-fb-cancel">Cancel</button>
+                <button class="btn-modal-submit" id="btn-fb-submit">Post</button>
+            </div>
+            <div class="modal-status" id="fb-status"></div>
+        </div>
     </div>
 </body>
 

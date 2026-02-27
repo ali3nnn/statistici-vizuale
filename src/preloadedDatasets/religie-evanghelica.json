@@ -1,0 +1,93 @@
+{
+  "name": "Populația evanghelică română",
+  "config": {
+    "data": {
+      "Bihor": 70,
+      "Bistrita-Nasaud": 30,
+      "Cluj": 107,
+      "Maramures": 40,
+      "Satu Mare": 52,
+      "Salaj": 136,
+      "Alba": 167,
+      "Brasov": 659,
+      "Covasna": 57,
+      "Harghita": 34,
+      "Mures": 259,
+      "Sibiu": 395,
+      "Bacau": 73,
+      "Botosani": 31,
+      "Iasi": 202,
+      "Neamt": 29,
+      "Suceava": 97,
+      "Vaslui": 87,
+      "Braila": 35,
+      "Buzau": 57,
+      "Constanta": 94,
+      "Galati": 32,
+      "Tulcea": 5,
+      "Vrancea": 32,
+      "Arges": 1072,
+      "Calarasi": 12,
+      "Dambovita": 979,
+      "Giurgiu": 93,
+      "Ialomita": 32,
+      "Prahova": 760,
+      "Teleorman": 71,
+      "Ilfov": 252,
+      "Bucuresti": 927,
+      "Dolj": 70,
+      "Gorj": 33,
+      "Mehedinti": 141,
+      "Olt": 22,
+      "Valcea": 25,
+      "Arad": 116,
+      "Caras-Severin": 24,
+      "Hunedoara": 42,
+      "Timis": 239
+    },
+    "minValue": 5,
+    "maxValue": 1072,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 150,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația evanghelică română",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de evanghelici români pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

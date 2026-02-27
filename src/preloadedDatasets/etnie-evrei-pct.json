@@ -1,0 +1,93 @@
+{
+  "name": "Evrei (%)",
+  "config": {
+    "data": {
+      "Bihor": 0,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 0,
+      "Maramures": 0,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 0,
+      "Brasov": 0,
+      "Covasna": 0,
+      "Harghita": 0,
+      "Mures": 0,
+      "Sibiu": 0,
+      "Bacau": 0,
+      "Botosani": 0,
+      "Iasi": 0,
+      "Neamt": 0,
+      "Suceava": 0,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0,
+      "Calarasi": 0,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0,
+      "Prahova": 0,
+      "Teleorman": 0,
+      "Ilfov": 0,
+      "Bucuresti": 0.1,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 0,
+      "Caras-Severin": 0,
+      "Hunedoara": 0,
+      "Timis": 0
+    },
+    "minValue": 0,
+    "maxValue": 0.1,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Evrei (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației evreiești pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

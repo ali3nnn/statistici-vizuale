@@ -1,0 +1,93 @@
+{
+  "name": "Creștini după Evanghelie",
+  "config": {
+    "data": {
+      "Bihor": 697,
+      "Bistrita-Nasaud": 134,
+      "Cluj": 774,
+      "Maramures": 706,
+      "Satu Mare": 560,
+      "Salaj": 717,
+      "Alba": 728,
+      "Brasov": 1929,
+      "Covasna": 124,
+      "Harghita": 267,
+      "Mures": 902,
+      "Sibiu": 1852,
+      "Bacau": 515,
+      "Botosani": 1125,
+      "Iasi": 3201,
+      "Neamt": 585,
+      "Suceava": 3051,
+      "Vaslui": 1159,
+      "Braila": 33,
+      "Buzau": 231,
+      "Constanta": 163,
+      "Galati": 226,
+      "Tulcea": 96,
+      "Vrancea": 889,
+      "Arges": 3912,
+      "Calarasi": 199,
+      "Dambovita": 1964,
+      "Giurgiu": 615,
+      "Ialomita": 51,
+      "Prahova": 3135,
+      "Teleorman": 447,
+      "Ilfov": 563,
+      "Bucuresti": 1807,
+      "Dolj": 895,
+      "Gorj": 210,
+      "Mehedinti": 113,
+      "Olt": 33,
+      "Valcea": 64,
+      "Arad": 382,
+      "Caras-Severin": 92,
+      "Hunedoara": 469,
+      "Timis": 759
+    },
+    "minValue": 33,
+    "maxValue": 3912,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 200,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Creștini după Evanghelie",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de creștini după Evanghelie pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

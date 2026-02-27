@@ -1,0 +1,93 @@
+{
+  "name": "Populația rusă-lipoveană",
+  "config": {
+    "data": {
+      "Bihor": 25,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 89,
+      "Maramures": 17,
+      "Satu Mare": 8,
+      "Salaj": 0,
+      "Alba": 10,
+      "Brasov": 105,
+      "Covasna": 6,
+      "Harghita": 7,
+      "Mures": 24,
+      "Sibiu": 39,
+      "Bacau": 23,
+      "Botosani": 587,
+      "Iasi": 1495,
+      "Neamt": 136,
+      "Suceava": 1265,
+      "Vaslui": 30,
+      "Braila": 1759,
+      "Buzau": 14,
+      "Constanta": 4084,
+      "Galati": 113,
+      "Tulcea": 8010,
+      "Vrancea": 4,
+      "Arges": 26,
+      "Calarasi": 13,
+      "Dambovita": 20,
+      "Giurgiu": 9,
+      "Ialomita": 207,
+      "Prahova": 38,
+      "Teleorman": 6,
+      "Ilfov": 191,
+      "Bucuresti": 844,
+      "Dolj": 13,
+      "Gorj": 9,
+      "Mehedinti": 4,
+      "Olt": 5,
+      "Valcea": 9,
+      "Arad": 27,
+      "Caras-Severin": 11,
+      "Hunedoara": 20,
+      "Timis": 82
+    },
+    "minValue": 0,
+    "maxValue": 8010,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 240,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația rusă-lipoveană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de ruși-lipoveni pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Creștini de Rit Vechi",
+  "config": {
+    "data": {
+      "Bihor": 175,
+      "Bistrita-Nasaud": 92,
+      "Cluj": 165,
+      "Maramures": 668,
+      "Satu Mare": 80,
+      "Salaj": 28,
+      "Alba": 105,
+      "Brasov": 208,
+      "Covasna": 124,
+      "Harghita": 34,
+      "Mures": 86,
+      "Sibiu": 65,
+      "Bacau": 503,
+      "Botosani": 897,
+      "Iasi": 2872,
+      "Neamt": 1334,
+      "Suceava": 3477,
+      "Vaslui": 563,
+      "Braila": 1286,
+      "Buzau": 26,
+      "Constanta": 3696,
+      "Galati": 387,
+      "Tulcea": 8110,
+      "Vrancea": 254,
+      "Arges": 150,
+      "Calarasi": 89,
+      "Dambovita": 90,
+      "Giurgiu": 14,
+      "Ialomita": 243,
+      "Prahova": 128,
+      "Teleorman": 14,
+      "Ilfov": 272,
+      "Bucuresti": 829,
+      "Dolj": 48,
+      "Gorj": 16,
+      "Mehedinti": 10,
+      "Olt": 15,
+      "Valcea": 16,
+      "Arad": 113,
+      "Caras-Severin": 57,
+      "Hunedoara": 134,
+      "Timis": 889
+    },
+    "minValue": 10,
+    "maxValue": 8110,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 25,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Creștini de Rit Vechi",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de creștini de rit vechi pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

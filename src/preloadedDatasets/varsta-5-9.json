@@ -1,0 +1,93 @@
+{
+  "name": "5–9 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 5.5,
+      "Bistrita-Nasaud": 6,
+      "Cluj": 5.1,
+      "Maramures": 5.3,
+      "Satu Mare": 5.7,
+      "Salaj": 5.7,
+      "Alba": 5,
+      "Brasov": 5.8,
+      "Covasna": 5.7,
+      "Harghita": 5.6,
+      "Mures": 5.6,
+      "Sibiu": 5.8,
+      "Bacau": 5.9,
+      "Botosani": 5.5,
+      "Iasi": 6.9,
+      "Neamt": 5.6,
+      "Suceava": 6.6,
+      "Vaslui": 6.3,
+      "Braila": 4.3,
+      "Buzau": 4.8,
+      "Constanta": 5.6,
+      "Galati": 5.1,
+      "Tulcea": 5.1,
+      "Vrancea": 5.6,
+      "Arges": 4.8,
+      "Calarasi": 5.4,
+      "Dambovita": 5,
+      "Giurgiu": 5,
+      "Ialomita": 5.8,
+      "Prahova": 4.7,
+      "Teleorman": 4.4,
+      "Ilfov": 6.2,
+      "Bucuresti": 5.1,
+      "Dolj": 5.2,
+      "Gorj": 4.5,
+      "Mehedinti": 4.8,
+      "Olt": 4.4,
+      "Valcea": 4.6,
+      "Arad": 5.2,
+      "Caras-Severin": 4.6,
+      "Hunedoara": 4.3,
+      "Timis": 5.4
+    },
+    "minValue": 4.3,
+    "maxValue": 6.9,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 215,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "5–9 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea populației cu vârsta 5–9 ani — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

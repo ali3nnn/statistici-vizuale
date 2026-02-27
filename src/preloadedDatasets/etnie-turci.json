@@ -1,0 +1,93 @@
+{
+  "name": "Populația turcă",
+  "config": {
+    "data": {
+      "Bihor": 29,
+      "Bistrita-Nasaud": 8,
+      "Cluj": 91,
+      "Maramures": 13,
+      "Satu Mare": 7,
+      "Salaj": 3,
+      "Alba": 29,
+      "Brasov": 60,
+      "Covasna": 5,
+      "Harghita": 11,
+      "Mures": 49,
+      "Sibiu": 47,
+      "Bacau": 40,
+      "Botosani": 21,
+      "Iasi": 84,
+      "Neamt": 31,
+      "Suceava": 28,
+      "Vaslui": 7,
+      "Braila": 143,
+      "Buzau": 37,
+      "Constanta": 16121,
+      "Galati": 60,
+      "Tulcea": 993,
+      "Vrancea": 21,
+      "Arges": 65,
+      "Calarasi": 237,
+      "Dambovita": 54,
+      "Giurgiu": 62,
+      "Ialomita": 70,
+      "Prahova": 158,
+      "Teleorman": 15,
+      "Ilfov": 690,
+      "Bucuresti": 1342,
+      "Dolj": 34,
+      "Gorj": 12,
+      "Mehedinti": 13,
+      "Olt": 35,
+      "Valcea": 37,
+      "Arad": 66,
+      "Caras-Severin": 6,
+      "Hunedoara": 33,
+      "Timis": 78
+    },
+    "minValue": 3,
+    "maxValue": 16121,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 350,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația turcă",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de turci pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

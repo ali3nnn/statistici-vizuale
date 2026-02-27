@@ -1,0 +1,93 @@
+{
+  "name": "Indice de îmbătrânire demografică",
+  "config": {
+    "data": {
+      "Bihor": 81.6,
+      "Bistrita-Nasaud": 71.1,
+      "Cluj": 96.5,
+      "Maramures": 82.3,
+      "Satu Mare": 74.1,
+      "Salaj": 86.7,
+      "Alba": 104,
+      "Brasov": 88.9,
+      "Covasna": 81.7,
+      "Harghita": 84.6,
+      "Mures": 86.3,
+      "Sibiu": 82.5,
+      "Bacau": 79.8,
+      "Botosani": 78.4,
+      "Iasi": 63.4,
+      "Neamt": 95.5,
+      "Suceava": 66.5,
+      "Vaslui": 73.8,
+      "Braila": 121.6,
+      "Buzau": 110.9,
+      "Constanta": 86.9,
+      "Galati": 96.2,
+      "Tulcea": 99.5,
+      "Vrancea": 89.7,
+      "Arges": 103.6,
+      "Calarasi": 88.4,
+      "Dambovita": 91,
+      "Giurgiu": 100.5,
+      "Ialomita": 86,
+      "Prahova": 107.6,
+      "Teleorman": 141,
+      "Ilfov": 55.8,
+      "Bucuresti": 99.5,
+      "Dolj": 100,
+      "Gorj": 97.4,
+      "Mehedinti": 108.6,
+      "Olt": 115.5,
+      "Valcea": 116.8,
+      "Arad": 92.5,
+      "Caras-Severin": 117.4,
+      "Hunedoara": 123.6,
+      "Timis": 87.6
+    },
+    "minValue": 55.8,
+    "maxValue": 141,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Red",
+      "hue": 10,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Indice de îmbătrânire demografică",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Raport 65+/0–19 ani × 100 — cu cât mai mare, cu atât mai îmbătrânită populația — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

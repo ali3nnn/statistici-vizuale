@@ -1,0 +1,93 @@
+{
+  "name": "Populația musulmană",
+  "config": {
+    "data": {
+      "Bihor": 308,
+      "Bistrita-Nasaud": 61,
+      "Cluj": 686,
+      "Maramures": 88,
+      "Satu Mare": 62,
+      "Salaj": 30,
+      "Alba": 93,
+      "Brasov": 289,
+      "Covasna": 23,
+      "Harghita": 33,
+      "Mures": 163,
+      "Sibiu": 151,
+      "Bacau": 143,
+      "Botosani": 47,
+      "Iasi": 595,
+      "Neamt": 99,
+      "Suceava": 93,
+      "Vaslui": 26,
+      "Braila": 302,
+      "Buzau": 79,
+      "Constanta": 36725,
+      "Galati": 210,
+      "Tulcea": 3355,
+      "Vrancea": 78,
+      "Arges": 191,
+      "Calarasi": 436,
+      "Dambovita": 166,
+      "Giurgiu": 201,
+      "Ialomita": 217,
+      "Prahova": 368,
+      "Teleorman": 61,
+      "Ilfov": 2855,
+      "Bucuresti": 8015,
+      "Dolj": 435,
+      "Gorj": 37,
+      "Mehedinti": 35,
+      "Olt": 85,
+      "Valcea": 88,
+      "Arad": 344,
+      "Caras-Severin": 36,
+      "Hunedoara": 120,
+      "Timis": 918
+    },
+    "minValue": 23,
+    "maxValue": 36725,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 30,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația musulmană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de musulmani pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

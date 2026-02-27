@@ -1,0 +1,93 @@
+{
+  "name": "Feminin 65–69 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 7,
+      "Bistrita-Nasaud": 6.2,
+      "Cluj": 6.8,
+      "Maramures": 6.8,
+      "Satu Mare": 6.8,
+      "Salaj": 6.8,
+      "Alba": 7.8,
+      "Brasov": 8.2,
+      "Covasna": 6.9,
+      "Harghita": 6.9,
+      "Mures": 7,
+      "Sibiu": 7.5,
+      "Bacau": 7.1,
+      "Botosani": 6.2,
+      "Iasi": 6.4,
+      "Neamt": 7.4,
+      "Suceava": 6.2,
+      "Vaslui": 6.6,
+      "Braila": 8.5,
+      "Buzau": 7.7,
+      "Constanta": 7.8,
+      "Galati": 7.8,
+      "Tulcea": 8.8,
+      "Vrancea": 7.2,
+      "Arges": 7.3,
+      "Calarasi": 7,
+      "Dambovita": 7,
+      "Giurgiu": 7,
+      "Ialomita": 7.3,
+      "Prahova": 7.6,
+      "Teleorman": 8.1,
+      "Ilfov": 5.2,
+      "Bucuresti": 7.5,
+      "Dolj": 7.2,
+      "Gorj": 6.8,
+      "Mehedinti": 7.6,
+      "Olt": 7.4,
+      "Valcea": 7.4,
+      "Arad": 7.7,
+      "Caras-Severin": 8.6,
+      "Hunedoara": 8.3,
+      "Timis": 7.2
+    },
+    "minValue": 5.2,
+    "maxValue": 8.8,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 300,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Feminin 65–69 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea femeilor cu vârsta 65–69 ani în totalul femeilor — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

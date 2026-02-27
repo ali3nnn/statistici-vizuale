@@ -1,0 +1,93 @@
+{
+  "name": "Populația ucraineană",
+  "config": {
+    "data": {
+      "Bihor": 89,
+      "Bistrita-Nasaud": 34,
+      "Cluj": 250,
+      "Maramures": 25690,
+      "Satu Mare": 1361,
+      "Salaj": 25,
+      "Alba": 19,
+      "Brasov": 106,
+      "Covasna": 10,
+      "Harghita": 14,
+      "Mures": 47,
+      "Sibiu": 50,
+      "Bacau": 28,
+      "Botosani": 1587,
+      "Iasi": 145,
+      "Neamt": 46,
+      "Suceava": 7916,
+      "Vaslui": 12,
+      "Braila": 22,
+      "Buzau": 17,
+      "Constanta": 133,
+      "Galati": 52,
+      "Tulcea": 900,
+      "Vrancea": 11,
+      "Arges": 26,
+      "Calarasi": 9,
+      "Dambovita": 20,
+      "Giurgiu": 8,
+      "Ialomita": 10,
+      "Prahova": 36,
+      "Teleorman": 6,
+      "Ilfov": 93,
+      "Bucuresti": 355,
+      "Dolj": 25,
+      "Gorj": 26,
+      "Mehedinti": 8,
+      "Olt": 11,
+      "Valcea": 16,
+      "Arad": 941,
+      "Caras-Severin": 1502,
+      "Hunedoara": 48,
+      "Timis": 4131
+    },
+    "minValue": 6,
+    "maxValue": 25690,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 200,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația ucraineană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de ucraineni pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Germani (%)",
+  "config": {
+    "data": {
+      "Bihor": 0.1,
+      "Bistrita-Nasaud": 0.1,
+      "Cluj": 0.1,
+      "Maramures": 0.1,
+      "Satu Mare": 1.1,
+      "Salaj": 0,
+      "Alba": 0.2,
+      "Brasov": 0.3,
+      "Covasna": 0,
+      "Harghita": 0,
+      "Mures": 0.2,
+      "Sibiu": 0.7,
+      "Bacau": 0,
+      "Botosani": 0,
+      "Iasi": 0,
+      "Neamt": 0,
+      "Suceava": 0.1,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0,
+      "Calarasi": 0,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0,
+      "Prahova": 0,
+      "Teleorman": 0,
+      "Ilfov": 0,
+      "Bucuresti": 0.1,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 0.5,
+      "Caras-Severin": 0.6,
+      "Hunedoara": 0.1,
+      "Timis": 0.7
+    },
+    "minValue": 0,
+    "maxValue": 1.1,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 260,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Germani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației germane pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Atei (%)",
+  "config": {
+    "data": {
+      "Bihor": 0.2,
+      "Bistrita-Nasaud": 0.1,
+      "Cluj": 0.8,
+      "Maramures": 0.1,
+      "Satu Mare": 0.1,
+      "Salaj": 0.1,
+      "Alba": 0.1,
+      "Brasov": 0.4,
+      "Covasna": 0.1,
+      "Harghita": 0.1,
+      "Mures": 0.2,
+      "Sibiu": 0.3,
+      "Bacau": 0.1,
+      "Botosani": 0.1,
+      "Iasi": 0.3,
+      "Neamt": 0.1,
+      "Suceava": 0.1,
+      "Vaslui": 0.1,
+      "Braila": 0.1,
+      "Buzau": 0.1,
+      "Constanta": 0.3,
+      "Galati": 0.2,
+      "Tulcea": 0.2,
+      "Vrancea": 0.1,
+      "Arges": 0.1,
+      "Calarasi": 0.1,
+      "Dambovita": 0.1,
+      "Giurgiu": 0.1,
+      "Ialomita": 0.1,
+      "Prahova": 0.2,
+      "Teleorman": 0.1,
+      "Ilfov": 0.6,
+      "Bucuresti": 1.1,
+      "Dolj": 0.2,
+      "Gorj": 0.1,
+      "Mehedinti": 0.1,
+      "Olt": 0.1,
+      "Valcea": 0.1,
+      "Arad": 0.2,
+      "Caras-Severin": 0.1,
+      "Hunedoara": 0.2,
+      "Timis": 0.5
+    },
+    "minValue": 0.1,
+    "maxValue": 1.1,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 15,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Atei (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației atee pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

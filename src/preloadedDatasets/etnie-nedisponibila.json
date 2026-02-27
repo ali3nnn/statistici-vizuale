@@ -1,0 +1,93 @@
+{
+  "name": "Etnie nedeclarată",
+  "config": {
+    "data": {
+      "Bihor": 48428,
+      "Bistrita-Nasaud": 25398,
+      "Cluj": 91719,
+      "Maramures": 48380,
+      "Satu Mare": 32698,
+      "Salaj": 17416,
+      "Alba": 31780,
+      "Brasov": 74884,
+      "Covasna": 14101,
+      "Harghita": 20949,
+      "Mures": 54378,
+      "Sibiu": 52930,
+      "Bacau": 79358,
+      "Botosani": 35802,
+      "Iasi": 134207,
+      "Neamt": 56028,
+      "Suceava": 67205,
+      "Vaslui": 51711,
+      "Braila": 32248,
+      "Buzau": 40067,
+      "Constanta": 105039,
+      "Galati": 67261,
+      "Tulcea": 25192,
+      "Vrancea": 31809,
+      "Arges": 54814,
+      "Calarasi": 28868,
+      "Dambovita": 40341,
+      "Giurgiu": 26060,
+      "Ialomita": 29244,
+      "Prahova": 74731,
+      "Teleorman": 31248,
+      "Ilfov": 97444,
+      "Bucuresti": 438876,
+      "Dolj": 73592,
+      "Gorj": 27362,
+      "Mehedinti": 29050,
+      "Olt": 34537,
+      "Valcea": 30607,
+      "Arad": 41301,
+      "Caras-Severin": 32114,
+      "Hunedoara": 44870,
+      "Timis": 110879
+    },
+    "minValue": 14101,
+    "maxValue": 438876,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 270,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Etnie nedeclarată",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de persoane cu etnie nedeclarată pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Populația evanghelică lutherană",
+  "config": {
+    "data": {
+      "Bihor": 321,
+      "Bistrita-Nasaud": 364,
+      "Cluj": 558,
+      "Maramures": 120,
+      "Satu Mare": 139,
+      "Salaj": 29,
+      "Alba": 322,
+      "Brasov": 9364,
+      "Covasna": 739,
+      "Harghita": 162,
+      "Mures": 922,
+      "Sibiu": 1756,
+      "Bacau": 49,
+      "Botosani": 33,
+      "Iasi": 69,
+      "Neamt": 143,
+      "Suceava": 68,
+      "Vaslui": 33,
+      "Braila": 10,
+      "Buzau": 85,
+      "Constanta": 58,
+      "Galati": 27,
+      "Tulcea": 10,
+      "Vrancea": 61,
+      "Arges": 74,
+      "Calarasi": 6,
+      "Dambovita": 108,
+      "Giurgiu": 34,
+      "Ialomita": 9,
+      "Prahova": 203,
+      "Teleorman": 6,
+      "Ilfov": 94,
+      "Bucuresti": 531,
+      "Dolj": 62,
+      "Gorj": 31,
+      "Mehedinti": 45,
+      "Olt": 5,
+      "Valcea": 14,
+      "Arad": 2656,
+      "Caras-Severin": 79,
+      "Hunedoara": 157,
+      "Timis": 470
+    },
+    "minValue": 5,
+    "maxValue": 9364,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 240,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația evanghelică lutherană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de evanghelici lutherani pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

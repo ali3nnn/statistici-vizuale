@@ -1,0 +1,93 @@
+{
+  "name": "Adventiști (%)",
+  "config": {
+    "data": {
+      "Bihor": 0.3,
+      "Bistrita-Nasaud": 0.4,
+      "Cluj": 0.4,
+      "Maramures": 0.6,
+      "Satu Mare": 0.2,
+      "Salaj": 0.3,
+      "Alba": 0.1,
+      "Brasov": 0.3,
+      "Covasna": 0.4,
+      "Harghita": 0.2,
+      "Mures": 1.6,
+      "Sibiu": 0.2,
+      "Bacau": 0.3,
+      "Botosani": 0.4,
+      "Iasi": 0.2,
+      "Neamt": 0.3,
+      "Suceava": 0.4,
+      "Vaslui": 0.1,
+      "Braila": 0.2,
+      "Buzau": 0.4,
+      "Constanta": 0.2,
+      "Galati": 0.3,
+      "Tulcea": 0.2,
+      "Vrancea": 0.1,
+      "Arges": 0.1,
+      "Calarasi": 0.2,
+      "Dambovita": 0.5,
+      "Giurgiu": 0.4,
+      "Ialomita": 0.3,
+      "Prahova": 0.5,
+      "Teleorman": 1.2,
+      "Ilfov": 0.2,
+      "Bucuresti": 0.2,
+      "Dolj": 0.2,
+      "Gorj": 0.1,
+      "Mehedinti": 0.1,
+      "Olt": 0.2,
+      "Valcea": 0.2,
+      "Arad": 1,
+      "Caras-Severin": 0.2,
+      "Hunedoara": 0.2,
+      "Timis": 0.3
+    },
+    "minValue": 0.1,
+    "maxValue": 1.6,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 160,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Adventiști (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației adventiste pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

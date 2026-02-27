@@ -1,0 +1,93 @@
+{
+  "name": "Populația adventistă",
+  "config": {
+    "data": {
+      "Bihor": 1910,
+      "Bistrita-Nasaud": 1308,
+      "Cluj": 2795,
+      "Maramures": 2931,
+      "Satu Mare": 806,
+      "Salaj": 602,
+      "Alba": 462,
+      "Brasov": 1718,
+      "Covasna": 777,
+      "Harghita": 597,
+      "Mures": 8279,
+      "Sibiu": 953,
+      "Bacau": 1570,
+      "Botosani": 1671,
+      "Iasi": 1389,
+      "Neamt": 1362,
+      "Suceava": 2837,
+      "Vaslui": 552,
+      "Braila": 568,
+      "Buzau": 1616,
+      "Constanta": 1066,
+      "Galati": 1584,
+      "Tulcea": 373,
+      "Vrancea": 502,
+      "Arges": 829,
+      "Calarasi": 697,
+      "Dambovita": 2577,
+      "Giurgiu": 932,
+      "Ialomita": 733,
+      "Prahova": 3276,
+      "Teleorman": 3889,
+      "Ilfov": 1035,
+      "Bucuresti": 3133,
+      "Dolj": 1438,
+      "Gorj": 409,
+      "Mehedinti": 319,
+      "Olt": 738,
+      "Valcea": 661,
+      "Arad": 4130,
+      "Caras-Severin": 371,
+      "Hunedoara": 816,
+      "Timis": 1650
+    },
+    "minValue": 319,
+    "maxValue": 8279,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 160,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația adventistă",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de adventiști de ziua a șaptea pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

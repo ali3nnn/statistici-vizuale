@@ -1,0 +1,93 @@
+{
+  "name": "Populația romano-catolică",
+  "config": {
+    "data": {
+      "Bihor": 39893,
+      "Bistrita-Nasaud": 2374,
+      "Cluj": 18467,
+      "Maramures": 17653,
+      "Satu Mare": 49946,
+      "Salaj": 3904,
+      "Alba": 2849,
+      "Brasov": 15105,
+      "Covasna": 64008,
+      "Harghita": 178126,
+      "Mures": 39470,
+      "Sibiu": 3791,
+      "Bacau": 89742,
+      "Botosani": 547,
+      "Iasi": 29098,
+      "Neamt": 44033,
+      "Suceava": 5304,
+      "Vaslui": 3362,
+      "Braila": 643,
+      "Buzau": 397,
+      "Constanta": 4000,
+      "Galati": 1149,
+      "Tulcea": 438,
+      "Vrancea": 3818,
+      "Arges": 718,
+      "Calarasi": 226,
+      "Dambovita": 709,
+      "Giurgiu": 362,
+      "Ialomita": 253,
+      "Prahova": 1722,
+      "Teleorman": 122,
+      "Ilfov": 6857,
+      "Bucuresti": 17669,
+      "Dolj": 831,
+      "Gorj": 400,
+      "Mehedinti": 900,
+      "Olt": 216,
+      "Valcea": 373,
+      "Arad": 27565,
+      "Caras-Severin": 12614,
+      "Hunedoara": 11147,
+      "Timis": 40703
+    },
+    "minValue": 122,
+    "maxValue": 178126,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 270,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația romano-catolică",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de romano-catolici pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

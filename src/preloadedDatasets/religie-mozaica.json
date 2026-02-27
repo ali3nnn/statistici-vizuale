@@ -1,0 +1,93 @@
+{
+  "name": "Populația mozaică",
+  "config": {
+    "data": {
+      "Bihor": 171,
+      "Bistrita-Nasaud": 36,
+      "Cluj": 137,
+      "Maramures": 64,
+      "Satu Mare": 103,
+      "Salaj": 24,
+      "Alba": 0,
+      "Brasov": 82,
+      "Covasna": 0,
+      "Harghita": 23,
+      "Mures": 72,
+      "Sibiu": 17,
+      "Bacau": 46,
+      "Botosani": 28,
+      "Iasi": 159,
+      "Neamt": 42,
+      "Suceava": 57,
+      "Vaslui": 13,
+      "Braila": 32,
+      "Buzau": 16,
+      "Constanta": 51,
+      "Galati": 40,
+      "Tulcea": 13,
+      "Vrancea": 9,
+      "Arges": 12,
+      "Calarasi": 0,
+      "Dambovita": 7,
+      "Giurgiu": 7,
+      "Ialomita": 4,
+      "Prahova": 35,
+      "Teleorman": 0,
+      "Ilfov": 109,
+      "Bucuresti": 864,
+      "Dolj": 19,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 7,
+      "Arad": 114,
+      "Caras-Severin": 39,
+      "Hunedoara": 0,
+      "Timis": 157
+    },
+    "minValue": 0,
+    "maxValue": 864,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 50,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația mozaică",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de persoane de religie mozaică pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

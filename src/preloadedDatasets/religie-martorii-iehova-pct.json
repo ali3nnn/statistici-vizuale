@@ -1,0 +1,93 @@
+{
+  "name": "Martorii lui Iehova (%)",
+  "config": {
+    "data": {
+      "Bihor": 0.2,
+      "Bistrita-Nasaud": 0.5,
+      "Cluj": 0.7,
+      "Maramures": 1.1,
+      "Satu Mare": 1.1,
+      "Salaj": 0.7,
+      "Alba": 0.5,
+      "Brasov": 0.4,
+      "Covasna": 0.6,
+      "Harghita": 0.6,
+      "Mures": 1.1,
+      "Sibiu": 0.2,
+      "Bacau": 0.1,
+      "Botosani": 0.1,
+      "Iasi": 0.1,
+      "Neamt": 0,
+      "Suceava": 0.2,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0.1,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0,
+      "Calarasi": 0.1,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0.1,
+      "Prahova": 0,
+      "Teleorman": 0.1,
+      "Ilfov": 0.1,
+      "Bucuresti": 0.1,
+      "Dolj": 0.1,
+      "Gorj": 0.1,
+      "Mehedinti": 0.1,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 0.2,
+      "Caras-Severin": 0.1,
+      "Hunedoara": 0.5,
+      "Timis": 0.2
+    },
+    "minValue": 0,
+    "maxValue": 1.1,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 300,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Martorii lui Iehova (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul Martorilor lui Iehova pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

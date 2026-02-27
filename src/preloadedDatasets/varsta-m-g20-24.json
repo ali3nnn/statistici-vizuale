@@ -1,0 +1,93 @@
+{
+  "name": "Masculin 20–24 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 5.6,
+      "Bistrita-Nasaud": 5.8,
+      "Cluj": 5.3,
+      "Maramures": 5.6,
+      "Satu Mare": 5.4,
+      "Salaj": 5.6,
+      "Alba": 5.3,
+      "Brasov": 4.8,
+      "Covasna": 5.6,
+      "Harghita": 5.6,
+      "Mures": 5.6,
+      "Sibiu": 5.3,
+      "Bacau": 5.5,
+      "Botosani": 6.4,
+      "Iasi": 5.9,
+      "Neamt": 5.3,
+      "Suceava": 6,
+      "Vaslui": 6.1,
+      "Braila": 4.9,
+      "Buzau": 5.1,
+      "Constanta": 5,
+      "Galati": 5.3,
+      "Tulcea": 4.9,
+      "Vrancea": 5.5,
+      "Arges": 5.1,
+      "Calarasi": 5.5,
+      "Dambovita": 5.5,
+      "Giurgiu": 5.6,
+      "Ialomita": 5.3,
+      "Prahova": 5,
+      "Teleorman": 5,
+      "Ilfov": 4.7,
+      "Bucuresti": 4.4,
+      "Dolj": 5.4,
+      "Gorj": 5.6,
+      "Mehedinti": 5.2,
+      "Olt": 5.4,
+      "Valcea": 5.1,
+      "Arad": 5.3,
+      "Caras-Severin": 5,
+      "Hunedoara": 4.7,
+      "Timis": 5.1
+    },
+    "minValue": 4.4,
+    "maxValue": 6.4,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Masculin 20–24 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea bărbaților cu vârsta 20–24 ani în totalul bărbaților — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

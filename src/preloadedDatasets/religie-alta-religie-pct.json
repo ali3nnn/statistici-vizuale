@@ -1,0 +1,93 @@
+{
+  "name": "Alte religii (%)",
+  "config": {
+    "data": {
+      "Bihor": 0.3,
+      "Bistrita-Nasaud": 0.1,
+      "Cluj": 0.3,
+      "Maramures": 0.2,
+      "Satu Mare": 0.2,
+      "Salaj": 0.2,
+      "Alba": 0.1,
+      "Brasov": 0.2,
+      "Covasna": 0.1,
+      "Harghita": 0.2,
+      "Mures": 0.3,
+      "Sibiu": 0.1,
+      "Bacau": 0,
+      "Botosani": 0,
+      "Iasi": 0.1,
+      "Neamt": 0.2,
+      "Suceava": 0.5,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0.1,
+      "Calarasi": 0,
+      "Dambovita": 0.1,
+      "Giurgiu": 0.1,
+      "Ialomita": 0.1,
+      "Prahova": 0.1,
+      "Teleorman": 0,
+      "Ilfov": 0.1,
+      "Bucuresti": 0.1,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0.1,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 0.4,
+      "Caras-Severin": 0.1,
+      "Hunedoara": 0.2,
+      "Timis": 0.2
+    },
+    "minValue": 0,
+    "maxValue": 0.5,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 90,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Alte religii (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul persoanelor aparținând altor religii pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

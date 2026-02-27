@@ -1,0 +1,93 @@
+{
+  "name": "Masculin 0–4 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 5.7,
+      "Bistrita-Nasaud": 5.9,
+      "Cluj": 5.6,
+      "Maramures": 5.2,
+      "Satu Mare": 5.3,
+      "Salaj": 5.7,
+      "Alba": 4.8,
+      "Brasov": 6.1,
+      "Covasna": 5.6,
+      "Harghita": 5.6,
+      "Mures": 5.7,
+      "Sibiu": 5.9,
+      "Bacau": 5.3,
+      "Botosani": 4.9,
+      "Iasi": 6.5,
+      "Neamt": 4.9,
+      "Suceava": 6.5,
+      "Vaslui": 5.4,
+      "Braila": 4.3,
+      "Buzau": 4.5,
+      "Constanta": 5.4,
+      "Galati": 4.9,
+      "Tulcea": 4.5,
+      "Vrancea": 5.1,
+      "Arges": 4.8,
+      "Calarasi": 5.2,
+      "Dambovita": 5.1,
+      "Giurgiu": 5,
+      "Ialomita": 5.5,
+      "Prahova": 4.6,
+      "Teleorman": 4.1,
+      "Ilfov": 6.6,
+      "Bucuresti": 5.6,
+      "Dolj": 5.2,
+      "Gorj": 4.3,
+      "Mehedinti": 4.5,
+      "Olt": 4.2,
+      "Valcea": 4.4,
+      "Arad": 5.4,
+      "Caras-Severin": 4.5,
+      "Hunedoara": 4.1,
+      "Timis": 5.8
+    },
+    "minValue": 4.1,
+    "maxValue": 6.6,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Masculin 0–4 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea bărbaților cu vârsta 0–4 ani în totalul bărbaților — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Feminin 0–4 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 5.1,
+      "Bistrita-Nasaud": 5.5,
+      "Cluj": 5,
+      "Maramures": 4.7,
+      "Satu Mare": 4.8,
+      "Salaj": 5.3,
+      "Alba": 4.3,
+      "Brasov": 5.3,
+      "Covasna": 5.2,
+      "Harghita": 5.2,
+      "Mures": 5.1,
+      "Sibiu": 5.3,
+      "Bacau": 4.9,
+      "Botosani": 4.7,
+      "Iasi": 6.1,
+      "Neamt": 4.5,
+      "Suceava": 6,
+      "Vaslui": 5.2,
+      "Braila": 3.7,
+      "Buzau": 4.1,
+      "Constanta": 4.8,
+      "Galati": 4.5,
+      "Tulcea": 4.3,
+      "Vrancea": 4.7,
+      "Arges": 4.2,
+      "Calarasi": 4.7,
+      "Dambovita": 4.6,
+      "Giurgiu": 4.4,
+      "Ialomita": 5,
+      "Prahova": 4.1,
+      "Teleorman": 3.7,
+      "Ilfov": 5.8,
+      "Bucuresti": 4.5,
+      "Dolj": 4.6,
+      "Gorj": 3.9,
+      "Mehedinti": 4,
+      "Olt": 3.9,
+      "Valcea": 3.9,
+      "Arad": 4.7,
+      "Caras-Severin": 3.9,
+      "Hunedoara": 3.7,
+      "Timis": 5.1
+    },
+    "minValue": 3.7,
+    "maxValue": 6.1,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 300,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Feminin 0–4 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea femeilor cu vârsta 0–4 ani în totalul femeilor — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

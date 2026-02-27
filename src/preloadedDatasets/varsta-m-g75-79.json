@@ -1,0 +1,93 @@
+{
+  "name": "Masculin 75–79 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 2.5,
+      "Bistrita-Nasaud": 2.5,
+      "Cluj": 2.8,
+      "Maramures": 2.6,
+      "Satu Mare": 2.2,
+      "Salaj": 2.9,
+      "Alba": 2.8,
+      "Brasov": 2.4,
+      "Covasna": 2.9,
+      "Harghita": 3.1,
+      "Mures": 2.8,
+      "Sibiu": 2.4,
+      "Bacau": 2.4,
+      "Botosani": 2.2,
+      "Iasi": 1.9,
+      "Neamt": 2.8,
+      "Suceava": 2.2,
+      "Vaslui": 2.4,
+      "Braila": 2.8,
+      "Buzau": 3,
+      "Constanta": 2.4,
+      "Galati": 2.7,
+      "Tulcea": 2.7,
+      "Vrancea": 2.6,
+      "Arges": 2.8,
+      "Calarasi": 2.7,
+      "Dambovita": 2.5,
+      "Giurgiu": 2.7,
+      "Ialomita": 2.5,
+      "Prahova": 2.8,
+      "Teleorman": 3.7,
+      "Ilfov": 1.6,
+      "Bucuresti": 2.3,
+      "Dolj": 2.9,
+      "Gorj": 2.4,
+      "Mehedinti": 2.9,
+      "Olt": 3.1,
+      "Valcea": 3.2,
+      "Arad": 2.4,
+      "Caras-Severin": 3.1,
+      "Hunedoara": 3.1,
+      "Timis": 2.3
+    },
+    "minValue": 1.6,
+    "maxValue": 3.7,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Masculin 75–79 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea bărbaților cu vârsta 75–79 ani în totalul bărbaților — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

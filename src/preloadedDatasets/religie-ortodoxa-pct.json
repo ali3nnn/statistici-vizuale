@@ -1,0 +1,93 @@
+{
+  "name": "Ortodocși (%)",
+  "config": {
+    "data": {
+      "Bihor": 53.6,
+      "Bistrita-Nasaud": 75,
+      "Cluj": 62,
+      "Maramures": 70.5,
+      "Satu Mare": 46.1,
+      "Salaj": 59.4,
+      "Alba": 77.9,
+      "Brasov": 72.3,
+      "Covasna": 19.9,
+      "Harghita": 10.6,
+      "Mures": 48.4,
+      "Sibiu": 77.1,
+      "Bacau": 68.9,
+      "Botosani": 85.9,
+      "Iasi": 74.7,
+      "Neamt": 75.4,
+      "Suceava": 76.7,
+      "Vaslui": 82.8,
+      "Braila": 85.9,
+      "Buzau": 87.9,
+      "Constanta": 74.4,
+      "Galati": 82.7,
+      "Tulcea": 79,
+      "Vrancea": 85.6,
+      "Arges": 87.2,
+      "Calarasi": 87.5,
+      "Dambovita": 87.9,
+      "Giurgiu": 87.8,
+      "Ialomita": 83.4,
+      "Prahova": 85.3,
+      "Teleorman": 87.8,
+      "Ilfov": 76.1,
+      "Bucuresti": 67,
+      "Dolj": 85,
+      "Gorj": 89.1,
+      "Mehedinti": 84,
+      "Olt": 89.6,
+      "Valcea": 89.3,
+      "Arad": 65.1,
+      "Caras-Severin": 71.8,
+      "Hunedoara": 74.7,
+      "Timis": 64.6
+    },
+    "minValue": 10.6,
+    "maxValue": 89.6,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Ortodocși (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației ortodoxe pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

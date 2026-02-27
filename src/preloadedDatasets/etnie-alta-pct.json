@@ -1,0 +1,93 @@
+{
+  "name": "Altă etnie (%)",
+  "config": {
+    "data": {
+      "Bihor": 0.1,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 0.2,
+      "Maramures": 0,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 0,
+      "Brasov": 0.1,
+      "Covasna": 0,
+      "Harghita": 0.1,
+      "Mures": 0.1,
+      "Sibiu": 0.1,
+      "Bacau": 0.1,
+      "Botosani": 0,
+      "Iasi": 0.1,
+      "Neamt": 0,
+      "Suceava": 0,
+      "Vaslui": 0,
+      "Braila": 0.1,
+      "Buzau": 0,
+      "Constanta": 0.2,
+      "Galati": 0,
+      "Tulcea": 0.3,
+      "Vrancea": 0,
+      "Arges": 0,
+      "Calarasi": 0,
+      "Dambovita": 0.1,
+      "Giurgiu": 0.1,
+      "Ialomita": 0.1,
+      "Prahova": 0,
+      "Teleorman": 0,
+      "Ilfov": 0.4,
+      "Bucuresti": 0.3,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 0.1,
+      "Caras-Severin": 0,
+      "Hunedoara": 0.1,
+      "Timis": 0.2
+    },
+    "minValue": 0,
+    "maxValue": 0.4,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 90,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Altă etnie (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul persoanelor aparținând altor etnii pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Absolvenți de învățământ universitar (%)",
+  "config": {
+    "data": {
+      "Alba": 14.4,
+      "Arad": 15.6,
+      "Arges": 16,
+      "Bacau": 10,
+      "Bihor": 16.6,
+      "Bistrita-Nasaud": 10.8,
+      "Botosani": 7.9,
+      "Brasov": 20.7,
+      "Braila": 11.7,
+      "Buzau": 10.4,
+      "Caras-Severin": 12.4,
+      "Calarasi": 7.3,
+      "Cluj": 24.6,
+      "Constanta": 18.2,
+      "Covasna": 10.5,
+      "Dambovita": 11.1,
+      "Dolj": 16,
+      "Galati": 12.2,
+      "Giurgiu": 8.5,
+      "Gorj": 14.2,
+      "Harghita": 10.9,
+      "Hunedoara": 15.8,
+      "Ialomita": 8.8,
+      "Iasi": 16.1,
+      "Ilfov": 25.1,
+      "Maramures": 12.4,
+      "Mehedinti": 11.3,
+      "Mures": 13,
+      "Neamt": 10.3,
+      "Olt": 10.3,
+      "Prahova": 14.8,
+      "Satu Mare": 11.7,
+      "Salaj": 11.8,
+      "Sibiu": 18,
+      "Suceava": 10,
+      "Teleorman": 8.7,
+      "Timis": 22,
+      "Tulcea": 9.9,
+      "Vaslui": 7.2,
+      "Valcea": 13.5,
+      "Vrancea": 9.5,
+      "Bucuresti": 35.1
+    },
+    "minValue": 7.2,
+    "maxValue": 35.1,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Absolvenți de învățământ universitar (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea populației cu orice grad de studii universitare — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

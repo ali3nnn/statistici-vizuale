@@ -1,0 +1,93 @@
+{
+  "name": "Fără nicio educație finalizată (%)",
+  "config": {
+    "data": {
+      "Alba": 4.5,
+      "Arad": 4.7,
+      "Arges": 4,
+      "Bacau": 5.2,
+      "Bihor": 5.1,
+      "Bistrita-Nasaud": 5.6,
+      "Botosani": 4.9,
+      "Brasov": 4.8,
+      "Braila": 4.1,
+      "Buzau": 4.1,
+      "Caras-Severin": 4.2,
+      "Calarasi": 4.8,
+      "Cluj": 4.3,
+      "Constanta": 4.7,
+      "Covasna": 4.9,
+      "Dambovita": 4.5,
+      "Dolj": 4.5,
+      "Galati": 4.6,
+      "Giurgiu": 4.5,
+      "Gorj": 4.1,
+      "Harghita": 4.9,
+      "Hunedoara": 3.7,
+      "Ialomita": 5.5,
+      "Iasi": 6.3,
+      "Ilfov": 4.9,
+      "Maramures": 4.6,
+      "Mehedinti": 4.3,
+      "Mures": 5,
+      "Neamt": 4.9,
+      "Olt": 3.9,
+      "Prahova": 4.1,
+      "Satu Mare": 5.2,
+      "Salaj": 5.2,
+      "Sibiu": 4.9,
+      "Suceava": 5.9,
+      "Teleorman": 3.9,
+      "Timis": 4.7,
+      "Tulcea": 4.5,
+      "Vaslui": 5.9,
+      "Valcea": 4,
+      "Vrancea": 4.8,
+      "Bucuresti": 4.1
+    },
+    "minValue": 3.7,
+    "maxValue": 6.3,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Fără nicio educație finalizată (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea populației fără niciun nivel de educație finalizat (inclusiv persoane fără școală) — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

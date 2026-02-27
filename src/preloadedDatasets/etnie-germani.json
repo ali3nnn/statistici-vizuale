@@ -1,0 +1,93 @@
+{
+  "name": "Populația germană",
+  "config": {
+    "data": {
+      "Bihor": 529,
+      "Bistrita-Nasaud": 261,
+      "Cluj": 567,
+      "Maramures": 548,
+      "Satu Mare": 3722,
+      "Salaj": 40,
+      "Alba": 544,
+      "Brasov": 1853,
+      "Covasna": 73,
+      "Harghita": 62,
+      "Mures": 904,
+      "Sibiu": 2716,
+      "Bacau": 61,
+      "Botosani": 17,
+      "Iasi": 83,
+      "Neamt": 46,
+      "Suceava": 475,
+      "Vaslui": 9,
+      "Braila": 18,
+      "Buzau": 13,
+      "Constanta": 122,
+      "Galati": 50,
+      "Tulcea": 65,
+      "Vrancea": 9,
+      "Arges": 50,
+      "Calarasi": 12,
+      "Dambovita": 35,
+      "Giurgiu": 16,
+      "Ialomita": 5,
+      "Prahova": 96,
+      "Teleorman": 9,
+      "Ilfov": 167,
+      "Bucuresti": 1011,
+      "Dolj": 46,
+      "Gorj": 21,
+      "Mehedinti": 53,
+      "Olt": 12,
+      "Valcea": 39,
+      "Arad": 2000,
+      "Caras-Severin": 1364,
+      "Hunedoara": 500,
+      "Timis": 4684
+    },
+    "minValue": 5,
+    "maxValue": 4684,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 260,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația germană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de germani pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

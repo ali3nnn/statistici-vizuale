@@ -1,0 +1,93 @@
+{
+  "name": "Vârstnici 65+ ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 18.2,
+      "Bistrita-Nasaud": 17,
+      "Cluj": 19.4,
+      "Maramures": 18.1,
+      "Satu Mare": 16.9,
+      "Salaj": 19.6,
+      "Alba": 20.9,
+      "Brasov": 20,
+      "Covasna": 18.8,
+      "Harghita": 19.2,
+      "Mures": 19.6,
+      "Sibiu": 18.8,
+      "Bacau": 19,
+      "Botosani": 18.2,
+      "Iasi": 17,
+      "Neamt": 21.2,
+      "Suceava": 17.3,
+      "Vaslui": 18.9,
+      "Braila": 23.1,
+      "Buzau": 22.4,
+      "Constanta": 19.3,
+      "Galati": 20.5,
+      "Tulcea": 20.9,
+      "Vrancea": 20.1,
+      "Arges": 20.3,
+      "Calarasi": 19.8,
+      "Dambovita": 19.1,
+      "Giurgiu": 20.7,
+      "Ialomita": 20.2,
+      "Prahova": 21.3,
+      "Teleorman": 25.8,
+      "Ilfov": 13,
+      "Bucuresti": 19.4,
+      "Dolj": 20.7,
+      "Gorj": 18.6,
+      "Mehedinti": 21.4,
+      "Olt": 21.6,
+      "Valcea": 22.3,
+      "Arad": 19.6,
+      "Caras-Severin": 22.9,
+      "Hunedoara": 22.5,
+      "Timis": 18.3
+    },
+    "minValue": 13,
+    "maxValue": 25.8,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Vârstnici 65+ ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea vârstnicilor (65 ani și peste) în populația județului — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

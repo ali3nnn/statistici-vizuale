@@ -1,0 +1,93 @@
+{
+  "name": "Populația evanghelică de Confesiune Augustană",
+  "config": {
+    "data": {
+      "Bihor": 54,
+      "Bistrita-Nasaud": 72,
+      "Cluj": 83,
+      "Maramures": 30,
+      "Satu Mare": 107,
+      "Salaj": 0,
+      "Alba": 199,
+      "Brasov": 830,
+      "Covasna": 100,
+      "Harghita": 24,
+      "Mures": 335,
+      "Sibiu": 941,
+      "Bacau": 30,
+      "Botosani": 0,
+      "Iasi": 34,
+      "Neamt": 13,
+      "Suceava": 27,
+      "Vaslui": 9,
+      "Braila": 0,
+      "Buzau": 13,
+      "Constanta": 31,
+      "Galati": 10,
+      "Tulcea": 0,
+      "Vrancea": 6,
+      "Arges": 24,
+      "Calarasi": 3,
+      "Dambovita": 13,
+      "Giurgiu": 4,
+      "Ialomita": 0,
+      "Prahova": 76,
+      "Teleorman": 6,
+      "Ilfov": 30,
+      "Bucuresti": 251,
+      "Dolj": 23,
+      "Gorj": 19,
+      "Mehedinti": 10,
+      "Olt": 8,
+      "Valcea": 5,
+      "Arad": 131,
+      "Caras-Severin": 14,
+      "Hunedoara": 61,
+      "Timis": 0
+    },
+    "minValue": 0,
+    "maxValue": 941,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 260,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația evanghelică de Confesiune Augustană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de evanghelici de Confesiune Augustană pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

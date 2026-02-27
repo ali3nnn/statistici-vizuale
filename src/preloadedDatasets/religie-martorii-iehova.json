@@ -1,0 +1,93 @@
+{
+  "name": "Martorii lui Iehova",
+  "config": {
+    "data": {
+      "Bihor": 1193,
+      "Bistrita-Nasaud": 1336,
+      "Cluj": 4867,
+      "Maramures": 5086,
+      "Satu Mare": 3489,
+      "Salaj": 1438,
+      "Alba": 1658,
+      "Brasov": 2311,
+      "Covasna": 1227,
+      "Harghita": 1715,
+      "Mures": 5631,
+      "Sibiu": 745,
+      "Bacau": 355,
+      "Botosani": 412,
+      "Iasi": 512,
+      "Neamt": 180,
+      "Suceava": 1337,
+      "Vaslui": 125,
+      "Braila": 88,
+      "Buzau": 79,
+      "Constanta": 335,
+      "Galati": 189,
+      "Tulcea": 96,
+      "Vrancea": 162,
+      "Arges": 206,
+      "Calarasi": 156,
+      "Dambovita": 163,
+      "Giurgiu": 122,
+      "Ialomita": 135,
+      "Prahova": 226,
+      "Teleorman": 256,
+      "Ilfov": 344,
+      "Bucuresti": 1513,
+      "Dolj": 684,
+      "Gorj": 214,
+      "Mehedinti": 323,
+      "Olt": 131,
+      "Valcea": 109,
+      "Arad": 955,
+      "Caras-Severin": 202,
+      "Hunedoara": 1807,
+      "Timis": 1228
+    },
+    "minValue": 79,
+    "maxValue": 5631,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 300,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Martorii lui Iehova",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de Martori ai lui Iehova pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

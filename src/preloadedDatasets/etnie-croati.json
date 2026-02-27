@@ -1,0 +1,93 @@
+{
+  "name": "Populația croată",
+  "config": {
+    "data": {
+      "Bihor": 0,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 8,
+      "Maramures": 0,
+      "Satu Mare": 3,
+      "Salaj": 0,
+      "Alba": 0,
+      "Brasov": 8,
+      "Covasna": 0,
+      "Harghita": 0,
+      "Mures": 4,
+      "Sibiu": 3,
+      "Bacau": 0,
+      "Botosani": 0,
+      "Iasi": 0,
+      "Neamt": 0,
+      "Suceava": 0,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 3,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0,
+      "Calarasi": 0,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0,
+      "Prahova": 0,
+      "Teleorman": 0,
+      "Ilfov": 0,
+      "Bucuresti": 0,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 4,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 7,
+      "Caras-Severin": 4567,
+      "Hunedoara": 6,
+      "Timis": 179
+    },
+    "minValue": 0,
+    "maxValue": 4567,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 15,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația croată",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de croați pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

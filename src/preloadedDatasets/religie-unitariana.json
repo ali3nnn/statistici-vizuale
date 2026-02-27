@@ -1,0 +1,93 @@
+{
+  "name": "Populația unitariană",
+  "config": {
+    "data": {
+      "Bihor": 224,
+      "Bistrita-Nasaud": 46,
+      "Cluj": 5653,
+      "Maramures": 48,
+      "Satu Mare": 120,
+      "Salaj": 32,
+      "Alba": 1218,
+      "Brasov": 3793,
+      "Covasna": 7343,
+      "Harghita": 19001,
+      "Mures": 9347,
+      "Sibiu": 405,
+      "Bacau": 11,
+      "Botosani": 0,
+      "Iasi": 11,
+      "Neamt": 5,
+      "Suceava": 4,
+      "Vaslui": 5,
+      "Braila": 0,
+      "Buzau": 8,
+      "Constanta": 13,
+      "Galati": 3,
+      "Tulcea": 0,
+      "Vrancea": 3,
+      "Arges": 6,
+      "Calarasi": 0,
+      "Dambovita": 5,
+      "Giurgiu": 4,
+      "Ialomita": 0,
+      "Prahova": 6,
+      "Teleorman": 0,
+      "Ilfov": 14,
+      "Bucuresti": 68,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 5,
+      "Valcea": 7,
+      "Arad": 74,
+      "Caras-Severin": 5,
+      "Hunedoara": 380,
+      "Timis": 104
+    },
+    "minValue": 0,
+    "maxValue": 19001,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 270,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația unitariană",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de unitarieni pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

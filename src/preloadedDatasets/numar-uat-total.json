@@ -1,0 +1,93 @@
+{
+  "name": "Numărul de UAT-uri",
+  "config": {
+    "data": {
+      "Alba": 78,
+      "Arad": 78,
+      "Arges": 102,
+      "Bacau": 93,
+      "Bihor": 101,
+      "Bistrita-Nasaud": 62,
+      "Botosani": 78,
+      "Braila": 44,
+      "Brasov": 58,
+      "Bucuresti": 1,
+      "Buzau": 87,
+      "Calarasi": 55,
+      "Caras-Severin": 77,
+      "Cluj": 81,
+      "Constanta": 70,
+      "Covasna": 45,
+      "Dambovita": 89,
+      "Dolj": 111,
+      "Galati": 65,
+      "Giurgiu": 54,
+      "Gorj": 70,
+      "Harghita": 67,
+      "Hunedoara": 69,
+      "Ialomita": 66,
+      "Iasi": 98,
+      "Ilfov": 40,
+      "Maramures": 76,
+      "Mehedinti": 66,
+      "Mures": 102,
+      "Neamt": 83,
+      "Olt": 112,
+      "Prahova": 104,
+      "Salaj": 61,
+      "Satu Mare": 65,
+      "Sibiu": 64,
+      "Suceava": 114,
+      "Teleorman": 97,
+      "Timis": 99,
+      "Tulcea": 51,
+      "Valcea": 89,
+      "Vaslui": 86,
+      "Vrancea": 73
+    },
+    "minValue": 1,
+    "maxValue": 114,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 270,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Numărul de UAT-uri",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Comune, orașe și municipii per județ — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

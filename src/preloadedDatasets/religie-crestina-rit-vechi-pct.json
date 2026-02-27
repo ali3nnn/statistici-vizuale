@@ -1,0 +1,93 @@
+{
+  "name": "Creștini de Rit Vechi (%)",
+  "config": {
+    "data": {
+      "Bihor": 0,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 0,
+      "Maramures": 0.1,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 0,
+      "Brasov": 0,
+      "Covasna": 0.1,
+      "Harghita": 0,
+      "Mures": 0,
+      "Sibiu": 0,
+      "Bacau": 0.1,
+      "Botosani": 0.2,
+      "Iasi": 0.4,
+      "Neamt": 0.3,
+      "Suceava": 0.5,
+      "Vaslui": 0.2,
+      "Braila": 0.5,
+      "Buzau": 0,
+      "Constanta": 0.6,
+      "Galati": 0.1,
+      "Tulcea": 4.2,
+      "Vrancea": 0.1,
+      "Arges": 0,
+      "Calarasi": 0,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0.1,
+      "Prahova": 0,
+      "Teleorman": 0,
+      "Ilfov": 0.1,
+      "Bucuresti": 0,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 0,
+      "Caras-Severin": 0,
+      "Hunedoara": 0,
+      "Timis": 0.1
+    },
+    "minValue": 0,
+    "maxValue": 4.2,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 25,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Creștini de Rit Vechi (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul creștinilor de rit vechi pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

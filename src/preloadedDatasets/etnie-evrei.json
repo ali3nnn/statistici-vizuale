@@ -1,0 +1,93 @@
+{
+  "name": "Populația evreiască",
+  "config": {
+    "data": {
+      "Bihor": 135,
+      "Bistrita-Nasaud": 19,
+      "Cluj": 139,
+      "Maramures": 52,
+      "Satu Mare": 77,
+      "Salaj": 32,
+      "Alba": 14,
+      "Brasov": 81,
+      "Covasna": 6,
+      "Harghita": 4,
+      "Mures": 56,
+      "Sibiu": 23,
+      "Bacau": 31,
+      "Botosani": 32,
+      "Iasi": 133,
+      "Neamt": 29,
+      "Suceava": 36,
+      "Vaslui": 13,
+      "Braila": 31,
+      "Buzau": 10,
+      "Constanta": 37,
+      "Galati": 33,
+      "Tulcea": 8,
+      "Vrancea": 9,
+      "Arges": 5,
+      "Calarasi": 0,
+      "Dambovita": 10,
+      "Giurgiu": 4,
+      "Ialomita": 0,
+      "Prahova": 23,
+      "Teleorman": 3,
+      "Ilfov": 94,
+      "Bucuresti": 906,
+      "Dolj": 15,
+      "Gorj": 0,
+      "Mehedinti": 4,
+      "Olt": 3,
+      "Valcea": 4,
+      "Arad": 60,
+      "Caras-Severin": 21,
+      "Hunedoara": 37,
+      "Timis": 144
+    },
+    "minValue": 0,
+    "maxValue": 906,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația evreiască",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de evrei pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

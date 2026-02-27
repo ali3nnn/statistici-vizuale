@@ -1,0 +1,93 @@
+{
+  "name": "Populația atee",
+  "config": {
+    "data": {
+      "Bihor": 1241,
+      "Bistrita-Nasaud": 314,
+      "Cluj": 5401,
+      "Maramures": 654,
+      "Satu Mare": 423,
+      "Salaj": 240,
+      "Alba": 439,
+      "Brasov": 2436,
+      "Covasna": 192,
+      "Harghita": 217,
+      "Mures": 1006,
+      "Sibiu": 1336,
+      "Bacau": 540,
+      "Botosani": 306,
+      "Iasi": 2552,
+      "Neamt": 443,
+      "Suceava": 544,
+      "Vaslui": 259,
+      "Braila": 372,
+      "Buzau": 379,
+      "Constanta": 1963,
+      "Galati": 971,
+      "Tulcea": 296,
+      "Vrancea": 232,
+      "Arges": 809,
+      "Calarasi": 262,
+      "Dambovita": 568,
+      "Giurgiu": 266,
+      "Ialomita": 274,
+      "Prahova": 1446,
+      "Teleorman": 184,
+      "Ilfov": 3443,
+      "Bucuresti": 19517,
+      "Dolj": 1085,
+      "Gorj": 246,
+      "Mehedinti": 186,
+      "Olt": 274,
+      "Valcea": 377,
+      "Arad": 954,
+      "Caras-Severin": 314,
+      "Hunedoara": 765,
+      "Timis": 3503
+    },
+    "minValue": 184,
+    "maxValue": 19517,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 15,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația atee",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de atei pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -208,6 +208,110 @@ async function copyCapture() {
     }
 }
 
+// ============= Facebook Post =============
+
+async function captureAsDataURL() {
+    const captureArea = document.getElementById('capture');
+    const format = new URLSearchParams(window.location.search).get('format') || '4x5';
+    const width = 1080;
+    const height = format === '9x16' ? 1920 : 1350;
+
+    const sourceCanvas = await html2canvas(captureArea, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false,
+        onclone: (clonedDoc) => {
+            clonedDoc.body.classList.add('capturing');
+        },
+    });
+
+    const targetCanvas = document.createElement('canvas');
+    targetCanvas.width = width;
+    targetCanvas.height = height;
+    const ctx = targetCanvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, width, height);
+
+    const scale = Math.min(width / sourceCanvas.width, height / sourceCanvas.height);
+    const drawWidth = sourceCanvas.width * scale;
+    const drawHeight = sourceCanvas.height * scale;
+    ctx.drawImage(sourceCanvas, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+
+    return targetCanvas.toDataURL('image/jpeg', 0.9);
+}
+
+function openFacebookModal() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    document.getElementById('fb-date').value = tomorrow.toISOString().split('T')[0];
+    document.getElementById('fb-time').value = '10:00';
+    document.getElementById('fb-caption').value = '';
+    document.getElementById('fb-status').textContent = '';
+    document.getElementById('fb-status').className = 'modal-status';
+    document.getElementById('tab-now').classList.add('active');
+    document.getElementById('tab-schedule').classList.remove('active');
+    document.getElementById('schedule-fields').classList.remove('visible');
+    document.getElementById('btn-fb-submit').textContent = 'Post';
+    document.getElementById('btn-fb-submit').disabled = false;
+    document.getElementById('fb-modal-overlay').classList.add('visible');
+}
+
+async function submitFacebookPost() {
+    const isScheduled = document.getElementById('tab-schedule').classList.contains('active');
+    const caption = document.getElementById('fb-caption').value;
+    const submitBtn = document.getElementById('btn-fb-submit');
+    const statusEl = document.getElementById('fb-status');
+
+    let scheduledTime = null;
+    if (isScheduled) {
+        const date = document.getElementById('fb-date').value;
+        const time = document.getElementById('fb-time').value;
+        if (!date || !time) {
+            statusEl.textContent = 'Please select a date and time.';
+            statusEl.className = 'modal-status error';
+            return;
+        }
+        const scheduled = new Date(`${date}T${time}`);
+        const minTime = new Date(Date.now() + 10 * 60 * 1000);
+        if (scheduled < minTime) {
+            statusEl.textContent = 'Scheduled time must be at least 10 minutes from now.';
+            statusEl.className = 'modal-status error';
+            return;
+        }
+        scheduledTime = scheduled.toISOString();
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Posting...';
+    statusEl.textContent = '';
+    statusEl.className = 'modal-status';
+
+    try {
+        const imageBase64 = await captureAsDataURL();
+
+        const res = await fetch('/api/facebook', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ imageBase64, message: caption, scheduledTime }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to post');
+
+        statusEl.textContent = isScheduled ? 'Post scheduled!' : 'Posted successfully!';
+        statusEl.className = 'modal-status success';
+        setTimeout(() => {
+            document.getElementById('fb-modal-overlay').classList.remove('visible');
+        }, 1500);
+    } catch (err) {
+        statusEl.textContent = err.message;
+        statusEl.className = 'modal-status error';
+        submitBtn.disabled = false;
+        submitBtn.textContent = isScheduled ? 'Schedule' : 'Post';
+    }
+}
+
 // ============= Main =============
 
 (async function init() {
@@ -369,6 +473,30 @@ async function copyCapture() {
         // Wire download/copy buttons
         document.getElementById('btn-download').addEventListener('click', downloadCapture);
         document.getElementById('btn-copy').addEventListener('click', copyCapture);
+
+        // Wire Facebook post button and modal
+        document.getElementById('btn-fb').addEventListener('click', openFacebookModal);
+        document.getElementById('btn-fb-cancel').addEventListener('click', () => {
+            document.getElementById('fb-modal-overlay').classList.remove('visible');
+        });
+        document.getElementById('fb-modal-overlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('fb-modal-overlay')) {
+                document.getElementById('fb-modal-overlay').classList.remove('visible');
+            }
+        });
+        document.getElementById('tab-now').addEventListener('click', () => {
+            document.getElementById('tab-now').classList.add('active');
+            document.getElementById('tab-schedule').classList.remove('active');
+            document.getElementById('schedule-fields').classList.remove('visible');
+            document.getElementById('btn-fb-submit').textContent = 'Post';
+        });
+        document.getElementById('tab-schedule').addEventListener('click', () => {
+            document.getElementById('tab-schedule').classList.add('active');
+            document.getElementById('tab-now').classList.remove('active');
+            document.getElementById('schedule-fields').classList.add('visible');
+            document.getElementById('btn-fb-submit').textContent = 'Schedule';
+        });
+        document.getElementById('btn-fb-submit').addEventListener('click', submitFacebookPost);
 
     } catch (err) {
         console.error('Failed to load share:', err);

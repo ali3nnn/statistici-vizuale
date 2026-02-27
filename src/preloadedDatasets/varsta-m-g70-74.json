@@ -1,0 +1,93 @@
+{
+  "name": "Masculin 70–74 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 4.2,
+      "Bistrita-Nasaud": 4.1,
+      "Cluj": 4.4,
+      "Maramures": 4.1,
+      "Satu Mare": 3.9,
+      "Salaj": 4.5,
+      "Alba": 4.8,
+      "Brasov": 4.8,
+      "Covasna": 4.2,
+      "Harghita": 4.4,
+      "Mures": 4.3,
+      "Sibiu": 4.5,
+      "Bacau": 4.1,
+      "Botosani": 3.8,
+      "Iasi": 3.9,
+      "Neamt": 4.5,
+      "Suceava": 3.9,
+      "Vaslui": 4.1,
+      "Braila": 5.1,
+      "Buzau": 4.9,
+      "Constanta": 4.6,
+      "Galati": 4.7,
+      "Tulcea": 5,
+      "Vrancea": 4.3,
+      "Arges": 4.8,
+      "Calarasi": 4.4,
+      "Dambovita": 4.5,
+      "Giurgiu": 4.7,
+      "Ialomita": 4.3,
+      "Prahova": 4.6,
+      "Teleorman": 6.1,
+      "Ilfov": 3.1,
+      "Bucuresti": 4.4,
+      "Dolj": 4.8,
+      "Gorj": 4.3,
+      "Mehedinti": 5.2,
+      "Olt": 5,
+      "Valcea": 5.2,
+      "Arad": 4.7,
+      "Caras-Severin": 5.5,
+      "Hunedoara": 5.2,
+      "Timis": 4.4
+    },
+    "minValue": 3.1,
+    "maxValue": 6.1,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Masculin 70–74 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea bărbaților cu vârsta 70–74 ani în totalul bărbaților — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Populația greacă",
+  "config": {
+    "data": {
+      "Bihor": 40,
+      "Bistrita-Nasaud": 3,
+      "Cluj": 68,
+      "Maramures": 10,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 0,
+      "Brasov": 76,
+      "Covasna": 3,
+      "Harghita": 0,
+      "Mures": 9,
+      "Sibiu": 28,
+      "Bacau": 30,
+      "Botosani": 12,
+      "Iasi": 72,
+      "Neamt": 31,
+      "Suceava": 14,
+      "Vaslui": 5,
+      "Braila": 97,
+      "Buzau": 10,
+      "Constanta": 232,
+      "Galati": 94,
+      "Tulcea": 266,
+      "Vrancea": 5,
+      "Arges": 30,
+      "Calarasi": 3,
+      "Dambovita": 15,
+      "Giurgiu": 7,
+      "Ialomita": 8,
+      "Prahova": 74,
+      "Teleorman": 5,
+      "Ilfov": 133,
+      "Bucuresti": 553,
+      "Dolj": 34,
+      "Gorj": 9,
+      "Mehedinti": 11,
+      "Olt": 3,
+      "Valcea": 7,
+      "Arad": 16,
+      "Caras-Severin": 5,
+      "Hunedoara": 19,
+      "Timis": 42
+    },
+    "minValue": 0,
+    "maxValue": 553,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 205,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația greacă",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de greci pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

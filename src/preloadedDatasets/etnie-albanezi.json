@@ -1,0 +1,93 @@
+{
+  "name": "Populația albaneză",
+  "config": {
+    "data": {
+      "Bihor": 49,
+      "Bistrita-Nasaud": 4,
+      "Cluj": 22,
+      "Maramures": 5,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 0,
+      "Brasov": 5,
+      "Covasna": 0,
+      "Harghita": 0,
+      "Mures": 3,
+      "Sibiu": 0,
+      "Bacau": 9,
+      "Botosani": 4,
+      "Iasi": 13,
+      "Neamt": 0,
+      "Suceava": 11,
+      "Vaslui": 3,
+      "Braila": 5,
+      "Buzau": 5,
+      "Constanta": 28,
+      "Galati": 5,
+      "Tulcea": 4,
+      "Vrancea": 4,
+      "Arges": 12,
+      "Calarasi": 0,
+      "Dambovita": 5,
+      "Giurgiu": 9,
+      "Ialomita": 4,
+      "Prahova": 8,
+      "Teleorman": 0,
+      "Ilfov": 14,
+      "Bucuresti": 56,
+      "Dolj": 69,
+      "Gorj": 158,
+      "Mehedinti": 0,
+      "Olt": 10,
+      "Valcea": 3,
+      "Arad": 46,
+      "Caras-Severin": 10,
+      "Hunedoara": 24,
+      "Timis": 29
+    },
+    "minValue": 0,
+    "maxValue": 158,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 355,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația albaneză",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de albanezi pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

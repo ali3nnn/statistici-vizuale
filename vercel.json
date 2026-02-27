@@ -1,4 +1,12 @@
 {
+  "functions": {
+    "api/datasets.js": {
+      "includeFiles": "src/preloadedDatasets/**/*.json"
+    },
+    "api/datasets/[slug].js": {
+      "includeFiles": "src/preloadedDatasets/**/*.json"
+    }
+  },
   "devCommand": "npx parcel src/index.html src/app/index.html src/share.html --port $PORT",
   "buildCommand": "npx parcel build src/index.html src/app/index.html src/share.html --dist-dir dist && cp static/robots.txt static/sitemap.xml dist/",
   "rewrites": [

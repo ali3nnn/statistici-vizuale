@@ -1,0 +1,93 @@
+{
+  "name": "Masculin 65–69 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 5.8,
+      "Bistrita-Nasaud": 5.4,
+      "Cluj": 5.9,
+      "Maramures": 5.5,
+      "Satu Mare": 5.3,
+      "Salaj": 5.7,
+      "Alba": 6.7,
+      "Brasov": 7.1,
+      "Covasna": 6.1,
+      "Harghita": 5.7,
+      "Mures": 5.9,
+      "Sibiu": 6.2,
+      "Bacau": 5.9,
+      "Botosani": 5,
+      "Iasi": 5.1,
+      "Neamt": 6.2,
+      "Suceava": 5.1,
+      "Vaslui": 5.5,
+      "Braila": 6.9,
+      "Buzau": 6.6,
+      "Constanta": 6.4,
+      "Galati": 6.6,
+      "Tulcea": 7.1,
+      "Vrancea": 6,
+      "Arges": 6.1,
+      "Calarasi": 5.6,
+      "Dambovita": 5.8,
+      "Giurgiu": 5.7,
+      "Ialomita": 6,
+      "Prahova": 6.5,
+      "Teleorman": 6.8,
+      "Ilfov": 4.4,
+      "Bucuresti": 6.1,
+      "Dolj": 6.2,
+      "Gorj": 5.9,
+      "Mehedinti": 6.6,
+      "Olt": 6.3,
+      "Valcea": 6.4,
+      "Arad": 6.1,
+      "Caras-Severin": 7.5,
+      "Hunedoara": 6.9,
+      "Timis": 5.9
+    },
+    "minValue": 4.4,
+    "maxValue": 7.5,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Masculin 65–69 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea bărbaților cu vârsta 65–69 ani în totalul bărbaților — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

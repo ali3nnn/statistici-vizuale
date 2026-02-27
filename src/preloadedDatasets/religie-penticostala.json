@@ -1,0 +1,93 @@
+{
+  "name": "Populația penticostală",
+  "config": {
+    "data": {
+      "Bihor": 40643,
+      "Bistrita-Nasaud": 24334,
+      "Cluj": 21503,
+      "Maramures": 18317,
+      "Satu Mare": 12767,
+      "Salaj": 11948,
+      "Alba": 7238,
+      "Brasov": 12864,
+      "Covasna": 7231,
+      "Harghita": 910,
+      "Mures": 10942,
+      "Sibiu": 4601,
+      "Bacau": 8150,
+      "Botosani": 11164,
+      "Iasi": 5015,
+      "Neamt": 2484,
+      "Suceava": 54583,
+      "Vaslui": 4126,
+      "Braila": 880,
+      "Buzau": 2356,
+      "Constanta": 2703,
+      "Galati": 7695,
+      "Tulcea": 382,
+      "Vrancea": 8069,
+      "Arges": 3129,
+      "Calarasi": 2065,
+      "Dambovita": 5983,
+      "Giurgiu": 620,
+      "Ialomita": 8152,
+      "Prahova": 5330,
+      "Teleorman": 545,
+      "Ilfov": 1418,
+      "Bucuresti": 3587,
+      "Dolj": 3241,
+      "Gorj": 2312,
+      "Mehedinti": 2573,
+      "Olt": 448,
+      "Valcea": 781,
+      "Arad": 33585,
+      "Caras-Severin": 8362,
+      "Hunedoara": 14173,
+      "Timis": 27266
+    },
+    "minValue": 382,
+    "maxValue": 54583,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația penticostală",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de penticostali pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

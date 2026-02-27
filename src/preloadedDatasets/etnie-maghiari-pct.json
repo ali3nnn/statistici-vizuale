@@ -1,0 +1,93 @@
+{
+  "name": "Maghiari (%)",
+  "config": {
+    "data": {
+      "Bihor": 20.4,
+      "Bistrita-Nasaud": 3.7,
+      "Cluj": 11.6,
+      "Maramures": 5.1,
+      "Satu Mare": 28.3,
+      "Salaj": 19.1,
+      "Alba": 3.5,
+      "Brasov": 5.2,
+      "Covasna": 66.7,
+      "Harghita": 79.5,
+      "Mures": 31.8,
+      "Sibiu": 1.6,
+      "Bacau": 0.8,
+      "Botosani": 0,
+      "Iasi": 0,
+      "Neamt": 0,
+      "Suceava": 0,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 0,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 0,
+      "Calarasi": 0,
+      "Dambovita": 0,
+      "Giurgiu": 0,
+      "Ialomita": 0,
+      "Prahova": 0,
+      "Teleorman": 0,
+      "Ilfov": 0.1,
+      "Bucuresti": 0.1,
+      "Dolj": 0,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 0,
+      "Arad": 6.3,
+      "Caras-Severin": 0.6,
+      "Hunedoara": 2.5,
+      "Timis": 3.3
+    },
+    "minValue": 0,
+    "maxValue": 79.5,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 30,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Maghiari (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul populației maghiare pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

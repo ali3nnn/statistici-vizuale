@@ -1,0 +1,93 @@
+{
+  "name": "Populația tătară",
+  "config": {
+    "data": {
+      "Bihor": 0,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 20,
+      "Maramures": 0,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 0,
+      "Brasov": 15,
+      "Covasna": 0,
+      "Harghita": 0,
+      "Mures": 9,
+      "Sibiu": 4,
+      "Bacau": 6,
+      "Botosani": 0,
+      "Iasi": 5,
+      "Neamt": 0,
+      "Suceava": 4,
+      "Vaslui": 0,
+      "Braila": 4,
+      "Buzau": 0,
+      "Constanta": 16918,
+      "Galati": 0,
+      "Tulcea": 106,
+      "Vrancea": 0,
+      "Arges": 8,
+      "Calarasi": 128,
+      "Dambovita": 0,
+      "Giurgiu": 10,
+      "Ialomita": 8,
+      "Prahova": 13,
+      "Teleorman": 0,
+      "Ilfov": 122,
+      "Bucuresti": 719,
+      "Dolj": 3,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 4,
+      "Valcea": 7,
+      "Arad": 0,
+      "Caras-Severin": 0,
+      "Hunedoara": 0,
+      "Timis": 14
+    },
+    "minValue": 0,
+    "maxValue": 16918,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 20,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația tătară",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de tătari pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

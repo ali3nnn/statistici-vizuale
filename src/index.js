@@ -6,8 +6,6 @@ import {
     getCountyAbbreviation
 } from './utils/countyNameShortener.js'
 
-import { preloadedDatasets } from './preloadedDatasets/index.js'
-
 // const abv = getCountyAbbreviation("Cluj")
 // console.log(abv)
 
@@ -70,6 +68,7 @@ let activePalette = palettes[0];
 let paletteReversed = false;
 let normalizationMode = 3; // 0–6: 0=strong log … 3=linear … 6=strong exp
 let canvasDark = false;
+let colorSteps = 42; // 2 (binary) … 42 (continuous)
 
 // ============= Color Functions =============
 
@@ -160,6 +159,11 @@ function getColorDivergingExp(minVal, maxVal, currentNumber, highIsBad, countryN
 
     if (highIsBad) normalized = 1 - normalized;
     if (paletteReversed) normalized = 1 - normalized;
+
+    // Color steps: quantize normalized value to N discrete shades
+    if (colorSteps < 42) {
+        normalized = Math.round(normalized * (colorSteps - 1)) / (colorSteps - 1);
+    }
 
     // Light (95% lightness, 30% saturation) → Dark (30% lightness, 100% saturation)
     const lightness = 95 - 65 * normalized;
@@ -887,6 +891,13 @@ document.getElementById('norm-slider').addEventListener('input', () => {
     markDirty();
 });
 
+document.getElementById('color-spread').addEventListener('input', () => {
+    pushUndo();
+    colorSteps = parseInt(document.getElementById('color-spread').value, 10);
+    restyleMaps();
+    markDirty();
+});
+
 // ============= Watermark / Branding =============
 
 let watermarkDataUrl = null;
@@ -1091,6 +1102,7 @@ function captureSnapshot() {
         activePalette: { ...activePalette },
         paletteReversed,
         normalizationMode,
+        colorSteps,
         canvasDark,
         activeFormats: [...activeFormats],
         text: {
@@ -1122,6 +1134,7 @@ function restoreSnapshot(snap) {
     activePalette = { ...snap.activePalette };
     paletteReversed = snap.paletteReversed;
     normalizationMode = parseNormMode(snap.normalizationMode);
+    colorSteps = snap.colorSteps ?? 42;
     canvasDark = snap.canvasDark ?? false;
     applyCanvasDark();
 
@@ -1134,6 +1147,7 @@ function restoreSnapshot(snap) {
         updateHuePreview(activePalette.hue);
     }
     document.getElementById('btn-reverse-palette').classList.toggle('active', paletteReversed);
+    document.getElementById('color-spread').value = colorSteps;
     setNormSlider(normalizationMode);
     updateNormHint();
 
@@ -1362,6 +1376,7 @@ function buildVersionData() {
         activePalette: { ...activePalette },
         paletteReversed,
         normalizationMode,
+        colorSteps,
         canvasDark,
         activeFormats: [...activeFormats],
         text: {
@@ -1417,6 +1432,7 @@ function loadVersion(versionData) {
     activePalette = versionData.activePalette;
     paletteReversed = versionData.paletteReversed;
     normalizationMode = parseNormMode(versionData.normalizationMode);
+    colorSteps = versionData.colorSteps ?? 42;
     canvasDark = versionData.canvasDark ?? false;
     applyCanvasDark();
 
@@ -1430,6 +1446,7 @@ function loadVersion(versionData) {
     }
 
     document.getElementById('btn-reverse-palette').classList.toggle('active', paletteReversed);
+    document.getElementById('color-spread').value = colorSteps;
 
     setNormSlider(normalizationMode);
     updateNormHint();
@@ -1702,30 +1719,57 @@ document.getElementById('saved-panel-close').addEventListener('click', closeSave
     });
     document.getElementById('datasets-panel-close').addEventListener('click', closeDatasetsPanel);
 
-    // Populate datasets list
+    // Populate datasets list from API, grouped by availability
     const datasetsList = document.getElementById('datasets-list');
-    preloadedDatasets.forEach(ds => {
-        const item = document.createElement('div');
-        item.className = 'datasets-item';
-        item.innerHTML = `<div><div class="datasets-item-name">${ds.name}</div><div class="datasets-item-source">${ds.config.source}</div></div>`;
-        item.addEventListener('click', () => {
-            loadVersion(ds.config);
-            closeDatasetsPanel();
-        });
-        datasetsList.appendChild(item);
+    fetch('/api/datasets').then(r => r.json()).then(list => {
+        const available = list.filter(ds => !ds.disabled);
+        const upcoming  = list.filter(ds => ds.disabled);
+
+        function makeItem(ds) {
+            const item = document.createElement('div');
+            item.className = 'datasets-item' + (ds.disabled ? ' datasets-item--disabled' : '');
+            item.innerHTML = ds.disabled
+                ? `<div><div class="datasets-item-name">${ds.name}</div><div class="datasets-item-soon">Disponibil în curând</div></div>`
+                : `<div><div class="datasets-item-name">${ds.name}</div></div>`;
+            if (!ds.disabled) {
+                item.addEventListener('click', () => {
+                    fetch(`/api/datasets/${ds.slug}`)
+                        .then(r => r.json())
+                        .then(config => {
+                            loadVersion(config);
+                            closeDatasetsPanel();
+                        });
+                });
+            }
+            return item;
+        }
+
+        function makeSection(label) {
+            const el = document.createElement('div');
+            el.className = 'datasets-section-header';
+            el.textContent = label;
+            return el;
+        }
+
+        datasetsList.appendChild(makeSection('Disponibile'));
+        available.forEach(ds => datasetsList.appendChild(makeItem(ds)));
+
+        datasetsList.appendChild(makeSection('În curând'));
+        upcoming.forEach(ds => datasetsList.appendChild(makeItem(ds)));
     });
 })();
 
-function loadRandomPreloaded() {
-    const ds = preloadedDatasets[Math.floor(Math.random() * preloadedDatasets.length)];
-    if (!ds) return;
-    setTimeout(() => {
-        loadVersion(ds.config);
-        undoStack = [];
-        redoStack = [];
-        updateUndoRedoButtons();
-        clearDirty();
-    }, 300);
+async function loadRandomPreloaded() {
+    const all = await fetch('/api/datasets').then(r => r.json()).catch(() => []);
+    const list = all.filter(ds => !ds.disabled);
+    if (!list.length) return;
+    const ds = list[Math.floor(Math.random() * list.length)];
+    const config = await fetch(`/api/datasets/${ds.slug}`).then(r => r.json());
+    loadVersion(config);
+    undoStack = [];
+    redoStack = [];
+    updateUndoRedoButtons();
+    clearDirty();
 }
 
 // Fetch configs from DB and auto-load last saved config (or shared config)

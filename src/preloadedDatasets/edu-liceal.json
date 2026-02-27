@@ -1,0 +1,93 @@
+{
+  "name": "Absolvenți de liceu (%)",
+  "config": {
+    "data": {
+      "Alba": 26,
+      "Arad": 25.4,
+      "Arges": 27.2,
+      "Bacau": 21.3,
+      "Bihor": 25.3,
+      "Bistrita-Nasaud": 22.6,
+      "Botosani": 22.9,
+      "Brasov": 23.5,
+      "Braila": 22.9,
+      "Buzau": 24,
+      "Caras-Severin": 26.8,
+      "Calarasi": 23.7,
+      "Cluj": 23.5,
+      "Constanta": 26,
+      "Covasna": 23.7,
+      "Dambovita": 27.5,
+      "Dolj": 24.6,
+      "Galati": 22,
+      "Giurgiu": 25,
+      "Gorj": 30.5,
+      "Harghita": 26.7,
+      "Hunedoara": 28.7,
+      "Ialomita": 22.5,
+      "Iasi": 19.3,
+      "Ilfov": 24.7,
+      "Maramures": 25.1,
+      "Mehedinti": 27.8,
+      "Mures": 22.4,
+      "Neamt": 21.4,
+      "Olt": 26.5,
+      "Prahova": 25.1,
+      "Satu Mare": 24.3,
+      "Salaj": 26.3,
+      "Sibiu": 22,
+      "Suceava": 22.3,
+      "Teleorman": 25.9,
+      "Timis": 24.2,
+      "Tulcea": 23.9,
+      "Vaslui": 20.3,
+      "Valcea": 27.9,
+      "Vrancea": 22.1,
+      "Bucuresti": 24
+    },
+    "minValue": 19.3,
+    "maxValue": 30.5,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 140,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Absolvenți de liceu (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea populației cu studii liceale finalizate — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

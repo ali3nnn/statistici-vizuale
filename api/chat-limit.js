@@ -1,6 +1,6 @@
 const sql = require('./db');
 
-const MAX_TURNS_PER_DAY = 2;
+const MAX_TURNS_PER_DAY = parseInt(process.env.AI_MAX_TURNS_PER_DAY, 10) || 2;
 
 module.exports = async function handler(req, res) {
     if (req.method === 'GET') {

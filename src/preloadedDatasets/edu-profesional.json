@@ -1,0 +1,93 @@
+{
+  "name": "Absolvenți de școală profesională sau de ucenici (%)",
+  "config": {
+    "data": {
+      "Alba": 18.1,
+      "Arad": 14,
+      "Arges": 17.1,
+      "Bacau": 19.7,
+      "Bihor": 14.3,
+      "Bistrita-Nasaud": 17.4,
+      "Botosani": 19.3,
+      "Brasov": 14.9,
+      "Braila": 16.8,
+      "Buzau": 16.9,
+      "Caras-Severin": 13,
+      "Calarasi": 16.4,
+      "Cluj": 13.6,
+      "Constanta": 11.7,
+      "Covasna": 15.9,
+      "Dambovita": 16.3,
+      "Dolj": 14.6,
+      "Galati": 17.3,
+      "Giurgiu": 12.4,
+      "Gorj": 16.5,
+      "Harghita": 16.9,
+      "Hunedoara": 14.6,
+      "Ialomita": 16.9,
+      "Iasi": 16.7,
+      "Ilfov": 10.4,
+      "Maramures": 15.8,
+      "Mehedinti": 14.2,
+      "Mures": 17.1,
+      "Neamt": 21.2,
+      "Olt": 19.2,
+      "Prahova": 18.1,
+      "Satu Mare": 15.4,
+      "Salaj": 16.4,
+      "Sibiu": 16.5,
+      "Suceava": 17.2,
+      "Teleorman": 17.8,
+      "Timis": 13,
+      "Tulcea": 16.8,
+      "Vaslui": 19.4,
+      "Valcea": 17.3,
+      "Vrancea": 16.5,
+      "Bucuresti": 8.1
+    },
+    "minValue": 8.1,
+    "maxValue": 21.2,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 30,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Absolvenți de școală profesională sau de ucenici (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea populației cu educație profesională sau ucenicie — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

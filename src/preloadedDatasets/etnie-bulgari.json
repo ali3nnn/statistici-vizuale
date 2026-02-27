@@ -1,0 +1,93 @@
+{
+  "name": "Populația bulgară",
+  "config": {
+    "data": {
+      "Bihor": 15,
+      "Bistrita-Nasaud": 0,
+      "Cluj": 21,
+      "Maramures": 0,
+      "Satu Mare": 0,
+      "Salaj": 0,
+      "Alba": 6,
+      "Brasov": 22,
+      "Covasna": 0,
+      "Harghita": 0,
+      "Mures": 11,
+      "Sibiu": 9,
+      "Bacau": 3,
+      "Botosani": 0,
+      "Iasi": 13,
+      "Neamt": 3,
+      "Suceava": 0,
+      "Vaslui": 3,
+      "Braila": 10,
+      "Buzau": 7,
+      "Constanta": 72,
+      "Galati": 8,
+      "Tulcea": 34,
+      "Vrancea": 0,
+      "Arges": 4,
+      "Calarasi": 16,
+      "Dambovita": 1487,
+      "Giurgiu": 8,
+      "Ialomita": 5,
+      "Prahova": 13,
+      "Teleorman": 32,
+      "Ilfov": 92,
+      "Bucuresti": 239,
+      "Dolj": 27,
+      "Gorj": 0,
+      "Mehedinti": 7,
+      "Olt": 7,
+      "Valcea": 0,
+      "Arad": 510,
+      "Caras-Severin": 17,
+      "Hunedoara": 16,
+      "Timis": 3244
+    },
+    "minValue": 0,
+    "maxValue": 3244,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 130,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația bulgară",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de bulgari pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

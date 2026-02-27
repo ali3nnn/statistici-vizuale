@@ -1,0 +1,93 @@
+{
+  "name": "Populația sârbă",
+  "config": {
+    "data": {
+      "Bihor": 25,
+      "Bistrita-Nasaud": 3,
+      "Cluj": 27,
+      "Maramures": 13,
+      "Satu Mare": 4,
+      "Salaj": 3,
+      "Alba": 3,
+      "Brasov": 22,
+      "Covasna": 3,
+      "Harghita": 8,
+      "Mures": 8,
+      "Sibiu": 22,
+      "Bacau": 4,
+      "Botosani": 5,
+      "Iasi": 8,
+      "Neamt": 5,
+      "Suceava": 7,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 0,
+      "Constanta": 20,
+      "Galati": 4,
+      "Tulcea": 0,
+      "Vrancea": 0,
+      "Arges": 8,
+      "Calarasi": 0,
+      "Dambovita": 465,
+      "Giurgiu": 6,
+      "Ialomita": 3,
+      "Prahova": 7,
+      "Teleorman": 0,
+      "Ilfov": 26,
+      "Bucuresti": 147,
+      "Dolj": 22,
+      "Gorj": 7,
+      "Mehedinti": 727,
+      "Olt": 9,
+      "Valcea": 8,
+      "Arad": 510,
+      "Caras-Severin": 3408,
+      "Hunedoara": 28,
+      "Timis": 6447
+    },
+    "minValue": 0,
+    "maxValue": 6447,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 215,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația sârbă",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de sârbi pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

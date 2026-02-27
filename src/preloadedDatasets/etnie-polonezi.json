@@ -1,0 +1,93 @@
+{
+  "name": "Populația poloneză",
+  "config": {
+    "data": {
+      "Bihor": 25,
+      "Bistrita-Nasaud": 6,
+      "Cluj": 26,
+      "Maramures": 10,
+      "Satu Mare": 3,
+      "Salaj": 0,
+      "Alba": 4,
+      "Brasov": 20,
+      "Covasna": 8,
+      "Harghita": 4,
+      "Mures": 5,
+      "Sibiu": 19,
+      "Bacau": 7,
+      "Botosani": 7,
+      "Iasi": 15,
+      "Neamt": 7,
+      "Suceava": 1667,
+      "Vaslui": 0,
+      "Braila": 0,
+      "Buzau": 3,
+      "Constanta": 15,
+      "Galati": 0,
+      "Tulcea": 0,
+      "Vrancea": 4,
+      "Arges": 3,
+      "Calarasi": 5,
+      "Dambovita": 7,
+      "Giurgiu": 0,
+      "Ialomita": 0,
+      "Prahova": 10,
+      "Teleorman": 0,
+      "Ilfov": 25,
+      "Bucuresti": 123,
+      "Dolj": 5,
+      "Gorj": 0,
+      "Mehedinti": 0,
+      "Olt": 0,
+      "Valcea": 3,
+      "Arad": 20,
+      "Caras-Severin": 6,
+      "Hunedoara": 28,
+      "Timis": 32
+    },
+    "minValue": 0,
+    "maxValue": 1667,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Red",
+      "hue": 5,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația poloneză",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de polonezi pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Masculin 80–84 ani (%)",
+  "config": {
+    "data": {
+      "Bihor": 1.5,
+      "Bistrita-Nasaud": 1.5,
+      "Cluj": 2,
+      "Maramures": 1.6,
+      "Satu Mare": 1.2,
+      "Salaj": 1.9,
+      "Alba": 2,
+      "Brasov": 1.8,
+      "Covasna": 1.7,
+      "Harghita": 1.8,
+      "Mures": 1.9,
+      "Sibiu": 1.6,
+      "Bacau": 1.8,
+      "Botosani": 2,
+      "Iasi": 1.6,
+      "Neamt": 2.3,
+      "Suceava": 1.8,
+      "Vaslui": 1.8,
+      "Braila": 2.2,
+      "Buzau": 2.2,
+      "Constanta": 1.6,
+      "Galati": 1.8,
+      "Tulcea": 1.7,
+      "Vrancea": 2,
+      "Arges": 1.9,
+      "Calarasi": 2,
+      "Dambovita": 1.7,
+      "Giurgiu": 2,
+      "Ialomita": 1.9,
+      "Prahova": 2.1,
+      "Teleorman": 2.8,
+      "Ilfov": 1.1,
+      "Bucuresti": 1.7,
+      "Dolj": 2,
+      "Gorj": 1.8,
+      "Mehedinti": 2,
+      "Olt": 2.1,
+      "Valcea": 2.3,
+      "Arad": 1.8,
+      "Caras-Severin": 2.1,
+      "Hunedoara": 2.2,
+      "Timis": 1.5
+    },
+    "minValue": 1.1,
+    "maxValue": 2.8,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Masculin 80–84 ani (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Ponderea bărbaților cu vârsta 80–84 ani în totalul bărbaților — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

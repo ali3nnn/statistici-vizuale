@@ -1,0 +1,93 @@
+{
+  "name": "Etnie nedeclarată (%)",
+  "config": {
+    "data": {
+      "Bihor": 8.8,
+      "Bistrita-Nasaud": 8.6,
+      "Cluj": 13.5,
+      "Maramures": 10.7,
+      "Satu Mare": 9.9,
+      "Salaj": 8.2,
+      "Alba": 9.8,
+      "Brasov": 13.7,
+      "Covasna": 7,
+      "Harghita": 7.2,
+      "Mures": 10.5,
+      "Sibiu": 13.6,
+      "Bacau": 13.2,
+      "Botosani": 9.1,
+      "Iasi": 17.6,
+      "Neamt": 12.3,
+      "Suceava": 10.5,
+      "Vaslui": 13.8,
+      "Braila": 11.5,
+      "Buzau": 9.9,
+      "Constanta": 16,
+      "Galati": 13.5,
+      "Tulcea": 13,
+      "Vrancea": 9.5,
+      "Arges": 9.6,
+      "Calarasi": 10.2,
+      "Dambovita": 8.4,
+      "Giurgiu": 9.9,
+      "Ialomita": 11.7,
+      "Prahova": 10.8,
+      "Teleorman": 9.7,
+      "Ilfov": 18,
+      "Bucuresti": 25.6,
+      "Dolj": 12.3,
+      "Gorj": 8.7,
+      "Mehedinti": 12.4,
+      "Olt": 9,
+      "Valcea": 9,
+      "Arad": 10.1,
+      "Caras-Severin": 13,
+      "Hunedoara": 12.4,
+      "Timis": 17
+    },
+    "minValue": 7,
+    "maxValue": 25.6,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Purple",
+      "hue": 270,
+      "id": "purple"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Etnie nedeclarată (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Procentul persoanelor cu etnie nedeclarată pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

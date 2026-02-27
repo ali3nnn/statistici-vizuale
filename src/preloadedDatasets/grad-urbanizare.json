@@ -88,5 +88,6 @@
       "4x5": "vertical",
       "9x16": "vertical"
     }
-  }
+  },
+  "disabled": false
 }

@@ -1,0 +1,93 @@
+{
+  "name": "Populația din localitățile mari",
+  "config": {
+    "data": {
+      "Alba": 161793,
+      "Arad": 192300,
+      "Arges": 272070,
+      "Bacau": 257683,
+      "Bihor": 235638,
+      "Bistrita-Nasaud": 111283,
+      "Botosani": 135412,
+      "Braila": 154686,
+      "Brasov": 376732,
+      "Bucuresti": 1716961,
+      "Buzau": 133255,
+      "Calarasi": 90887,
+      "Caras-Severin": 93056,
+      "Cluj": 485751,
+      "Constanta": 435848,
+      "Covasna": 66323,
+      "Dambovita": 107973,
+      "Dolj": 289239,
+      "Galati": 272384,
+      "Giurgiu": 67357,
+      "Gorj": 99741,
+      "Harghita": 94312,
+      "Hunedoara": 243523,
+      "Ialomita": 95156,
+      "Iasi": 409202,
+      "Ilfov": 398755,
+      "Maramures": 210104,
+      "Mehedinti": 89886,
+      "Mures": 215466,
+      "Neamt": 156971,
+      "Olt": 131326,
+      "Prahova": 328984,
+      "Salaj": 66307,
+      "Satu Mare": 125093,
+      "Sibiu": 226117,
+      "Suceava": 224120,
+      "Teleorman": 104977,
+      "Timis": 365813,
+      "Tulcea": 65624,
+      "Valcea": 108768,
+      "Vaslui": 140555,
+      "Vrancea": 93140
+    },
+    "minValue": 65624,
+    "maxValue": 1716961,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Blue",
+      "hue": 220,
+      "id": "blue"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația din localitățile mari",
+        "textAlign": "peste 10.000 locuitori",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Locuitori în UAT-uri cu >10.000 loc. pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Rată de dependență demografică (%)",
+  "config": {
+    "data": {
+      "Bihor": 68.1,
+      "Bistrita-Nasaud": 69.1,
+      "Cluj": 65.1,
+      "Maramures": 66.7,
+      "Satu Mare": 65.9,
+      "Salaj": 73.1,
+      "Alba": 69.5,
+      "Brasov": 73.9,
+      "Covasna": 71.6,
+      "Harghita": 72,
+      "Mures": 73.3,
+      "Sibiu": 71.4,
+      "Bacau": 74.7,
+      "Botosani": 70.5,
+      "Iasi": 77.8,
+      "Neamt": 76.7,
+      "Suceava": 76.4,
+      "Vaslui": 80,
+      "Braila": 72.8,
+      "Buzau": 74.1,
+      "Constanta": 70.7,
+      "Galati": 71.8,
+      "Tulcea": 72,
+      "Vrancea": 73.9,
+      "Arges": 66.5,
+      "Calarasi": 73.3,
+      "Dambovita": 67.2,
+      "Giurgiu": 70.4,
+      "Ialomita": 77.8,
+      "Prahova": 69.8,
+      "Teleorman": 79.2,
+      "Ilfov": 57,
+      "Bucuresti": 63.7,
+      "Dolj": 70.5,
+      "Gorj": 60.6,
+      "Mehedinti": 69.9,
+      "Olt": 67.5,
+      "Valcea": 70.6,
+      "Arad": 68.9,
+      "Caras-Severin": 73.7,
+      "Hunedoara": 69,
+      "Timis": 64.4
+    },
+    "minValue": 57,
+    "maxValue": 80,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Orange",
+      "hue": 20,
+      "id": "orange"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "none",
+    "text": {
+      "title": {
+        "innerHTML": "Rată de dependență demografică (%)",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Raport (0–19 + 65+) / (20–64) × 100 — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

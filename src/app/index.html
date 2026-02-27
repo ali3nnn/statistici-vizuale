@@ -492,6 +492,36 @@
             margin-top: 2px;
         }
 
+        .datasets-section-header {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #999;
+            padding: 12px 12px 4px;
+        }
+
+        .datasets-section-header:first-child {
+            padding-top: 4px;
+        }
+
+        .datasets-item--disabled {
+            opacity: 0.55;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .datasets-item--disabled .datasets-item-name {
+            color: #555;
+        }
+
+        .datasets-item-soon {
+            font-size: 10px;
+            color: #999;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
         .saved-panel {
             position: fixed;
             top: 0;
@@ -2286,6 +2316,16 @@
                     <label>Color palette</label>
                     <div class="palette-grid" id="palette-grid"></div>
                     <button class="btn-reverse-palette" id="btn-reverse-palette">Reverse palette</button>
+                </div>
+                <div class="control-section">
+                    <label>Color shades</label>
+                    <div class="norm-slider-container">
+                        <input type="range" id="color-spread" class="norm-slider" min="2" max="42" step="1" value="42">
+                        <div class="norm-slider-labels">
+                            <span>2</span>
+                            <span>42</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="control-section">
                     <label>Custom hue</label>

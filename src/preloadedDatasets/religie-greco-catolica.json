@@ -1,0 +1,93 @@
+{
+  "name": "Populația greco-catolică",
+  "config": {
+    "data": {
+      "Bihor": 9890,
+      "Bistrita-Nasaud": 4264,
+      "Cluj": 17886,
+      "Maramures": 17835,
+      "Satu Mare": 19241,
+      "Salaj": 4768,
+      "Alba": 7649,
+      "Brasov": 1980,
+      "Covasna": 435,
+      "Harghita": 771,
+      "Mures": 8324,
+      "Sibiu": 4986,
+      "Bacau": 673,
+      "Botosani": 38,
+      "Iasi": 252,
+      "Neamt": 251,
+      "Suceava": 818,
+      "Vaslui": 43,
+      "Braila": 57,
+      "Buzau": 31,
+      "Constanta": 194,
+      "Galati": 62,
+      "Tulcea": 39,
+      "Vrancea": 55,
+      "Arges": 103,
+      "Calarasi": 35,
+      "Dambovita": 75,
+      "Giurgiu": 32,
+      "Ialomita": 24,
+      "Prahova": 212,
+      "Teleorman": 14,
+      "Ilfov": 372,
+      "Bucuresti": 2427,
+      "Dolj": 95,
+      "Gorj": 60,
+      "Mehedinti": 44,
+      "Olt": 46,
+      "Valcea": 107,
+      "Arad": 3039,
+      "Caras-Severin": 1002,
+      "Hunedoara": 2043,
+      "Timis": 5185
+    },
+    "minValue": 14,
+    "maxValue": 19241,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 130,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Populația greco-catolică",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de greco-catolici pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

@@ -1,0 +1,93 @@
+{
+  "name": "Alte religii",
+  "config": {
+    "data": {
+      "Bihor": 1390,
+      "Bistrita-Nasaud": 299,
+      "Cluj": 1790,
+      "Maramures": 730,
+      "Satu Mare": 550,
+      "Salaj": 336,
+      "Alba": 464,
+      "Brasov": 1021,
+      "Covasna": 293,
+      "Harghita": 469,
+      "Mures": 1512,
+      "Sibiu": 365,
+      "Bacau": 219,
+      "Botosani": 143,
+      "Iasi": 811,
+      "Neamt": 752,
+      "Suceava": 3021,
+      "Vaslui": 77,
+      "Braila": 87,
+      "Buzau": 96,
+      "Constanta": 265,
+      "Galati": 196,
+      "Tulcea": 56,
+      "Vrancea": 144,
+      "Arges": 369,
+      "Calarasi": 134,
+      "Dambovita": 291,
+      "Giurgiu": 232,
+      "Ialomita": 201,
+      "Prahova": 437,
+      "Teleorman": 139,
+      "Ilfov": 678,
+      "Bucuresti": 2027,
+      "Dolj": 255,
+      "Gorj": 44,
+      "Mehedinti": 176,
+      "Olt": 48,
+      "Valcea": 58,
+      "Arad": 1479,
+      "Caras-Severin": 276,
+      "Hunedoara": 612,
+      "Timis": 1414
+    },
+    "minValue": 44,
+    "maxValue": 3021,
+    "highIsBad": false,
+    "activePalette": {
+      "name": "Green",
+      "hue": 90,
+      "id": "green"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Alte religii",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Număr de persoane aparținând altor religii pe județe — RPL 2021",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: RPL 2021 — INS",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}
