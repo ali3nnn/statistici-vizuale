@@ -1,0 +1,93 @@
+{
+  "name": "Mame adolescente (2024)",
+  "config": {
+    "data": {
+      "Alba": 239,
+      "Arad": 277,
+      "Arges": 366,
+      "Bacau": 439,
+      "Bihor": 567,
+      "Bistrita-Nasaud": 217,
+      "Botosani": 196,
+      "Braila": 161,
+      "Brasov": 657,
+      "Bucuresti": 351,
+      "Buzau": 302,
+      "Calarasi": 351,
+      "Caras-Severin": 170,
+      "Cluj": 303,
+      "Constanta": 541,
+      "Covasna": 272,
+      "Dambovita": 372,
+      "Dolj": 568,
+      "Galati": 327,
+      "Giurgiu": 311,
+      "Gorj": 127,
+      "Harghita": 256,
+      "Hunedoara": 158,
+      "Ialomita": 333,
+      "Iasi": 490,
+      "Ilfov": 256,
+      "Maramures": 341,
+      "Mehedinti": 145,
+      "Mures": 813,
+      "Neamt": 266,
+      "Olt": 274,
+      "Prahova": 360,
+      "Salaj": 287,
+      "Satu Mare": 309,
+      "Sibiu": 391,
+      "Suceava": 371,
+      "Teleorman": 224,
+      "Timis": 274,
+      "Tulcea": 130,
+      "Valcea": 196,
+      "Vaslui": 289,
+      "Vrancea": 342
+    },
+    "minValue": 127,
+    "maxValue": 813,
+    "highIsBad": true,
+    "activePalette": {
+      "name": "Red",
+      "hue": 0,
+      "id": "red"
+    },
+    "paletteReversed": false,
+    "normalizationMode": "logarithmic",
+    "text": {
+      "title": {
+        "innerHTML": "Numărul mamelor adolescente în România",
+        "textAlign": "",
+        "top": ""
+      },
+      "subtitle": {
+        "innerHTML": "Nașteri la mame sub 19 ani, pe județe — 2024",
+        "textAlign": "",
+        "top": ""
+      },
+      "footer": {
+        "innerHTML": "Sursa: INS, TEMPO ONLINE, cod tabel POP201I",
+        "textAlign": "",
+        "top": ""
+      }
+    },
+    "display": {
+      "4x5": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "11"
+      },
+      "9x16": {
+        "showCode": true,
+        "showValue": true,
+        "labelSize": "9"
+      }
+    },
+    "legendOrientation": {
+      "4x5": "vertical",
+      "9x16": "vertical"
+    }
+  },
+  "disabled": true
+}

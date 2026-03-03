@@ -158,6 +158,7 @@ import eduSecundarInferior from './edu-secundar-inferior.json';
 import eduPrimar from './edu-primar.json';
 import eduPrescolar from './edu-prescolar.json';
 import eduFaraEducatie from './edu-fara-educatie.json';
+import mameAdolescente2024 from './mame-adolescente-2024.json';
 
 export const preloadedDatasets = [
     populatieTotala,
@@ -319,4 +320,5 @@ export const preloadedDatasets = [
     eduPrimar,
     eduPrescolar,
     eduFaraEducatie,
+    mameAdolescente2024,
 ];

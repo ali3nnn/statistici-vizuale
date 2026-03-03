@@ -1701,12 +1701,17 @@ document.getElementById('saved-panel-close').addEventListener('click', closeSave
             <span>Datasets</span>
             <button class="saved-panel-close" id="datasets-panel-close">&times;</button>
         </div>
+        <div class="datasets-search-wrap">
+            <input type="text" id="datasets-search" class="datasets-search" placeholder="Caută dataset..." />
+        </div>
         <div class="saved-list" id="datasets-list"></div>
     `;
     document.body.appendChild(panel);
 
     function openDatasetsPanel() {
         panel.classList.add('open');
+        const searchInput = document.getElementById('datasets-search');
+        if (searchInput) setTimeout(() => searchInput.focus(), 260);
     }
 
     function closeDatasetsPanel() {
@@ -1751,11 +1756,32 @@ document.getElementById('saved-panel-close').addEventListener('click', closeSave
             return el;
         }
 
-        datasetsList.appendChild(makeSection('Disponibile'));
-        available.forEach(ds => datasetsList.appendChild(makeItem(ds)));
+        const availableHeader = makeSection('Disponibile');
+        const upcomingHeader = makeSection('În curând');
+        const availableItems = available.map(ds => makeItem(ds));
+        const upcomingItems = upcoming.map(ds => makeItem(ds));
 
-        datasetsList.appendChild(makeSection('În curând'));
-        upcoming.forEach(ds => datasetsList.appendChild(makeItem(ds)));
+        datasetsList.appendChild(availableHeader);
+        availableItems.forEach(item => datasetsList.appendChild(item));
+        datasetsList.appendChild(upcomingHeader);
+        upcomingItems.forEach(item => datasetsList.appendChild(item));
+
+        const searchInput = document.getElementById('datasets-search');
+        searchInput.addEventListener('input', () => {
+            const q = searchInput.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            availableItems.forEach((item, i) => {
+                const name = available[i].name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                item.style.display = name.includes(q) ? '' : 'none';
+            });
+            upcomingItems.forEach((item, i) => {
+                const name = upcoming[i].name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                item.style.display = name.includes(q) ? '' : 'none';
+            });
+            const anyAvailable = availableItems.some(item => item.style.display !== 'none');
+            const anyUpcoming = upcomingItems.some(item => item.style.display !== 'none');
+            availableHeader.style.display = anyAvailable ? '' : 'none';
+            upcomingHeader.style.display = anyUpcoming ? '' : 'none';
+        });
     });
 })();
 
